@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c6026b96e6fa11a641b51a6ba976f5e",
+    "hash": "94128fba5fc4b0d8830b6bc73368f49e",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -217,6 +217,59 @@
             "time": "2014-12-20 21:24:13"
         },
         {
+            "name": "hieu-le/active",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/letrunghieu/active.git",
+                "reference": "b5d8e1c03e63f5e7ce841e2d0dcaa28553526cdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/letrunghieu/active/zipball/b5d8e1c03e63f5e7ce841e2d0dcaa28553526cdf",
+                "reference": "b5d8e1c03e63f5e7ce841e2d0dcaa28553526cdf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "~5.0",
+                "illuminate/routing": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "conflict": {
+                "watson/active": "*"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HieuLe\\Active\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hieu Le",
+                    "email": "letrunghieu.cse09@gmail.com",
+                    "homepage": "http://www.hieule.info"
+                }
+            ],
+            "description": "The helper class for Laravel 4 applications to get active class base on current route",
+            "homepage": "http://www.hieule.info/products/active-class-helper-laravel-4/",
+            "keywords": [
+                "active",
+                "laravel",
+                "routing"
+            ],
+            "time": "2015-05-19 02:55:55"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -304,6 +357,59 @@
             "time": "2015-04-20 18:58:01"
         },
         {
+            "name": "jenssegers/optimus",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/optimus.git",
+                "reference": "1885bc6f80391f275b07c778a5cbc158c949249b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/optimus/zipball/1885bc6f80391f275b07c778a5cbc158c949249b",
+                "reference": "1885bc6f80391f275b07c778a5cbc158c949249b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpseclib/phpseclib": "~2.0@dev",
+                "phpunit/phpunit": "~4.6",
+                "satooshi/php-coveralls": "0.6.*",
+                "symfony/console": "~2.6"
+            },
+            "bin": [
+                "optimus"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Optimus\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "http://jenssegers.be"
+                }
+            ],
+            "description": "Id obfuscation based on Knuth's integer hash method",
+            "homepage": "https://github.com/jenssegers/optimus",
+            "keywords": [
+                "hashids",
+                "id obfuscation",
+                "ids",
+                "obfuscation",
+                "optimus"
+            ],
+            "time": "2015-05-24 09:20:42"
+        },
+        {
             "name": "jeremeamia/SuperClosure",
             "version": "2.1.0",
             "source": {
@@ -362,17 +468,60 @@
             "time": "2015-03-11 20:06:43"
         },
         {
-            "name": "laravel/framework",
-            "version": "v5.1.6",
+            "name": "laracasts/flash",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "356418f315e4f6bf55d2f4bd451606e45a7595df"
+                "url": "https://github.com/laracasts/flash.git",
+                "reference": "a2e237ae34fcc73c4b0755fe51d1ac2063be781e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/356418f315e4f6bf55d2f4bd451606e45a7595df",
-                "reference": "356418f315e4f6bf55d2f4bd451606e45a7595df",
+                "url": "https://api.github.com/repos/laracasts/flash/zipball/a2e237ae34fcc73c4b0755fe51d1ac2063be781e",
+                "reference": "a2e237ae34fcc73c4b0755fe51d1ac2063be781e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Laracasts\\Flash": "src/"
+                },
+                "files": [
+                    "src/Laracasts/Flash/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Easy flash notifications",
+            "time": "2015-02-01 20:07:15"
+        },
+        {
+            "name": "laravel/framework",
+            "version": "v5.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "5e942882319845f71c681ce6e85831129bf66426"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5e942882319845f71c681ce6e85831129bf66426",
+                "reference": "5e942882319845f71c681ce6e85831129bf66426",
                 "shasum": ""
             },
             "require": {
@@ -387,7 +536,7 @@
                 "mtdowling/cron-expression": "~1.0",
                 "nesbot/carbon": "~1.19",
                 "php": ">=5.5.9",
-                "psy/psysh": "0.4.*",
+                "psy/psysh": "~0.5.1",
                 "swiftmailer/swiftmailer": "~5.1",
                 "symfony/console": "2.7.*",
                 "symfony/css-selector": "2.7.*",
@@ -487,35 +636,81 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-07-03 13:48:44"
+            "time": "2015-07-12 02:27:36"
         },
         {
-            "name": "league/flysystem",
-            "version": "1.0.4",
+            "name": "laravelcollective/html",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "56862959b45131ad33e5a7727a25db19f2cf090b"
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "0918dac79ff8d294a92048f2d8b3c0c3078139b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/56862959b45131ad33e5a7727a25db19f2cf090b",
-                "reference": "56862959b45131ad33e5a7727a25db19f2cf090b",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/0918dac79ff8d294a92048f2d8b3c0c3078139b0",
+                "reference": "0918dac79ff8d294a92048f2d8b3c0c3078139b0",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
+                "illuminate/http": "5.1.*",
+                "illuminate/routing": "5.1.*",
+                "illuminate/session": "5.1.*",
+                "illuminate/support": "5.1.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "time": "2015-06-18 02:16:50"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "b58431785768abbb4f00c10e66a065095a0693ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b58431785768abbb4f00c10e66a065095a0693ef",
+                "reference": "b58431785768abbb4f00c10e66a065095a0693ef",
+                "shasum": ""
+            },
+            "require": {
                 "php": ">=5.4.0"
             },
             "require-dev": {
                 "ext-fileinfo": "*",
-                "league/phpunit-coverage-listener": "~1.1",
                 "mockery/mockery": "~0.9",
-                "phpspec/phpspec": "~2.0",
+                "phpspec/phpspec": "^2.2",
                 "phpspec/prophecy-phpunit": "~1.0",
-                "phpunit/phpunit": "~4.1",
-                "predis/predis": "~1.0",
-                "tedivm/stash": "~0.12.0"
+                "phpunit/phpunit": "~4.1"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -529,8 +724,7 @@
                 "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
                 "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
                 "league/flysystem-webdav": "Allows you to use WebDAV storage",
-                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
-                "predis/predis": "Allows you to use Predis for caching"
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
             },
             "type": "library",
             "extra": {
@@ -553,10 +747,11 @@
                     "email": "info@frenky.net"
                 }
             ],
-            "description": "Many filesystems, one API.",
+            "description": "Filesystem abstraction: Many filesystems, one API.",
             "keywords": [
                 "Cloud Files",
                 "WebDAV",
+                "abstraction",
                 "aws",
                 "cloud",
                 "copy.com",
@@ -564,6 +759,7 @@
                 "file systems",
                 "files",
                 "filesystem",
+                "filesystems",
                 "ftp",
                 "rackspace",
                 "remote",
@@ -571,7 +767,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-06-07 21:27:37"
+            "time": "2015-07-11 14:58:06"
         },
         {
             "name": "monolog/monolog",
@@ -825,24 +1021,25 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.4.4",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "489816db71649bd95b416e3ed9062d40528ab0ac"
+                "reference": "e5a46a767928e85f1f47dda654beda8c680ddd94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/489816db71649bd95b416e3ed9062d40528ab0ac",
-                "reference": "489816db71649bd95b416e3ed9062d40528ab0ac",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e5a46a767928e85f1f47dda654beda8c680ddd94",
+                "reference": "e5a46a767928e85f1f47dda654beda8c680ddd94",
                 "shasum": ""
             },
             "require": {
                 "dnoegel/php-xdg-base-dir": "0.1",
                 "jakub-onderka/php-console-highlighter": "0.3.*",
-                "nikic/php-parser": "~1.0",
-                "php": ">=5.3.0",
-                "symfony/console": "~2.3.10|~2.4.2|~2.5"
+                "nikic/php-parser": "^1.2.1",
+                "php": ">=5.3.9",
+                "symfony/console": "~2.3.10|^2.4.2|~3.0",
+                "symfony/var-dumper": "~2.7|~3.0"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.5",
@@ -862,7 +1059,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.4.x-dev"
+                    "dev-develop": "0.6.x-dev"
                 }
             },
             "autoload": {
@@ -892,7 +1089,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2015-03-26 18:43:54"
+            "time": "2015-07-03 16:48:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1695,6 +1892,73 @@
                 "environment"
             ],
             "time": "2015-05-30 15:59:26"
+        },
+        {
+            "name": "zizaco/entrust",
+            "version": "dev-laravel-5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Zizaco/entrust.git",
+                "reference": "3a768eb52300ec4efe9d6a6685b9bf0db6a50ffd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/3a768eb52300ec4efe9d6a6685b9bf0db6a50ffd",
+                "reference": "3a768eb52300ec4efe9d6a6685b9bf0db6a50ffd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": "~5.0",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.1",
+                "sami/sami": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-4": {
+                    "Zizaco\\Entrust\\": "src/Entrust/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Elkins",
+                    "homepage": "http://andrewelkins.com"
+                },
+                {
+                    "name": "Zizaco Zizuini",
+                    "email": "zizaco@gmail.com"
+                },
+                {
+                    "name": "Ben Batschelet",
+                    "homepage": "http://github.com/bbatsche"
+                },
+                {
+                    "name": "Michele Angioni",
+                    "email": "michele.angioni@gmail.com"
+                }
+            ],
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
+            "keywords": [
+                "acl",
+                "auth",
+                "illuminate",
+                "laravel",
+                "permission",
+                "roles"
+            ],
+            "time": "2015-07-09 16:32:53"
         }
     ],
     "packages-dev": [
@@ -2925,7 +3189,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "zizaco/entrust": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
