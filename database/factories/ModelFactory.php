@@ -1,21 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
+$factory->define(Tesis\Models\User::class, function ($faker) {
 
-$factory->define(Tesis\User::class, function ($faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName,
+        'lastname' => $faker->lastName,
         'email' => $faker->email,
-        'password' => str_random(10),
-        'remember_token' => str_random(10),
+        'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'phone' => $faker->unique()->randomNumber(6),
+        'mobil' => $faker->unique()->randomNumber(9),
+        'gender' => $faker->numberBetween(0, 1),
+        'password' => bcrypt('pruebasistema'),
     ];
 });

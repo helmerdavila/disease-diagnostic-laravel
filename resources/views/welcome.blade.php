@@ -38,7 +38,11 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Lesly Mejillas</div>
+                <h1>Este es el usuario Nº {{ $id }}</h1>
+                @if ($id == 1)
+                    <h2>Eres el número 1</h2>
+                @endif
             </div>
         </div>
     </body>
