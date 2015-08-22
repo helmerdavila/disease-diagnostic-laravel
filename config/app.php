@@ -57,7 +57,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -112,7 +112,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Active' => HieuLe\Active\Facades\Active::class,
         'Flash' => Laracasts\Flash\Flash::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

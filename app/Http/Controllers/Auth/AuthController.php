@@ -2,15 +2,19 @@
 
 namespace Tesis\Http\Controllers\Auth;
 
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Tesis\Http\Controllers\Controller;
 use Tesis\User;
 use Validator;
-use Tesis\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+
+    protected $loginPath = '/';
 
     public function __construct()
     {
@@ -33,5 +37,25 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    public function showLoginPost(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $remember = intval($request->input('remember', 0));
+            if (Auth::attempt($request->only('email', 'password'), $remember)) {
+                if (Auth::user()->hasRole('admin')) {
+                    return redirect()->intended(route('homeAdmin'));
+                } elseif (Auth::user()->hasRole('usuario')) {
+                    return redirect()->intended(route('homeUser'));
+                }
+            }
+        }
+        return redirect()->back();
     }
 }
