@@ -8,7 +8,7 @@ return [
 
     'timezone' => 'America/Lima',
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     'fallback_locale' => 'en',
 
@@ -56,8 +56,9 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Styde\Html\HtmlServiceProvider::class,
+        Vinkla\Hashids\HashidsServiceProvider::class,
     ],
 
     /*
@@ -111,8 +112,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Active' => HieuLe\Active\Facades\Active::class,
-        'Flash' => Laracasts\Flash\Flash::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
     ],
 
 ];

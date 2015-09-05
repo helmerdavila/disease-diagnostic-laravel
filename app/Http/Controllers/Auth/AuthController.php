@@ -50,12 +50,13 @@ class AuthController extends Controller
             $remember = intval($request->input('remember', 0));
             if (Auth::attempt($request->only('email', 'password'), $remember)) {
                 if (Auth::user()->hasRole('admin')) {
-                    return redirect()->intended(route('homeAdmin'));
+                    return redirect()->intended(route('admin::home'));
                 } elseif (Auth::user()->hasRole('usuario')) {
-                    return redirect()->intended(route('homeUser'));
+                    return redirect()->intended(route('user::home'));
                 }
             }
         }
+        alert('Correo y/o contraseña inválidos', 'danger');
         return redirect()->back();
     }
 }

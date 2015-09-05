@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CrearTableDiagnostic extends Migration
 {
@@ -12,16 +12,17 @@ class CrearTableDiagnostic extends Migration
      */
     public function up()
     {
-        Schema::create('diagnostic', function (Blueprint $table) {
+        Schema::create('diagnostics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id')->unsigned();
             $table->integer('diseases_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
-        Schema::table('diagnostic', function(Blueprint $table){
-           $table->foreign('users_id')->references('id')->on('users');
-           $table->foreign('diseases_id')->references('id')->on('diseases');
+        Schema::table('diagnostics', function (Blueprint $table) {
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('diseases_id')->references('id')->on('diseases');
         });
     }
 
@@ -32,11 +33,11 @@ class CrearTableDiagnostic extends Migration
      */
     public function down()
     {
-        Schema::table('diagnostic', function(Blueprint $table){
-            $table->dropForeign('diagnostic_users_id_foreign');
-            $table->dropForeign('diagnostic_diseases_id_foreign');
+        Schema::table('diagnostics', function (Blueprint $table) {
+            $table->dropForeign('diagnostics_users_id_foreign');
+            $table->dropForeign('diagnostics_diseases_id_foreign');
         });
 
-        Schema::drop('diagnostic');
+        Schema::drop('diagnostics');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CrearTableRulers extends Migration
 {
@@ -12,17 +12,17 @@ class CrearTableRulers extends Migration
      */
     public function up()
     {
-        Schema::create('rulers', function (Blueprint $table) {
+        Schema::create('rules', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('diseases_id')->unsigned();
-            $table->integer('symptoms_id')->unsigned();
+            $table->integer('disease_id')->unsigned();
+            $table->integer('symptom_id')->unsigned();
             $table->timestamps();
         });
 
         //Sentencia de esquema table para las claves foraneas, reemplaza create por table
-        Schema::table('rulers', function(Blueprint $table){
-            $table->foreign('diseases_id')->references('id')->on('diseases');
-            $table->foreign('symptoms_id')->references('id')->on('symptoms');
+        Schema::table('rules', function (Blueprint $table) {
+            $table->foreign('disease_id')->references('id')->on('diseases');
+            $table->foreign('symptom_id')->references('id')->on('symptoms');
         });
     }
     /**
@@ -32,11 +32,11 @@ class CrearTableRulers extends Migration
      */
     public function down()
     {
-        Schema::table('rulers', function(Blueprint $table){
-            $table->dropForeign('rulers_diseases_id_foreign');
-            $table->dropForeign('rulers_symptoms_id_foreign');
+        Schema::table('rules', function (Blueprint $table) {
+            $table->dropForeign('rules_disease_id_foreign');
+            $table->dropForeign('rules_symptom_id_foreign');
         });
 
-        Schema::drop('rulers');
+        Schema::drop('rules');
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diagnostic extends Model
 {
+
     public function disease()
     {
         return $this->belongsTo('Tesis\Models\Disease', 'disease_id');

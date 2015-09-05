@@ -75,7 +75,7 @@ class UserTableSeeder extends Seeder
         $usuario->save();
         $usuario->attachRole($rolUsuario);
 
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $user = factory(Tesis\Models\User::class)->create();
             $user->attachRole($rolUsuario);
         }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b193fc21e85d04c2bd988fcbe88ceb20",
+    "hash": "279628389b2c313393e9aa8b3ed7e22b",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -271,6 +271,122 @@
             "time": "2014-12-20 21:24:13"
         },
         {
+            "name": "graham-campbell/manager",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+                "reference": "b386c08594a3e1ff7d0f3401d545460f609c6c1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/b386c08594a3e1ff7d0f3401d545460f609c6c1e",
+                "reference": "b386c08594a3e1ff7d0f3401d545460f609c6c1e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "graham-campbell/testbench-core": "~1.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.7.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\Manager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Manager Provides Some Manager Functionality For Laravel 5",
+            "keywords": [
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Manager",
+                "Laravel-Manager",
+                "connector",
+                "framework",
+                "interface",
+                "laravel",
+                "manager"
+            ],
+            "time": "2015-06-26 17:39:20"
+        },
+        {
+            "name": "hashids/hashids",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivanakimov/hashids.php.git",
+                "reference": "991a88b01b01b053fbd39a56780a66e572f1dc1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/991a88b01b01b053fbd39a56780a66e572f1dc1a",
+                "reference": "991a88b01b01b053fbd39a56780a66e572f1dc1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Hashids": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Akimov",
+                    "email": "ivan@barreleye.com",
+                    "homepage": "https://twitter.com/IvanAkimov"
+                }
+            ],
+            "description": "Generate hashids like YouTube or Bitly from numbers to obfuscate your database primary ids, or navigate to the right shard.",
+            "homepage": "http://hashids.org/php",
+            "keywords": [
+                "bitly",
+                "decrypt",
+                "encrypt",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "obfuscate",
+                "youtube"
+            ],
+            "time": "2015-01-21 00:49:41"
+        },
+        {
             "name": "hieu-le/active",
             "version": "2.2.1",
             "source": {
@@ -408,59 +524,6 @@
             "time": "2015-04-20 18:58:01"
         },
         {
-            "name": "jenssegers/optimus",
-            "version": "v0.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jenssegers/optimus.git",
-                "reference": "5e8b7473c57375322e7a56f51c0bc4821459143e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/optimus/zipball/5e8b7473c57375322e7a56f51c0bc4821459143e",
-                "reference": "5e8b7473c57375322e7a56f51c0bc4821459143e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpseclib/phpseclib": "~2.0@dev",
-                "phpunit/phpunit": "~4.6",
-                "satooshi/php-coveralls": "0.6.*",
-                "symfony/console": "~2.6"
-            },
-            "bin": [
-                "optimus"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Jenssegers\\Optimus\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Segers",
-                    "homepage": "http://jenssegers.be"
-                }
-            ],
-            "description": "Id obfuscation based on Knuth's integer hash method",
-            "homepage": "https://github.com/jenssegers/optimus",
-            "keywords": [
-                "hashids",
-                "id obfuscation",
-                "ids",
-                "obfuscation",
-                "optimus"
-            ],
-            "time": "2015-07-12 10:03:35"
-        },
-        {
             "name": "jeremeamia/SuperClosure",
             "version": "2.1.0",
             "source": {
@@ -519,60 +582,17 @@
             "time": "2015-03-11 20:06:43"
         },
         {
-            "name": "laracasts/flash",
-            "version": "1.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracasts/flash.git",
-                "reference": "a2e237ae34fcc73c4b0755fe51d1ac2063be781e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/flash/zipball/a2e237ae34fcc73c4b0755fe51d1ac2063be781e",
-                "reference": "a2e237ae34fcc73c4b0755fe51d1ac2063be781e",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Laracasts\\Flash": "src/"
-                },
-                "files": [
-                    "src/Laracasts/Flash/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeffrey Way",
-                    "email": "jeffrey@laracasts.com"
-                }
-            ],
-            "description": "Easy flash notifications",
-            "time": "2015-02-01 20:07:15"
-        },
-        {
             "name": "laravel/framework",
-            "version": "v5.1.10",
+            "version": "v5.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d47ccc8de10ccb6f328cc90f901ca5e47e077c93"
+                "reference": "76a9816f37a58383f6ba093ccf08f253e5488555"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d47ccc8de10ccb6f328cc90f901ca5e47e077c93",
-                "reference": "d47ccc8de10ccb6f328cc90f901ca5e47e077c93",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/76a9816f37a58383f6ba093ccf08f253e5488555",
+                "reference": "76a9816f37a58383f6ba093ccf08f253e5488555",
                 "shasum": ""
             },
             "require": {
@@ -687,7 +707,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-08-12 18:16:08"
+            "time": "2015-08-30 23:25:48"
         },
         {
             "name": "laravelcollective/html",
@@ -878,16 +898,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.16.0",
+            "version": "1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c0c0b4bee3aabce7182876b0d912ef2595563db7"
+                "reference": "877ae631713cc961952df713ae785735b90df682"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c0c0b4bee3aabce7182876b0d912ef2595563db7",
-                "reference": "c0c0b4bee3aabce7182876b0d912ef2595563db7",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/877ae631713cc961952df713ae785735b90df682",
+                "reference": "877ae631713cc961952df713ae785735b90df682",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +924,7 @@
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
-                "raven/raven": "~0.8",
+                "raven/raven": "~0.11",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
@@ -950,7 +970,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-08-09 17:44:44"
+            "time": "2015-08-30 11:40:25"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1197,6 +1217,47 @@
                 "shell"
             ],
             "time": "2015-07-16 15:26:57"
+        },
+        {
+            "name": "styde/html",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/html.git",
+                "reference": "631ed931b8ccf11b2e4f9888857bd701abf4c42b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/html/zipball/631ed931b8ccf11b2e4f9888857bd701abf4c42b",
+                "reference": "631ed931b8ccf11b2e4f9888857bd701abf4c42b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "laravelcollective/html": "5.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Styde\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "admin@styde.net"
+                }
+            ],
+            "description": "Build form fields, menus, alert messages and other view components quickly",
+            "time": "2015-08-29 15:46:09"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1953,6 +2014,68 @@
                 "dump"
             ],
             "time": "2015-07-28 15:18:12"
+        },
+        {
+            "name": "vinkla/hashids",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/hashids.git",
+                "reference": "a2269b026b4bd8deffab9ac1536570d14f76b352"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/hashids/zipball/a2269b026b4bd8deffab9ac1536570d14f76b352",
+                "reference": "a2269b026b4bd8deffab9ac1536570d14f76b352",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/manager": "~2.2",
+                "hashids/hashids": "~1.0",
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "~3.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.7.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Hashids\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com"
+                }
+            ],
+            "description": "A Hashids bridge for Laravel",
+            "keywords": [
+                "bitly",
+                "decrypt",
+                "encrypt",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "laravel",
+                "obfuscate",
+                "youtube"
+            ],
+            "time": "2015-07-06 10:56:44"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2748,16 +2871,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.5",
+            "version": "4.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc"
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b7417edaf28059ea63d86be941e6004dbfcc0cc",
-                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2246830f4a1a551c67933e4171bf2126dc29d357",
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357",
                 "shasum": ""
             },
             "require": {
@@ -2816,7 +2939,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-19 09:20:57"
+            "time": "2015-08-24 04:09:38"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

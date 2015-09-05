@@ -31,6 +31,7 @@
     		<div class="login-box-body">
     			<p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
     			{!! Form::open(['route' => 'showLoginPost']) !!}
+                {!! Alert::render() !!}
     			<div class="form-group has-feedback">
     				<input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo" required>
     				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -48,7 +49,7 @@
     					</div>
     				</div><!-- /.col -->
     				<div class="col-xs-5">
-    					<button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
+                        {!! Form::submit('Entrar', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
     				</div><!-- /.col -->
     			</div>
     			{!! Form::close() !!}

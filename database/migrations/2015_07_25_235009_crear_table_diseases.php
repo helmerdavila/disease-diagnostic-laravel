@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CrearTableDiseases extends Migration
 {
@@ -17,6 +17,7 @@ class CrearTableDiseases extends Migration
             $table->string("name");
             $table->string("name_c")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

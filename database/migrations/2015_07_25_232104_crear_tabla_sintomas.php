@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CrearTablaSintomas extends Migration
 {
@@ -12,6 +12,7 @@ class CrearTablaSintomas extends Migration
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
