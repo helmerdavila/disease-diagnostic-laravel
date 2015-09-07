@@ -7,9 +7,16 @@ use Tesis\Http\Requests\DiseaseRequest;
 use Tesis\Models\Disease;
 use Tesis\Models\Rule;
 use Tesis\Models\Symptom;
+use Vinkla\Hashids\HashidsManager;
 
 class DiseaseController extends Controller
 {
+    protected $hashids;
+
+    public function __construct(HashidsManager $hashids)
+    {
+        $this->hashids = $hashids;
+    }
 
     public function index()
     {
@@ -38,5 +45,25 @@ class DiseaseController extends Controller
             alert('Hubo un problema al registrar la enfermedad, por favor intente nuevamente');
         }
         return redirect()->back();
+    }
+
+    public function edit($encrypt_id)
+    {
+        if (!empty($decoded = $this->hashids->decode($encrypt_id))) {
+            if ($enfermedad = Disease::with('rules.symptom')->find($decoded[0])) {
+                $sintomas = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+                $e_sintomas = $enfermedad->rules->lists('symptom_id')->toArray();
+                return view('admin.disease.edit')
+                    ->with('e_sintomas', $e_sintomas)
+                    ->with('sintomas', $sintomas)
+                    ->with('enfermedad', $enfermedad);
+            }
+        }
+        return abort(404);
+    }
+
+    public function update($encrypt_id)
+    {
+
     }
 }

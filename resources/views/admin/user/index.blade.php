@@ -56,7 +56,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                            <i class="fa fa-gear"></i>      <span class="caret"></span>
+                                            <i class="fa fa-gear"></i>  <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="{{ route('admin::usuarios::edit', Hashids::encode($usuario->id)) }}"><i class="fa fa-pencil"></i> Editar</a></li>

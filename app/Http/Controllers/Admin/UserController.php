@@ -14,7 +14,6 @@ class UserController extends Controller
 
     public function __construct(HashidsManager $hashids)
     {
-        $this->middleware('auth');
         $this->hashids = $hashids;
     }
 
@@ -36,7 +35,7 @@ class UserController extends Controller
             $request['birthday'] = Carbon::createFromFormat('d/m/Y', $request->input('birthday'))->format('Y-m-d');
         }
 
-        if (User::create($request->all())) {
+        if ($user = User::create($request->all())) {
             alert('Usuario registrado correctamente', 'success');
         } else {
             alert('Hubo un problema al registrar por favor intente nuevamente');

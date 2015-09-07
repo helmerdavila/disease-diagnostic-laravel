@@ -25,7 +25,7 @@ class DiseaseRequest extends Request
         return [
             'nombre' => 'required|min:3|max:255',
             'nombre_c' => 'required|min:3|max:1000',
-            'sintomas' => 'required|array',
+            'sintomas' => 'required',
         ];
     }
 

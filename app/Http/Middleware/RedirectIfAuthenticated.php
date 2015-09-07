@@ -12,9 +12,9 @@ class RedirectIfAuthenticated
     {
         if (Auth::check()) {
             if (Auth::user()->hasRole('admin')) {
-                return redirect()->route('homeAdmin');
+                return redirect()->route('admin::home');
             } elseif (Auth::user()->hasRole('usuario')) {
-                return redirect()->route('homeUser');
+                return redirect()->route('user::home');
             }
         }
 

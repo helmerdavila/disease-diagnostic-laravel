@@ -10,8 +10,8 @@
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Form::radios('sintomas', $sintomas) !!}
-                    {!! Form::submit('Siguiente &raquo;', ['class' => 'btn btn-success']) !!}
+                    {!! Form::checkboxes('sintomas', $sintomas) !!}
+                    {!! Form::submit('Diagnosticar &raquo;', ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
