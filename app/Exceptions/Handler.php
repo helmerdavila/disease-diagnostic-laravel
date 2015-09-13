@@ -3,8 +3,8 @@
 namespace Tesis\Exceptions;
 
 use Exception;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -22,7 +22,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
+     * @param  \Exception $e
      * @return void
      */
     public function report(Exception $e)
@@ -33,12 +33,15 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Illuminate\Http\Request    $request
+     * @param  \Exception                  $e
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof Illuminate\Database\Eloquent\ModelNotFoundException) {
+            return abort(404);
+        }
         return parent::render($request, $e);
     }
 }
