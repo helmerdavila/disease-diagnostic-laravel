@@ -6,21 +6,11 @@ use Carbon\Carbon;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\UserRequest;
 use Tesis\Models\User;
-use Vinkla\Hashids\HashidsManager;
+use Tesis\Traits\HashTrait;
 
 class UserController extends Controller
 {
-    protected $hashids;
-
-    public function __construct(HashidsManager $hashids)
-    {
-        $this->hashids = $hashids;
-    }
-
-    public function index()
-    {
-
-    }
+    use HashTrait;
 
     public function create()
     {
@@ -32,41 +22,37 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         if ($request->has('birthday')) {
-            $request['birthday'] = Carbon::createFromFormat('d/m/Y', $request->input('birthday'))->format('Y-m-d');
+            $request['birthday'] = Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d');
         }
 
-        if ($user = User::create($request->all())) {
-            alert('Usuario registrado correctamente', 'success');
-        } else {
-            alert('Hubo un problema al registrar por favor intente nuevamente');
-        }
+        User::create($request->all());
 
+        alert('Usuario registrado correctamente');
         return redirect()->back();
     }
 
-    public function edit($encrypt_id)
+    public function edit($hash_id)
     {
-        if (!empty($this->hashids->decode($encrypt_id))) {
-            $decoded = $this->hashids->decode($encrypt_id);
-            if ($usuario = User::find($decoded[0])) {
-                return view('admin.user.edit')->with('usuario', $usuario);
-            }
-        }
-        return abort(404);
+        $id = $this->decode($hash_id);
+
+        $usuario = User::findOrFail($id);
+
+        return view('admin.user.edit')->with('usuario', $usuario);
     }
 
-    public function update($encrypt_id, UserRequest $request)
+    public function update($hash_id, UserRequest $request)
     {
-        if ($usuario = User::find($id)) {
+        $id = $this->decode($hash_id);
 
-            if ($usuario->update($request->all())) {
-                alert('Se modificó el usuario correctamente', 'success');
-            } else {
-                alert('Hubo un problema al modificar, por favor intente nuevamente');
-            }
-            return redirect()->route('getListarUsuario');
+        if ($request->has('birthday')) {
+            $request['birthday'] = Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d');
         }
 
-        return abort(404);
+        $usuario = User::findOrFail($id);
+
+        $usuario->update($request->all());
+
+        alert('Se modificó el usuario correctamente');
+        return redirect()->route('admin::usuarios::create');
     }
 }

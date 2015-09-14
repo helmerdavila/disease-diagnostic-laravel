@@ -8,11 +8,12 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, EntrustUserTrait;
+    use Authenticatable, CanResetPassword, EntrustUserTrait, SoftDeletes;
 
     protected $table = 'users';
 
@@ -22,7 +23,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $hidden = ['password', 'remember_token'];
 
-    protected $dates = ['birthday'];
+    protected $dates = ['birthday', 'deleted_at'];
 
     public function diagnostics()
     {

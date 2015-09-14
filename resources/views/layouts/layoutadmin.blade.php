@@ -116,12 +116,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin::sintomas::index') }}">
+                            <a href="{{ route('admin::sintomas::create') }}">
                                 <i class="fa fa-eyedropper"></i> <span>Síntomas</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin::enfermedades::index') }}">
+                            <a href="{{ route('admin::enfermedades::create') }}">
                                 <i class="fa fa-heartbeat"></i> <span>Enfermedades</span>
                             </a>
                         </li>

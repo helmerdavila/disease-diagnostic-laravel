@@ -2,29 +2,20 @@
 
 namespace Tesis\Http\Requests;
 
-use Illuminate\Contracts\Auth\Guard;
 use Tesis\Http\Requests\Request;
 
 class DiseaseRequest extends Request
 {
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
     public function authorize()
     {
-        if ($this->auth->user()->hasRole('admin')) {
-            return true;
-        }
-        return abort(403);
+        return auth()->user()->hasRole('admin') ? true : abort(403);
     }
 
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3|max:255',
-            'nombre_c' => 'required|min:3|max:1000',
+            'name' => 'required|between:3,255',
+            'name_c' => 'between:3,1000',
             'sintomas' => 'required',
         ];
     }
@@ -32,9 +23,10 @@ class DiseaseRequest extends Request
     public function messages()
     {
         return [
-            'nombre_c.required' => 'El campo nombre científico es obligatorio',
-            'nombre_c.min' => 'El campo nombre científico debe tener al menos :min caracteres',
-            'nombre_c.max' => 'El campo nombre científico debe tener al menos :max caracteres',
+            'name.required' => 'El nombre es obligatorio',
+            'name.between' => 'El nombre científico debe tener entre :min y :max caracteres',
+            'name_c.between' => 'El nombre científico debe tener entre :min y :max caracteres',
+            'sintomas.required' => 'Elegir sintomas es obligatorio',
         ];
     }
 }

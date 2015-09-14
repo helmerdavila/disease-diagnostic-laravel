@@ -1,10 +1,6 @@
 @extends('layouts.layoutadmin')
-@section('title')
-    Enfermedades
-@stop
-@section('breadcrumb')
-    Enfermedades
-@stop
+@section('title') Enfermedades @stop
+@section('breadcrumb') Enfermedades @stop
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -14,10 +10,7 @@
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::text('nombre', null, ['autocomplete' => 'off']) !!}
-                    {!! Field::text('nombre_c', null, ['label' => 'Nombre Científico', 'autocomplete' => 'off']) !!}
-                    {!! Field::select('sintomas', $sintomas, null, ['multiple'=> '', 'class' => 'select2', 'label' => 'Síntomas', 'empty' => false]) !!}
-                    {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
+                    @include('admin.disease._form', ['buttonText' => 'Guardar', 'color' => 'success'])
                 {!! Form::close() !!}
             </div>
         </div>
@@ -38,30 +31,32 @@
                             <th>Nombre Científico</th>
                             <th>Síntomas</th>
                             <th>Agregado</th>
+                            <th class="text-center">Diagnósticos</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($enfermedades as $enfermedad)
                             <tr>
                                 <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                            <i class="fa fa-gear"></i>  <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('admin::enfermedades::edit', Hashids::encode($enfermedad->id)) }}"><i class="fa fa-pencil"></i> Editar</a></li>
-                                            <li><a href=""><i class="fa fa-times"></i> Eliminar</a></li>
-                                        </ul>
-                                    </div>
+                                    @include('partials._boton', [
+                                        'object' => $enfermedad,
+                                        'editRoute' => 'admin::enfermedades::edit',
+                                        'deleteRoute' => 'admin::enfermedades::delete',
+                                        'name' => $enfermedad->name . " ($enfermedad->name_c)",
+                                        'content' => 'la enfermedad',
+                                    ])
                                 </td>
                                 <td>{{ $enfermedad->name }}</td>
                                 <td>{{ $enfermedad->name_c }}</td>
                                 <td>
-                                    @foreach ($enfermedad->rules as $regla)
-                                        <span class="label label-primary">{{ $regla->symptom->name }}</span>
+                                    @foreach ($enfermedad->rules as $sintoma)
+                                        <span class="label label-primary">{{ $sintoma->name }}</span>
                                     @endforeach
                                 </td>
                                 <td>{{ $enfermedad->created_at->format('d/m/Y') }}</td>
+                                <td class="text-center">
+                                    <span class="label label-primary">{{ $enfermedad->diagnostics->count() }}</span>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

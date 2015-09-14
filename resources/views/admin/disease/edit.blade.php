@@ -10,10 +10,11 @@
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::text('nombre', $enfermedad->name, ['autocomplete' => 'off']) !!}
-                    {!! Field::text('nombre_c', $enfermedad->name_c, ['label' => 'Nombre Científico', 'autocomplete' => 'off']) !!}
-                    {!! Field::select('sintomas', $sintomas, ['8', '18'], ['multiple', 'class' => '', 'label' => 'Síntomas', 'empty' => false]) !!}
-                    {!! Form::submit('Actualizar', ['class' => 'btn btn-warning']) !!}
+                    @include('admin.disease._form', [
+                        'buttonText' => 'Actualizar',
+                        'color' => 'warning',
+                        'disease' => $enfermedad,
+                    ])
                 {!! Form::close() !!}
             </div>
         </div>

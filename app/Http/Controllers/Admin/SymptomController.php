@@ -5,59 +5,61 @@ namespace Tesis\Http\Controllers\Admin;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\SymptomRequest;
 use Tesis\Models\Symptom;
-use Vinkla\Hashids\HashidsManager;
+use Tesis\Traits\HashTrait;
 
 class SymptomController extends Controller
 {
-    protected $hashids;
+    use HashTrait;
 
-    public function __construct(HashidsManager $hashids)
-    {
-        $this->hashids = $hashids;
-    }
-
-    public function index()
+    public function create()
     {
         $sintomas = Symptom::orderBy('name', 'asc')->with('rules')->paginate(20);
 
         return view('admin.symptom.index')->with('sintomas', $sintomas);
     }
 
-    public function create(SymptomRequest $request)
+    public function store(SymptomRequest $request)
     {
-        if (Symptom::create($request->all())) {
-            alert('Se registró el síntoma correctamente', 'success');
-        } else {
-            alert('Hubo un problema al registrar el síntoma, por favor intente nuevamente', 'danger');
-        }
+        Symptom::create($request->all());
+
+        alert('Se registró el síntoma correctamente');
         return redirect()->back();
     }
 
-    public function edit($encrypt_id)
+    public function edit($hash_id)
     {
-        if (!empty($decoded = $this->hashids->decode($encrypt_id))) {
-            if ($sintoma = Symptom::find($decoded[0])) {
-                return view('admin.symptom.edit')->with('sintoma', $sintoma);
-            }
-        }
-        return abort(404);
+        $id = $this->decode($hash_id);
+
+        $sintoma = Symptom::findOrFail($id);
+
+        return view('admin.symptom.edit')->with('sintoma', $sintoma);
     }
 
-    public function update($encrypt_id, SymptomRequest $request)
+    public function update($hash_id, SymptomRequest $request)
     {
-        if (!empty($decoded = $this->hashids->decode($encrypt_id))) {
-            if ($sintoma = Symptom::find($decoded[0])) {
-                $sintoma->update($request->all());
-                alert('Se modificó el síntoma con éxito');
-                return redirect()->route('admin::sintomas::index');
-            }
-        }
+        $id = $this->decode($hash_id);
 
-        return abort(404);
+        $sintoma = Symptom::findOrFail($id);
+        $sintoma->update($request->all());
+
+        alert('Se modificó el síntoma con éxito');
+        return redirect()->route('admin::sintomas::create');
     }
 
     public function delete($hash_id)
     {
-        dd($hash_id);
+        $id = $this->decode($hash_id);
+
+        $sintoma = Symptom::findOrFail($id);
+
+        if ($sintoma->rules->count() > 0) {
+            alert('No se puede eliminar un síntoma con reglas', 'danger');
+            return redirect()->back();
+        }
+
+        $sintoma->delete();
+
+        alert('Se eliminó el síntoma con éxito');
+        return redirect()->route('admin::sintomas::listar');
     }
 }

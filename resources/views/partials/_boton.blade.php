@@ -10,7 +10,7 @@
         <li>
             <a href="" data-toggle="modal" data-target="#deleteModal"
                 data-title="{{ $name }}" data-content="{{ $content }}"
-                data-route="{{ route($deleteRoute, Hashids::encode($object->id)) }}>"
+                data-route="{{ route($deleteRoute, Hashids::encode($object->id)) }}">
             <i class="fa fa-times"></i> Eliminar</a>
         </li>
     </ul>

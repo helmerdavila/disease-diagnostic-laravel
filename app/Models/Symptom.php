@@ -2,13 +2,24 @@
 namespace Tesis\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Symptom extends Model
 {
-    protected $fillable = ['name'];
+    use SoftDeletes;
+
+    protected $fillable = ['name', 'deleted_at'];
 
     public function rules()
     {
-        return $this->hasMany('Tesis\Models\Rule', 'symptom_id');
+        return $this->belongsToMany('Tesis\Models\Disease', 'rules');
+    }
+
+    /**
+     * Mutators
+     */
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = ucfirst($name);
     }
 }

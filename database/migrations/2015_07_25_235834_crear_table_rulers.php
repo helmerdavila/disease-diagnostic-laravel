@@ -21,10 +21,11 @@ class CrearTableRulers extends Migration
 
         //Sentencia de esquema table para las claves foraneas, reemplaza create por table
         Schema::table('rules', function (Blueprint $table) {
-            $table->foreign('disease_id')->references('id')->on('diseases');
-            $table->foreign('symptom_id')->references('id')->on('symptoms');
+            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
+            $table->foreign('symptom_id')->references('id')->on('symptoms')->onDelete('cascade');
         });
     }
+
     /**
      * Reverse the migrations.
      *

@@ -10,7 +10,7 @@
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::text('name', null, ['placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '', 'label' => 'Nombre']) !!}
+                    {!! Field::text('name', null, ['ph' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '', 'label' => 'Nombre']) !!}
                     {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>

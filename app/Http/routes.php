@@ -15,8 +15,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         // sintomas
         Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
-            get('/listar', ['as' => 'index', 'uses' => 'Admin\SymptomController@index']);
-            post('/listar', ['as' => 'create', 'uses' => 'Admin\SymptomController@create']);
+            get('/listar', ['as' => 'create', 'uses' => 'Admin\SymptomController@create']);
+            post('/listar', ['as' => 'store', 'uses' => 'Admin\SymptomController@store']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\SymptomController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\SymptomController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\SymptomController@delete']);
@@ -24,10 +24,11 @@ Route::group(['middleware' => 'auth'], function () {
 
         // enfermedades
         Route::group(['prefix' => 'enfermedades', 'as' => 'enfermedades::'], function () {
-            get('/listar', ['as' => 'index', 'uses' => 'Admin\DiseaseController@index']);
-            post('/listar', ['as' => 'create', 'uses' => 'Admin\DiseaseController@create']);
+            get('/listar', ['as' => 'create', 'uses' => 'Admin\DiseaseController@create']);
+            post('/listar', ['as' => 'store', 'uses' => 'Admin\DiseaseController@store']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\DiseaseController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\DiseaseController@update']);
+            post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\DiseaseController@delete']);
         });
 
         // diagnosticos

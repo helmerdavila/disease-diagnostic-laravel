@@ -14,15 +14,15 @@ class CrearTableDiagnostic extends Migration
     {
         Schema::create('diagnostics', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('users_id')->unsigned();
-            $table->integer('diseases_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('disease_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
 
         Schema::table('diagnostics', function (Blueprint $table) {
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('diseases_id')->references('id')->on('diseases');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
         });
     }
 
@@ -34,8 +34,8 @@ class CrearTableDiagnostic extends Migration
     public function down()
     {
         Schema::table('diagnostics', function (Blueprint $table) {
-            $table->dropForeign('diagnostics_users_id_foreign');
-            $table->dropForeign('diagnostics_diseases_id_foreign');
+            $table->dropForeign('diagnostics_user_id_foreign');
+            $table->dropForeign('diagnostics_disease_id_foreign');
         });
 
         Schema::drop('diagnostics');
