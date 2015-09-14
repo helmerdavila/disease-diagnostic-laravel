@@ -10,10 +10,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         {{-- Ionicons --}}
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        {{-- Select2, seleccionador que incluye seleccion multiple como tags --}}
-        <link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
         {{-- Compiled scripts --}}
-        <link rel="stylesheet" href={{ elixir('css/all.css') }}>
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
         {{-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --}} {{-- WARNING: Respond.js doesn't work if you view the page via file:// --}}
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -154,8 +152,12 @@
                 </section>
                 {{-- Main content --}}
                 <section class="content">
+                    {{-- Genera alertas --}}
                     {!! Alert::render() !!}
+                    {{-- Se puede agregar contenido en este bloque --}}
                     @yield('content')
+                    {{-- Modal --}}
+                    @include('partials._modal')
                 </section>{{-- /.content --}}
             </div>{{-- /.content-wrapper --}}
             <footer class="main-footer">
@@ -166,8 +168,6 @@
             </footer>
         </div>{{-- ./wrapper --}}
         {{-- Compiled scripts --}}
-        <script src={{ elixir('js/all.js') }}></script>
-        {{-- Select2 JS --}}
-        <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+        <script src="{{ elixir('js/all.js') }}"></script>
     </body>
 </html>

@@ -29,24 +29,25 @@
                         <th><i class="fa fa-gear"></i></th>
                         <th>Nombre</th>
                         <th>Agregado</th>
-                        <th>Enfermedades</th>
+                        <th class="text-center">Enfermedades</th>
                     </thead>
                     <tbody>
                         @foreach ($sintomas as $sintoma)
                             <tr>
                                 <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                            <i class="fa fa-gear"></i>  <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('admin::sintomas::edit', Hashids::encode($sintoma->id)) }}"><i class="fa fa-pencil"></i> Editar</a></li>
-                                            <li><a href=""><i class="fa fa-times"></i> Eliminar</a></li>
-                                        </ul>
-                                    </div>
+                                    @include('partials._boton', [
+                                        'object' => $sintoma,
+                                        'editRoute' => 'admin::sintomas::edit',
+                                        'deleteRoute' => 'admin::sintomas::delete',
+                                        'name' => $sintoma->name,
+                                        'content' => 'el síntoma',
+                                    ])
                                 </td>
                                 <td>{{ $sintoma->name }}</td>
                                 <td>{{ $sintoma->created_at->format('d/m/Y') }}</td>
+                                <td class="text-center">
+                                    <span class="label label-primary">{{ $sintoma->rules->count() }}</span>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -56,4 +57,8 @@
         </div>
     </div>
 </div>
+@include('partials._callout', [
+    'type' => 'warning',
+    'title' => 'Atención',
+    'content' => 'Sólo se pueden eliminar síntomas sin enfermedades asociadas'])
 @stop

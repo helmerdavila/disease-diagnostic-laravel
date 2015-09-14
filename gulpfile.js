@@ -8,6 +8,8 @@ elixir(function(mix){
     mix.styles([
         // bootstrap 3.3.5
         'bootstrap.min.css',
+        // select2
+        'select2.min.css',
         // theme style
         'AdminLTE.min.css',
         // adminlte skin
@@ -23,6 +25,8 @@ elixir(function(mix){
         'jquery.slimscroll.min.js',
         // fastclick
         'fastclick.min.js',
+        // selec2
+        'select2.full.min.js',
         // app.js
         'app.min.js',
         // customjs
@@ -33,4 +37,7 @@ elixir(function(mix){
         'public/css/all.css',
         'public/js/all.js'
     ]);
+
+    // comentado pero funciona para copiar archivos
+    // mix.copy('resources/assets/js/i18n/es.js', 'public/build/js/i18n/es.js');
 });

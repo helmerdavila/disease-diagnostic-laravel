@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
             post('/listar', ['as' => 'create', 'uses' => 'Admin\SymptomController@create']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\SymptomController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\SymptomController@update']);
+            post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\SymptomController@delete']);
         });
 
         // enfermedades

@@ -18,7 +18,7 @@ class SymptomController extends Controller
 
     public function index()
     {
-        $sintomas = Symptom::orderBy('name', 'asc')->paginate(20);
+        $sintomas = Symptom::orderBy('name', 'asc')->with('rules')->paginate(20);
 
         return view('admin.symptom.index')->with('sintomas', $sintomas);
     }
@@ -54,5 +54,10 @@ class SymptomController extends Controller
         }
 
         return abort(404);
+    }
+
+    public function delete($hash_id)
+    {
+        dd($hash_id);
     }
 }
