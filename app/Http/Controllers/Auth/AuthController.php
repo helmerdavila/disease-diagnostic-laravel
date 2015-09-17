@@ -1,44 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Tesis\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Tesis\Http\Controllers\Controller;
+use Tesis\User;
+use Validator;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
+    protected $loginPath = '/';
+
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('auth', ['only' => 'getLogout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -48,12 +31,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
     protected function create(array $data)
     {
         return User::create([
@@ -61,5 +38,26 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    public function showLoginPost(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $remember = intval($request->input('remember', 0));
+            if (Auth::attempt($request->only('email', 'password'), $remember)) {
+                if (Auth::user()->hasRole('admin')) {
+                    return redirect()->intended(route('admin::home'));
+                } elseif (Auth::user()->hasRole('usuario')) {
+                    return redirect()->intended(route('user::home'));
+                }
+            }
+        }
+        alert('Correo y/o contraseña inválidos', 'danger');
+        return redirect()->back();
     }
 }
