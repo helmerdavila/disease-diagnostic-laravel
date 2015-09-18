@@ -3,6 +3,8 @@
 // rutas para logueo y cerrar sesión
 get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
 post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
+get('/registrar', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
+post('/registrar', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
 
 get('/cerrar', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
 Route::group(['middleware' => 'auth'], function () {

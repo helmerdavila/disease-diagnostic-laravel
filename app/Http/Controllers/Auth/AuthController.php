@@ -7,8 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\AuthRequest;
-use Tesis\User;
-use Validator;
+use Tesis\Http\Requests\RegisterRequest;
+use Tesis\Models\User;
 
 class AuthController extends Controller
 {
@@ -22,29 +22,15 @@ class AuthController extends Controller
         $this->middleware('auth', ['only' => 'getLogout']);
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users.email',
-            'password' => 'required|confirmed|min:6',
-        ]);
-    }
-
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }
-
     public function showLogin()
     {
         return view('login');
     }
 
+    /**
+     * Inicio de sesión para el usuario, dependiendo de su rol es dirigido
+     * a su panel de administración respectivo
+     */
     public function showLoginPost(AuthRequest $request)
     {
         if (!$request->isMethod('post')) {
@@ -64,5 +50,27 @@ class AuthController extends Controller
 
         alert('Correo y/o contraseña inválidos', 'danger');
         return redirect()->back();
+    }
+
+    public function showRegister()
+    {
+        return view('register');
+    }
+
+    /**
+     * Creamos el usuario a través del registro y le asignamos el rol de usuario
+     */
+    public function showRegisterPost(RegisterRequest $request)
+    {
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->gender = $request->gender;
+        $user->save();
+        $user->attachRole(2);
+
+        alert('Cuenta creada correctamente, puede iniciar sesión');
+        return redirect()->route('showLogin');
     }
 }

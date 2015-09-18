@@ -2,6 +2,7 @@ $ ->
     $('.select2').select2()
 
     $(":checkbox").labelauty()
+    $(":radio").labelauty()
 
     # dynamic modal
     $('#deleteModal').on 'show.bs.modal' , (event)->

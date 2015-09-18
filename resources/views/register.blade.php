@@ -27,8 +27,13 @@
             </div>{{-- /.login-logo --}}
             <div class="login-box-body">
                 <p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
-                {!! Form::open(['route' => 'showLoginPost']) !!}
+                {!! Form::open() !!}
                 {!! Alert::render() !!}
+                <div class="form-group has-feedback {!! $errors->first('name', 'has-error') !!}">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
+                </div>
                 <div class="form-group has-feedback {!! $errors->first('email', 'has-error') !!}">
                     <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo">
                     <span class="fa fa-envelope form-control-feedback"></span>
@@ -39,27 +44,43 @@
                     <span class="fa fa-lock form-control-feedback"></span>
                     {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
                 </div>
+                <div class="form-group has-feedback {!! $errors->first('password_confirmation', 'has-error') !!}">
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Contraseña">
+                    <span class="fa fa-sign-in form-control-feedback"></span>
+                    {!! $errors->first('password_confirmation', '<p class="text-danger">:message</p>') !!}
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="radio" name="gender" value="1" data-labelauty="Masculino"/>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="radio" name="gender" value="0" data-labelauty="Femenino"/>
+                    </div>
+                    {!! $errors->first('gender', '<p class="text-danger">:message</p>') !!}
+                </div>
                 <div class="row">
                     <div class="col-xs-7">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="remember" data-labelauty="No recordarme|Recordarme"/>
+                                <input type="checkbox" name="confirmed" data-labelauty="Acepto los términos"/>
+                                {!! $errors->first('confirmed', '<p class="text-danger">:message</p>') !!}
                             </label>
                         </div>
                     </div>{{-- /.col --}}
                     <div class="col-xs-5">
-                        {!! Form::submit('Entrar', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
+                        {!! Form::submit('Registrarse', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
                     </div>{{-- /.col --}}
                 </div>
                 {!! Form::close() !!}
 
                 <div class="social-auth-links text-center">
                     <p>- o -</p>
-                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Iniciar sesión con Facebook</a>
+                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                        <i class="fa fa-facebook"></i> Registrarse con Facebook
+                    </a>
                 </div>{{-- /.social-auth-links --}}
 
-                <a href="#">Olvidé mi contraseña</a><br>
-                <a href="{{ route('showRegister') }}" class="text-center">Registrarse</a>
+                <a href="{{ route('showLogin') }}">Ya tengo cuenta</a><br>
             </div>{{-- /.login-box-body --}}
         </div>{{-- /.login-box --}}
 
