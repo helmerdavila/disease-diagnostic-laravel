@@ -29,19 +29,21 @@
                 <p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
                 {!! Form::open(['route' => 'showLoginPost']) !!}
                 {!! Alert::render() !!}
-                <div class="form-group has-feedback">
-                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo" required>
+                <div class="form-group has-feedback {!! $errors->first('email', 'has-error') !!}">
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo">
                     <span class="fa fa-envelope form-control-feedback"></span>
+                    {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
                 </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                <div class="form-group has-feedback {!! $errors->first('password', 'has-error') !!}">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña">
                     <span class="fa fa-lock form-control-feedback"></span>
+                    {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <div class="checkbox icheck">
+                        <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="remember" value="1"> Recordarme
+                                <input type="checkbox" name="remember" data-labelauty="No recordarme|Recordarme"/>
                             </label>
                         </div>
                     </div>{{-- /.col --}}
@@ -54,7 +56,6 @@
                 <div class="social-auth-links text-center">
                     <p>- o -</p>
                     <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Iniciar sesión con Facebook</a>
-                    <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Iniciar sesión con Google+</a>
                 </div>{{-- /.social-auth-links --}}
 
                 <a href="#">Olvidé mi contraseña</a><br>
@@ -66,13 +67,14 @@
         {{-- Compiled scripts --}}
         <script src="{{ elixir('js/all.js') }}"></script>
         <script>
+            /*
             $(function () {
                 $('input').iCheck({
                     checkboxClass: 'icheckbox_square-blue',
                     radioClass: 'iradio_square-blue',
                     increaseArea: '20%' // optional
                 });
-            });
+            });*/
         </script>
     </body>
     </html>

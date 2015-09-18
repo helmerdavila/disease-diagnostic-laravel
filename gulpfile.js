@@ -14,8 +14,8 @@ elixir(function(mix){
         'AdminLTE.min.css',
         // adminlte skin
         'skin-blue-light.min.css',
-        // blue icheck
-        'blue.css'
+        // labelauty
+        'jquery-labelauty.css'
     ], 'public/css/all.css');
 
     mix.scripts([
@@ -29,8 +29,8 @@ elixir(function(mix){
         'fastclick.min.js',
         // selec2
         'select2.full.min.js',
-        // icheck
-        'icheck.min.js',
+        // labelauty
+        'jquery-labelauty.js',
         // app.js
         'app.min.js',
         // customjs
@@ -43,6 +43,6 @@ elixir(function(mix){
     ]);
 
     // comentado pero funciona para copiar archivos
-    mix.copy('resources/assets/css/blue.png', 'public/build/css');
-    mix.copy('resources/assets/css/blue@2x.png', 'public/build/css');
+    mix.copy('resources/assets/images/input-checked.png', 'public/build/css');
+    mix.copy('resources/assets/images/input-unchecked.png', 'public/build/css');
 });

@@ -5,8 +5,8 @@ namespace Tesis\Http\Controllers\Auth;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Http\Request;
 use Tesis\Http\Controllers\Controller;
+use Tesis\Http\Requests\AuthRequest;
 use Tesis\User;
 use Validator;
 
@@ -26,7 +26,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users.email',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -45,18 +45,23 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function showLoginPost(Request $request)
+    public function showLoginPost(AuthRequest $request)
     {
-        if ($request->isMethod('post')) {
-            $remember = intval($request->input('remember', 0));
-            if (Auth::attempt($request->only('email', 'password'), $remember)) {
-                if (Auth::user()->hasRole('admin')) {
-                    return redirect()->intended(route('admin::home'));
-                } elseif (Auth::user()->hasRole('usuario')) {
-                    return redirect()->intended(route('user::home'));
-                }
+        if (!$request->isMethod('post')) {
+            return redirect()->back();
+        }
+
+        $remember = intval($request->input('remember', 0));
+
+        if (Auth::attempt($request->only('email', 'password'), $remember)) {
+            if (Auth::user()->hasRole('usuario')) {
+                return redirect()->intended(route('user::home'));
+            }
+            if (Auth::user()->hasRole('admin')) {
+                return redirect()->intended(route('admin::home'));
             }
         }
+
         alert('Correo y/o contraseña inválidos', 'danger');
         return redirect()->back();
     }
