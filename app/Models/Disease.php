@@ -12,7 +12,7 @@ class Disease extends Model
 
     public function rules()
     {
-        return $this->belongsToMany('Tesis\Models\Symptom', 'rules');
+        return $this->belongsToMany('Tesis\Models\Symptom', 'rules')->withTimeStamps();
     }
 
     public function diagnostics()
