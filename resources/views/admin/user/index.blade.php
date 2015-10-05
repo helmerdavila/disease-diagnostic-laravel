@@ -55,7 +55,7 @@
                             <tr>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                             <i class="fa fa-gear"></i>  <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
@@ -67,7 +67,7 @@
                                 <td>{{ $usuario->name }} {{ $usuario->lastname }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td>{{ $usuario->getGender() }}</td>
-                                <td>{{ $usuario->birthday->format('d/m/Y') }}</td>
+                                <td>{{ isset($usuario->birthday) ? $usuario->birthday->format('d/m/Y') : '--' }}</td>
                                 <td>{{ $usuario->phone }}</td>
                                 <td>{{ $usuario->mobil }}</td>
                                 <td>{{ $usuario->created_at->format('d/m/Y') }}</td>

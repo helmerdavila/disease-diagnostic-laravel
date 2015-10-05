@@ -1,7 +1,10 @@
 <?php
 
-class Test extends TestCase
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class AuthTest extends TestCase
 {
+    use DatabaseTransactions;
 
     public function testLoginPage()
     {

@@ -1,7 +1,6 @@
 <?php
 
 $factory->define(Tesis\Models\User::class, function ($faker) {
-
     return [
         'name' => $faker->firstName,
         'lastname' => $faker->lastName,

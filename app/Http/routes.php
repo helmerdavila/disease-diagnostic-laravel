@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
             get('/nuevo', ['as' => 'index', 'uses' => 'User\DiagnosticController@index']);
             post('/nuevo', ['as' => 'analyze', 'uses' => 'User\DiagnosticController@analyze']);
+            get('/mostrar/{id?}', ['as' => 'show', 'uses' => 'User\DiagnosticController@show']);
         });
     });
 });
