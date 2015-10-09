@@ -59,5 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
             get('/listar', ['as' => 'index', 'uses' => 'User\DiagnosticController@index']);
             get('/mostrar/{id?}', ['as' => 'show', 'uses' => 'User\DiagnosticController@show']);
         });
+
+        Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
+            get('/sintomas', ['as' => 'index', 'uses' => 'User\SymptomController@index']);
+        });
     });
 });

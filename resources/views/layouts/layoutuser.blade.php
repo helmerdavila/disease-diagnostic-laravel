@@ -114,7 +114,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('user::sintomas::index') }}">
                                 <i class="fa fa-eyedropper"></i> <span>Síntomas</span>
                             </a>
                         </li>
