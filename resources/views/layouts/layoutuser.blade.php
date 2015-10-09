@@ -44,13 +44,13 @@
                             {{-- User Account: style can be found in dropdown.less --}}
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="http://lorempixel.com/160/160/cats" class="user-image" alt="User Image">
+                                    <img src="http://lorempixel.com/160/160/cats" class="user-image" alt="Imagen de Usuario">
                                     <span class="hidden-xs">{{ Auth::user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     {{-- User image --}}
                                     <li class="user-header">
-                                        <img src="http://lorempixel.com/160/160/cats" class="img-circle" alt="User Image">
+                                        <img src="http://lorempixel.com/160/160/cats" class="img-circle" alt="Imagen de Usuario">
                                         <p>
                                             {{ Auth::user()->name }} - {{ Auth::user()->roles->first()->display_name }}
                                             <small>Miembro desde {{ Auth::user()->created_at->format('d-m-Y') }}</small>
@@ -100,13 +100,13 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{ route('user::diagnosticos::index') }}">
+                                    <a href="{{ route('user::diagnosticos::create') }}">
                                         <i class="fa fa-circle-o"></i>
                                         Nuevo Diagnostico
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="{{ route('user::diagnosticos::index') }}">
                                         <i class="fa fa-circle-o"></i>
                                         Listar Diagnosticos
                                     </a>

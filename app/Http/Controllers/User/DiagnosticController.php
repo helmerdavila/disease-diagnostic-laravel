@@ -15,9 +15,16 @@ class DiagnosticController extends Controller
 
     public function index()
     {
+        $diagnosticos = Diagnostic::where('user_id', auth()->id())->paginate(20);
+
+        return view('user.diagnostic.index')->with('diagnosticos', $diagnosticos);
+    }
+
+    public function create()
+    {
         $sintomas = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
 
-        return view('user.diagnostic.index')->with('sintomas', $sintomas);
+        return view('user.diagnostic.create')->with('sintomas', $sintomas);
     }
 
     public function analyze(Request $request)

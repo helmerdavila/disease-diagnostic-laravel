@@ -2,31 +2,34 @@
 @section('title') Diagnósticos @stop
 @section('breadcrumb') Diagnósticos @stop
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-success box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title"><strong>Nuevo Diagnóstico</strong></h3>
-            </div>
-            <div class="box-body">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <h4>Elija si posee algunos de los siguientes síntomas</h4>
-                {!! Form::open() !!}
-                    @foreach ($sintomas as $index => $sintoma)
-                        <input type="checkbox" name="sintomas[]" value="{{ $index }}" data-labelauty="{{ $sintoma }}"/>
-                    @endforeach
-                    {!! Form::submit('Diagnosticar &raquo;', ['class' => 'btn btn-success']) !!}
-                {!! Form::close() !!}
+<ul class="timeline">
+    {{-- timeline time label --}}
+    @foreach ($diagnosticos as $diagnostico)
+    <li class="time-label">
+        <span class="bg-red">
+            {{ $diagnostico->created_at->format('d-m-Y') }}
+        </span>
+    </li>
+    {{-- /.timeline-label --}}
+    {{-- timeline item --}}
+    <li>
+        {{-- timeline icon --}}
+        <i class="fa fa-pencil bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time">
+                <i class="fa fa-clock-o"></i>
+                {{ $diagnostico->created_at->format('H:i') }}
+            </span>
+            <h3 class="timeline-header">
+                <a href="#">Se diagnosticó {{ $diagnostico->disease->name }}</a>
+            </h3>
+            <div class="timeline-body">
+                Descripción
+                {{ !is_null($diagnostico->disease->description) ? $diagnostico->disease->description : '' }}
             </div>
         </div>
-    </div>
-</div>
+    </li>
+    @endforeach
+    {{-- END timeline item --}}
+</ul>
 @stop
