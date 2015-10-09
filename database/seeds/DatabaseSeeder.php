@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Tesis\Models\Role;
 use Tesis\Models\User;
 
@@ -16,9 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $this->call(TruncateTables::class);
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $this->call(UserTableSeeder::class);
 
         Model::reguard();
@@ -29,9 +28,18 @@ class TruncateTables extends Seeder
 {
     public function run()
     {
-        \DB::table('role_user')->truncate();
-        \DB::table('roles')->truncate();
-        \DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('diagnostics')->truncate();
+        DB::table('diseases')->truncate();
+        DB::table('password_resets')->truncate();
+        DB::table('permission_role')->truncate();
+        DB::table('permissions')->truncate();
+        DB::table('role_user')->truncate();
+        DB::table('roles')->truncate();
+        DB::table('rules')->truncate();
+        DB::table('symptoms')->truncate();
+        DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
 
