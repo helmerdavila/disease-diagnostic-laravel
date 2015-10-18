@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         $this->call(TruncateTables::class);
         $this->call(UserTableSeeder::class);
-
+        $this->call(SymptomSeeder::class);
+        $this->call(DiseaseSeeder::class);
         Model::reguard();
     }
 }
@@ -51,34 +52,34 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //creamos primero rol administrador y de usuario
-        $rolAdmin = new Role;
-        $rolAdmin->name = 'admin';
+        $rolAdmin               = new Role;
+        $rolAdmin->name         = 'admin';
         $rolAdmin->display_name = 'Administrador';
-        $rolAdmin->description = 'Usuario con todos los permisos del sistema';
+        $rolAdmin->description  = 'Usuario con todos los permisos del sistema';
         $rolAdmin->save();
 
-        $rolUsuario = new Role;
-        $rolUsuario->name = 'usuario';
+        $rolUsuario               = new Role;
+        $rolUsuario->name         = 'usuario';
         $rolUsuario->display_name = 'Usuario';
-        $rolUsuario->description = 'Usuario común del sistema';
+        $rolUsuario->description  = 'Usuario común del sistema';
         $rolUsuario->save();
 
         // creamos el usuario administrador y un usuario de ejemplo
-        $admin = new User;
-        $admin->email = 'admin@admin.com';
+        $admin           = new User;
+        $admin->email    = 'admin@admin.com';
         $admin->password = bcrypt('administrador');
-        $admin->name = 'Administrador';
-        $admin->gender = 1;
+        $admin->name     = 'Administrador';
+        $admin->gender   = 1;
         $admin->birthday = '1991-01-11';
         $admin->save();
         $admin->attachRole($rolAdmin);
 
-        $usuario = new User;
-        $usuario->email = 'usuario@usuario.com';
+        $usuario           = new User;
+        $usuario->email    = 'usuario@usuario.com';
         $usuario->password = bcrypt('usuario');
-        $usuario->name = 'Lesly Yohana';
+        $usuario->name     = 'Lesly Yohana';
         $usuario->lastname = 'Nomberto Coronado';
-        $usuario->gender = 0;
+        $usuario->gender   = 0;
         $usuario->birthday = '1991-01-11';
         $usuario->save();
         $usuario->attachRole($rolUsuario);
@@ -88,5 +89,36 @@ class UserTableSeeder extends Seeder
             $user->attachRole($rolUsuario);
         }
 
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Sirve para generar sintomas                                             //
+/////////////////////////////////////////////////////////////////////////////
+class SymptomSeeder extends Seeder
+{
+    public function run()
+    {
+        factory(Tesis\Models\Symptom::class, 50)->create();
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Sirve para generar enfermedades, las genera con síntomas, usar este script //
+////////////////////////////////////////////////////////////////////////////////
+class DiseaseSeeder extends Seeder
+{
+    public function run()
+    {
+        $faker = Faker\Factory::create();
+        factory(Tesis\Models\Disease::class, 20)
+            ->create()
+            ->each(function ($disease) use ($faker) {
+                $disease->rules()->sync([
+                    $faker->numberBetween(1, 50),
+                    $faker->numberBetween(1, 50),
+                    $faker->numberBetween(1, 50),
+                ]);
+            });
     }
 }

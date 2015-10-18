@@ -35,8 +35,8 @@
             <div class="box-header with-border">
                 <h3 class="box-title"><strong>Listado de Usuarios</strong></h3>
             </div>
-            <div class="box-body">
-                <table class="table table-responsive table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th class="text-center"><i class="fa fa-gear"></i></th>

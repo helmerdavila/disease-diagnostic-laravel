@@ -273,7 +273,6 @@ function _init(){"use strict";$.AdminLTE.layout={activate:function(){var a=this;
   $(function() {
     $('.select2').select2();
     $(":checkbox").labelauty();
-    $(":radio").labelauty();
     $('#deleteModal').on('show.bs.modal', function(event) {
       var button, content, modal, route, title;
       button = $(event.relatedTarget);
