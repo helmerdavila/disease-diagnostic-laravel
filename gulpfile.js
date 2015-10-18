@@ -45,4 +45,9 @@ elixir(function(mix){
     // comentado pero funciona para copiar archivos
     mix.copy('resources/assets/images/input-checked.png', 'public/build/css');
     mix.copy('resources/assets/images/input-unchecked.png', 'public/build/css');
+
+    mix.browserSync({
+        proxy: 'tesis.app',
+        open: false
+    });
 });
