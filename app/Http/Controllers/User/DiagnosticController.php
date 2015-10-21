@@ -31,17 +31,29 @@ class DiagnosticController extends Controller
     {
         $this->validate($request, ['sintomas' => 'required|min:2']);
 
-        $enfermedad = Disease::whereHas('rules', function ($query) use ($request) {
-            $query->whereIn('symptom_id', $request['sintomas']);
-        })->first();
+        $enfermedades = Disease::whereSymptoms($request->sintomas)->get();
 
-        if (empty($enfermedad)) {
+        // sino hay enfermedad se redirige a una pagina diciendo que de nuevo
+        // proceda a ingresar los sintomas refinando su busqueda
+        if (empty($enfermedades)) {
             return redirect()->route('user::diagnosticos::show');
         }
 
+        $enfermedad = $enfermedades->filter(function ($enfermedad) use ($request) {
+
+            $numero_sintomas = count($request->sintomas);
+
+            foreach ($enfermedad->rules as $rule) {
+                $numero_sintomas--;
+            }
+
+            return ($numero_sintomas === 0) ? true : false;
+
+        })->first();
+
         $diagnostico = new Diagnostic();
         $diagnostico->disease_id = $enfermedad->id;
-        $diagnostico->user_id = auth()->id();
+        $diagnostico->user_id = $request->user()->id;
         $diagnostico->save();
 
         return redirect()

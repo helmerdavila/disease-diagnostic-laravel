@@ -27,4 +27,11 @@ class Disease extends Model
     {
         $this->attributes['name'] = ucfirst($name);
     }
+
+    public function scopeWhereSymptoms($query, $symptoms = [])
+    {
+        return $query->whereHas('rules', function ($query) use ($symptoms) {
+            $query->whereIn('symptom_id', $symptoms);
+        });
+    }
 }
