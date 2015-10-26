@@ -122,3 +122,13 @@ class DiseaseSeeder extends Seeder
             });
     }
 }
+
+// Sive para generar diagnosticos, para estadisticas
+class DiagnosticSeeder extends Seeder
+{
+    const FAKES_DIAGNOSTIC = 500;
+    public function run()
+    {
+        factory(Tesis\Models\Diagnostic::class, self::FAKES_DIAGNOSTIC)->create();
+    }
+}

@@ -1,5 +1,12 @@
 <?php
 
+$factory->define(Tesis\Models\Diagnostic::class, function ($faker) {
+    return [
+        'user_id'    => $faker->numberBetween(3, 200),
+        'disease_id' => $faker->numberBetween(1, 20),
+    ];
+});
+
 $factory->define(Tesis\Models\User::class, function ($faker) {
     return [
         'name'     => $faker->firstName,
