@@ -119,7 +119,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('user::enfermedades::index') }}">
                                 <i class="fa fa-heartbeat"></i> <span>Enfermedades</span>
                             </a>
                         </li>

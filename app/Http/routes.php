@@ -63,5 +63,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
             get('/listar', ['as' => 'index', 'uses' => 'User\SymptomController@index']);
         });
+
+        Route::group(['prefix' => 'enfermedades', 'as' => 'enfermedades::'], function () {
+            get('/listar', ['as' => 'index', 'uses' => 'User\DiseaseController@index']);
+        });
     });
 });
