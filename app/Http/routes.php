@@ -5,6 +5,8 @@ get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
 post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
 get('/registrar', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
 post('/registrar', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
+get('/fblogin', ['as' => 'facebookLogin', 'uses' => 'Auth\AuthController@redirectToProvider']);
+get('/fbloginpost', 'Auth\AuthController@handleProviderCallback');
 
 get('/cerrar', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
 Route::group(['middleware' => 'auth'], function () {

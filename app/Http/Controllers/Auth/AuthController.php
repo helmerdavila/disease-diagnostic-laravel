@@ -5,6 +5,7 @@ namespace Tesis\Http\Controllers\Auth;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Laravel\Socialite\Facades\Socialite;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\AuthRequest;
 use Tesis\Http\Requests\RegisterRequest;
@@ -62,15 +63,34 @@ class AuthController extends Controller
      */
     public function showRegisterPost(RegisterRequest $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user           = new User;
+        $user->name     = $request->name;
+        $user->email    = $request->email;
         $user->password = bcrypt($request->password);
-        $user->gender = $request->gender;
+        $user->gender   = $request->gender;
         $user->save();
         $user->attachRole(2);
 
         alert('Cuenta creada correctamente, puede iniciar sesión');
         return redirect()->route('showLogin');
+    }
+
+    /**
+     * Redirecciona al logueo con Facebook
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtiene la información del usuario de facebook
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        dd($user);
+        // $user->token;
     }
 }
