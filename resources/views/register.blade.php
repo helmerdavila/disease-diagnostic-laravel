@@ -51,10 +51,10 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        <input type="radio" name="gender" value="1" data-labelauty="Masculino"/>
+                        <input type="radio" name="gender" value="1"/> Masculino
                     </div>
                     <div class="col-xs-6">
-                        <input type="radio" name="gender" value="0" data-labelauty="Femenino"/>
+                        <input type="radio" name="gender" value="0"/> Femenino
                     </div>
                     {!! $errors->first('gender', '<p class="text-danger">:message</p>') !!}
                 </div>
