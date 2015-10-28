@@ -41,27 +41,6 @@
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            {{-- Notifications: style can be found in dropdown.less --}}
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
-                                    <li>
-                                        {{-- inner menu: contains the actual data --}}
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
                             {{-- User Account: style can be found in dropdown.less --}}
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -164,10 +143,38 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; {{ date('Y') }} Dávila Mundaca Helmer & Nomberto Coronado Lesly</strong> Ing. en Computación e Informática.
+                <strong>Copyright &copy; {{ date('Y') }} Dávila Mundaca Helmer &amp; Nomberto Coronado Lesly</strong> Ing. en Computación e Informática.
             </footer>
         </div>{{-- ./wrapper --}}
         {{-- Compiled scripts --}}
         <script src="{{ elixir('js/all.js') }}"></script>
+        <script src="{{ asset('build/js/morris.min.js') }}"></script>
+        <script type="text/javascript">
+            Morris.Area({
+                element: 'firstchart',
+                data: [
+                    { y: '2006', a: 100, b: 90 },
+                    { y: '2007', a: 75,  b: 65 },
+                    { y: '2008', a: 50,  b: 40 },
+                    { y: '2009', a: 75,  b: 65 },
+                    { y: '2010', a: 50,  b: 40 },
+                    { y: '2011', a: 75,  b: 65 },
+                    { y: '2012', a: 100, b: 90 }
+                ],
+                lineColors : ['#dd4b39', '#f39c12'],
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Series A', 'Series B']
+            });
+            Morris.Donut({
+                element: 'firstdonut',
+                data: [
+                    { label: 'Enfermedad 1', value: 100 },
+                    { label: 'Enfermedad 2', value: 1000 },
+                    { label: 'Enfermedad 5', value: 300 }
+                ],
+                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+            });
+        </script>
     </body>
 </html>

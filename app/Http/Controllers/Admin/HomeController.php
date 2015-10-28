@@ -6,18 +6,21 @@ use Tesis\Http\Controllers\Controller;
 use Tesis\Models\Diagnostic;
 use Tesis\Models\Disease;
 use Tesis\Models\Symptom;
+use Tesis\Models\User;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        $countDiseases = Disease::count();
-        $countSymptom = Symptom::count();
+        $countDiseases   = Disease::count();
+        $countSymptom    = Symptom::count();
         $countDiagnostic = Diagnostic::count();
+        $lastRegistered  = User::orderBy('created_at', 'desc')->take(9)->get();
 
         return view('admin.home')
             ->with('countDiagnostic', $countDiagnostic)
             ->with('countSymptom', $countSymptom)
-            ->with('countDiseases', $countDiseases);
+            ->with('countDiseases', $countDiseases)
+            ->with('lastRegistered', $lastRegistered);
     }
 }
