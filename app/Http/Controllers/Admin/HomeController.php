@@ -23,4 +23,16 @@ class HomeController extends Controller
             ->with('countDiseases', $countDiseases)
             ->with('lastRegistered', $lastRegistered);
     }
+
+    public function all_diseases()
+    {
+        $diseases = Disease::with('diagnostics')->get();
+        $data     = [];
+
+        foreach ($diseases as $disease) {
+            $data[] = ['label' => $disease->name, 'value' => $disease->diagnostics->count()];
+        }
+
+        return response()->json($data);
+    }
 }

@@ -11,6 +11,11 @@ get('/fbloginpost', 'Auth\AuthController@handleProviderCallback');
 get('/cerrar', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
 Route::group(['middleware' => 'auth'], function () {
 
+    // mini api
+    Route::group(['prefix' => 'api', 'as' => 'api::'], function () {
+        get('/all-diseases', ['as' => 'diseases', 'uses' => 'Admin\HomeController@all_diseases']);
+    });
+
     /**
      * Rutas para el Administrador
      */
