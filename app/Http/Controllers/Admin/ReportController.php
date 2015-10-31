@@ -100,4 +100,16 @@ class ReportController extends Controller
 
         return response()->json($data);
     }
+
+    public function users_by_state()
+    {
+        $states = State::with('users')->get();
+        $data   = [];
+
+        foreach ($states as $state) {
+            $data[] = ['label' => $state->name, 'value' => $state->users->count()];
+        }
+
+        return response()->json($data);
+    }
 }

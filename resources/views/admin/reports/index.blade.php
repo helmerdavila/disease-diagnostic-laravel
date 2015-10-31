@@ -38,7 +38,6 @@
             </div>
             <div class="box-body">
                 <div id="diagnostics-by-state">
-
                 </div>
             </div>
         </div>

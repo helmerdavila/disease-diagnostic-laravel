@@ -25,10 +25,20 @@ $(function(){
         }); 
     };
 
-    if ($('#diagnostics-by-state')) {
+    if ($('#diagnostics-by-state').length) {
         $.get('/api/diagnostics-by-state', function(data){
             Morris.Donut({
                 element: 'diagnostics-by-state',
+                data: data,
+                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+            });
+        }); 
+    };
+
+    if ($('#users-by-state').length) {
+        $.get('/api/users-by-state', function(data){
+            Morris.Donut({
+                element: 'users-by-state',
                 data: data,
                 colors: ["#3c8dbc", "#f56954", "#00a65a"]
             });
