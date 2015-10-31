@@ -29,6 +29,7 @@
                 <p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
                 {!! Form::open() !!}
                 {!! Alert::render() !!}
+                <label class="label-control">Datos</label>
                 <div class="form-group has-feedback {!! $errors->first('name', 'has-error') !!}">
                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre">
                     <span class="fa fa-user form-control-feedback"></span>
@@ -39,6 +40,8 @@
                     <span class="fa fa-envelope form-control-feedback"></span>
                     {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
                 </div>
+                {{-- Departamentos --}}
+                {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2']) !!}
                 <div class="form-group has-feedback {!! $errors->first('password', 'has-error') !!}">
                     <input type="password" class="form-control" name="password" placeholder="Contraseña">
                     <span class="fa fa-lock form-control-feedback"></span>

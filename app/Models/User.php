@@ -30,6 +30,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('Tesis\Models\Diagnostic', 'user_id');
     }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
     public function getGender()
     {
         if ($this->gender == 1) {

@@ -20,6 +20,8 @@ $factory->define(Tesis\Models\User::class, function ($faker) {
         'mobil'    => $faker->unique()->randomNumber(9),
         'gender'   => $faker->numberBetween(0, 1),
         'password' => bcrypt('pruebasistema'),
+        // por cada departamento al azar
+        'state_id' => $faker->numberBetween(1, 24),
     ];
 });
 

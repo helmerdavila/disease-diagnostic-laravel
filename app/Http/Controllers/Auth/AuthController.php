@@ -9,6 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\AuthRequest;
 use Tesis\Http\Requests\RegisterRequest;
+use Tesis\Models\State;
 use Tesis\Models\User;
 
 class AuthController extends Controller
@@ -55,7 +56,9 @@ class AuthController extends Controller
 
     public function showRegister()
     {
-        return view('register');
+        $states = State::lists('name', 'id')->toArray();
+
+        return view('register')->with('states', $states);
     }
 
     /**
