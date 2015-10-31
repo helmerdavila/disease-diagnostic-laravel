@@ -114,6 +114,11 @@
                                 <i class="fa fa-users"></i> <span>Usuarios</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin::reportes::index') }}">
+                                <i class="fa fa-area-chart"></i> <span>Reportes</span>
+                            </a>
+                        </li>
                     </ul>
                 </section>
                 {{-- /.sidebar --}}

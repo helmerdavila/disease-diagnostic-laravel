@@ -53,6 +53,11 @@ Route::group(['middleware' => 'auth'], function () {
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\UserController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\UserController@update']);
         });
+
+        // Reportes
+        Route::group(['prefix' => 'reportes', 'as' => 'reportes::'], function () {
+            get('/listar', ['as' => 'index', 'uses' => 'Admin\ReportController@index']);
+        });
     });
 
     /**
