@@ -13,8 +13,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // mini api
     Route::group(['prefix' => 'api', 'as' => 'api::'], function () {
-        get('/all-diseases', ['as' => 'diseases', 'uses' => 'Admin\HomeController@all_diseases']);
-        get('/two-top', ['as' => 'top::two', 'uses' => 'Admin\HomeController@top_two_diagnostic']);
+        get('/all-diseases', ['as' => 'diseases', 'uses' => 'Admin\ReportController@all_diseases']);
+        get('/two-top', ['as' => 'top::two', 'uses' => 'Admin\ReportController@top_two_diagnostic']);
     });
 
     /**
