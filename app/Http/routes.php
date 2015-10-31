@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'api', 'as' => 'api::'], function () {
         get('/all-diseases', ['as' => 'diseases', 'uses' => 'Admin\ReportController@all_diseases']);
         get('/two-top', ['as' => 'top::two', 'uses' => 'Admin\ReportController@top_two_diagnostic']);
+        get('/diagnostics-by-state', ['as' => 'top::two', 'uses' => 'Admin\ReportController@diagnostics_by_state']);
     });
 
     /**

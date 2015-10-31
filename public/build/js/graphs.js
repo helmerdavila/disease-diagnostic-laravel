@@ -25,5 +25,13 @@ $(function(){
         }); 
     };
 
-
+    if ($('#diagnostics-by-state')) {
+        $.get('/api/diagnostics-by-state', function(data){
+            Morris.Donut({
+                element: 'diagnostics-by-state',
+                data: data,
+                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+            });
+        }); 
+    };
 });

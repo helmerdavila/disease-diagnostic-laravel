@@ -88,4 +88,16 @@ class ReportController extends Controller
             'result' => $result,
         ]);
     }
+
+    public function diagnostics_by_state()
+    {
+        $states = State::with('diagnostics')->get();
+        $data   = [];
+
+        foreach ($states as $state) {
+            $data[] = ['label' => $state->name, 'value' => $state->diagnostics->count()];
+        }
+
+        return response()->json($data);
+    }
 }
