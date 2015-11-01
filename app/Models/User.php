@@ -27,7 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function diagnostics()
     {
-        return $this->belongsTo('Tesis\Models\Diagnostic', 'user_id');
+        return $this->hasMany(Diagnostic::class);
     }
 
     public function state()

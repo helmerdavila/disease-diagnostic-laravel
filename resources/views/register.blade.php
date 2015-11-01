@@ -40,18 +40,18 @@
                     <span class="fa fa-envelope form-control-feedback"></span>
                     {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
                 </div>
-                {{-- Departamentos --}}
-                {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2']) !!}
-                <div class="form-group has-feedback {!! $errors->first('password', 'has-error') !!}">
-                    <input type="password" class="form-control" name="password" placeholder="Contraseña">
-                    <span class="fa fa-lock form-control-feedback"></span>
-                    {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
-                </div>
                 <div class="form-group has-feedback {!! $errors->first('password_confirmation', 'has-error') !!}">
                     <input type="password" class="form-control" name="password_confirmation" placeholder="Contraseña">
                     <span class="fa fa-sign-in form-control-feedback"></span>
                     {!! $errors->first('password_confirmation', '<p class="text-danger">:message</p>') !!}
                 </div>
+                <div class="form-group has-feedback {!! $errors->first('password', 'has-error') !!}">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
+                </div>
+                {{-- Departamentos --}}
+                {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2']) !!}
                 <div class="row">
                     <div class="col-xs-6">
                         <input type="radio" name="gender" value="1"/> Masculino

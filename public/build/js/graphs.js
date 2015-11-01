@@ -44,4 +44,24 @@ $(function(){
             });
         }); 
     };
+
+    if ($('#top-5-user-diagnostics')) {
+        $.get('/api/top-users-diagnostics', function(data){
+            Morris.Donut({
+                element: 'top-5-user-diagnostics',
+                data: data,
+                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+            });
+        });
+    };
+
+    if ($('#top-5-diagnostic-diseases')) {
+        $.get('/api/top-diseases-diagnostics', function(data){
+            Morris.Donut({
+                element: 'top-5-diagnostic-diseases',
+                data: data,
+                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+            });
+        });
+    };
 });

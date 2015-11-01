@@ -10,7 +10,7 @@
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::select('disease', $diseases, null, ['label' => 'Enfermedad', 'empty' => false, 'class' => 'select2']) !!}
+                    {!! Field::select('disease', $diseases, null, ['label' => 'Enfermedad', 'empty' => false, 'class' => 'select2', 'data-width' => '100%']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -20,11 +20,11 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="box box-warning">
             <div class="box-header with-border">
-                <h3 class="box-title">Top 2 enfermedades por Departamento</h3>
+                <h3 class="box-title">Las 2 enfermedades más diagnosticadas por departamento</h3>
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2']) !!}
+                    {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2', 'data-width' => '100%']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -49,7 +49,6 @@
             </div>
             <div class="box-body">
                 <div id="users-by-state">
-
                 </div>
             </div>
         </div>
@@ -59,11 +58,10 @@
     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
         <div class="box box-warning">
             <div class="box-header with-border">
-                <h3 class="box-title">Top 5 Usuarios Diagnóstico</h3>
+                <h3 class="box-title">5 Usuarios con más diagnósticos</h3>
             </div>
             <div class="box-body">
                 <div id="top-5-user-diagnostics">
-
                 </div>
             </div>
         </div>
@@ -71,11 +69,10 @@
     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title">Top 5 Enfermedades Diagnosticadas</h3>
+                <h3 class="box-title">5 Enfermedades con más diagnósticos</h3>
             </div>
             <div class="box-body">
                 <div id="top-5-diagnostic-diseases">
-
                 </div>
             </div>
         </div>

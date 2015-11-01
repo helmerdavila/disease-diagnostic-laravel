@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Models\Disease;
 use Tesis\Models\State;
+use Tesis\Models\User;
 
 class ReportController extends Controller
 {
@@ -108,6 +109,40 @@ class ReportController extends Controller
 
         foreach ($states as $state) {
             $data[] = ['label' => $state->name, 'value' => $state->users->count()];
+        }
+
+        return response()->json($data);
+    }
+
+    public function top_users_diagnostics()
+    {
+        $users = User::with('diagnostics')->get();
+
+        $users = $users->sortByDesc(function ($user) {
+            return $user->diagnostics->count();
+        });
+
+        $users = $users->take(5);
+
+        foreach ($users as $user) {
+            $data[] = ['label' => "{$user->name} {$user->lastname}", 'value' => $user->diagnostics->count()];
+        }
+
+        return response()->json($data);
+    }
+
+    public function top_diseases_diagnostics()
+    {
+        $diseases = Disease::with('diagnostics')->get();
+
+        $diseases = $diseases->sortByDesc(function ($disease) {
+            return $disease->diagnostics->count();
+        });
+
+        $diseases = $diseases->take(5);
+
+        foreach ($diseases as $disease) {
+            $data[] = ['label' => $disease->name, 'value' => $disease->diagnostics->count()];
         }
 
         return response()->json($data);
