@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
         get('/users-by-state', 'Admin\ReportController@users_by_state');
         get('/top-users-diagnostics', 'Admin\ReportController@top_users_diagnostics');
         get('/top-diseases-diagnostics', 'Admin\ReportController@top_diseases_diagnostics');
+        get('/anual-disease-diagnostics/{disease_id}', 'Admin\ReportController@anual_disease_diagnostics');
     });
 
     /**

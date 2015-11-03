@@ -9,9 +9,11 @@
                 <h3 class="box-title">Diagnósticos Anuales por Enfermedad</h3>
             </div>
             <div class="box-body">
-                {!! Form::open() !!}
-                    {!! Field::select('disease', $diseases, null, ['label' => 'Enfermedad', 'empty' => false, 'class' => 'select2', 'data-width' => '100%']) !!}
+                {!! Form::open(['id' => 'anual-disease-form']) !!}
+                    {!! Field::select('anual-disease', $diseases, null, ['label' => 'Enfermedad', 'empty' => false, 'class' => 'select2', 'data-width' => '100%']) !!}
                 {!! Form::close() !!}
+                <div id="anual-disease-diagnostics">
+                </div>
             </div>
         </div>
     </div>

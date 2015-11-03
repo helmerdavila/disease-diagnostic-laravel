@@ -25,6 +25,25 @@ $(function(){
         }); 
     };
 
+     if ($('#anual-disease-diagnostics').length) {
+
+        $('#anual-disease').change(function(){
+            var selectDisease = $('#anual-disease').val();
+            $.get('/api/anual-disease-diagnostics/' + selectDisease, function(data){
+                // usado para limpiar la pantalla, causa divs fantasmas
+                $('#anual-disease-diagnostics').empty();
+                Morris.Line({
+                    element: 'anual-disease-diagnostics',
+                    data: data.result,
+                    lineColors : ['#dd4b39', '#f39c12'],
+                    xkey: 'month',
+                    ykeys: ['first'],
+                    labels: data.names
+                });
+            }); 
+        });
+    };
+
     if ($('#diagnostics-by-state').length) {
         $.get('/api/diagnostics-by-state', function(data){
             Morris.Donut({

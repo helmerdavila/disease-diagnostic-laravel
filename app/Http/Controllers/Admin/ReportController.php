@@ -12,8 +12,8 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $diseases = Disease::lists('name', 'id')->toArray();
-        $states   = State::lists('name', 'id')->toArray();
+        $diseases = Disease::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $states   = State::orderBy('name', 'asc')->lists('name', 'id')->toArray();
 
         return view('admin.reports.index')
             ->with('diseases', $diseases)
@@ -146,5 +146,41 @@ class ReportController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function anual_disease_diagnostics($disease_id)
+    {
+        $disease = Disease::with('diagnostics')->findOrFail($disease_id);
+
+        $months = array_months();
+
+        $today   = Carbon::create(null, null, 1);
+        $newDate = $today->copy();
+
+        // Por cada mes mostramos cuantos diagnosticos se realizaron
+        foreach ($months as $keyMonth => $value) {
+
+            if ($keyMonth != 1) {
+                $newDate = $today->copy()->subMonth($keyMonth);
+            }
+
+            $aux = 0;
+
+            foreach ($disease->diagnostics as $diagnostic) {
+                if ($diagnostic->created_at->month == $newDate->month && $diagnostic->created_at->year == $newDate->year) {
+                    $aux++;
+                }
+            }
+
+            $result[] = [
+                'month' => $value,
+                'first' => $aux,
+            ];
+        }
+
+        return response()->json([
+            'names'  => [$disease->name],
+            'result' => $result,
+        ]);
     }
 }
