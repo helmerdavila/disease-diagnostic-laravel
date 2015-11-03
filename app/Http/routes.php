@@ -3,9 +3,25 @@
 // rutas para logueo y cerrar sesión
 get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
 post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
+get('/registrar', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
+post('/registrar', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
+get('/fblogin', ['as' => 'facebookLogin', 'uses' => 'Auth\AuthController@redirectToProvider']);
+get('/fbloginpost', 'Auth\AuthController@handleProviderCallback');
 
 get('/cerrar', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
 Route::group(['middleware' => 'auth'], function () {
+
+    // mini api
+    Route::group(['prefix' => 'api', 'as' => 'api::'], function () {
+        get('/all-diseases', 'Admin\ReportController@all_diseases');
+        get('/two-top', 'Admin\ReportController@top_two_diagnostic');
+        get('/diagnostics-by-state', 'Admin\ReportController@diagnostics_by_state');
+        get('/users-by-state', 'Admin\ReportController@users_by_state');
+        get('/top-users-diagnostics', 'Admin\ReportController@top_users_diagnostics');
+        get('/top-diseases-diagnostics', 'Admin\ReportController@top_diseases_diagnostics');
+        get('/anual-disease-diagnostics/{disease_id}', 'Admin\ReportController@anual_disease_diagnostics');
+        get('/anual-state-diagnostics/{state_id}', 'Admin\ReportController@anual_state_diagnostics');
+    });
 
     /**
      * Rutas para el Administrador
@@ -43,6 +59,11 @@ Route::group(['middleware' => 'auth'], function () {
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\UserController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\UserController@update']);
         });
+
+        // Reportes
+        Route::group(['prefix' => 'reportes', 'as' => 'reportes::'], function () {
+            get('/listar', ['as' => 'index', 'uses' => 'Admin\ReportController@index']);
+        });
     });
 
     /**
@@ -52,8 +73,18 @@ Route::group(['middleware' => 'auth'], function () {
         get('/inicio', ['as' => 'home', 'uses' => 'User\HomeController@index']);
 
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
-            get('/nuevo', ['as' => 'index', 'uses' => 'User\DiagnosticController@index']);
+            get('/nuevo', ['as' => 'create', 'uses' => 'User\DiagnosticController@create']);
             post('/nuevo', ['as' => 'analyze', 'uses' => 'User\DiagnosticController@analyze']);
+            get('/listar', ['as' => 'index', 'uses' => 'User\DiagnosticController@index']);
+            get('/mostrar/{id?}', ['as' => 'show', 'uses' => 'User\DiagnosticController@show']);
+        });
+
+        Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
+            get('/listar', ['as' => 'index', 'uses' => 'User\SymptomController@index']);
+        });
+
+        Route::group(['prefix' => 'enfermedades', 'as' => 'enfermedades::'], function () {
+            get('/listar', ['as' => 'index', 'uses' => 'User\DiseaseController@index']);
         });
     });
 });

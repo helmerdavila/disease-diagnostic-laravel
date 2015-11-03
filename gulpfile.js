@@ -14,13 +14,17 @@ elixir(function(mix){
         'AdminLTE.min.css',
         // adminlte skin
         'skin-blue-light.min.css',
-        // blue icheck
-        'blue.css'
+        // labelauty
+        'jquery-labelauty.css',
+        // morris
+        'morris.min.css'
     ], 'public/css/all.css');
 
     mix.scripts([
         // jquery 2.1.4
         'jQuery-2.1.4.min.js',
+        // raphael
+        'raphael.min.js',
         // bootstrap js
         'bootstrap.min.js',
         // slimscroll
@@ -29,11 +33,11 @@ elixir(function(mix){
         'fastclick.min.js',
         // selec2
         'select2.full.min.js',
-        // icheck
-        'icheck.min.js',
+        // labelauty
+        'jquery-labelauty.js',
         // app.js
         'app.min.js',
-        // customjs
+        // javascript de la aplicacion
         'custom.js'
     ], 'public/js/all.js');
 
@@ -43,6 +47,12 @@ elixir(function(mix){
     ]);
 
     // comentado pero funciona para copiar archivos
-    mix.copy('resources/assets/css/blue.png', 'public/build/css');
-    mix.copy('resources/assets/css/blue@2x.png', 'public/build/css');
+    mix.copy('resources/assets/images/input-checked.png', 'public/build/css');
+    mix.copy('resources/assets/images/input-unchecked.png', 'public/build/css');
+    mix.copy('resources/assets/js/morris.min.js', 'public/build/js');
+
+    mix.browserSync({
+        proxy: 'tesis.app',
+        open: false
+    });
 });

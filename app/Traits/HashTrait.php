@@ -9,6 +9,13 @@ use Hashids;
  */
 trait HashTrait
 {
+    public function encode($id)
+    {
+        $encoded = Hashids::encode($id);
+
+        return $encoded;
+    }
+
     public function decode($hashed)
     {
         $decoded = array_get(Hashids::decode($hashed), 0, null);

@@ -15,7 +15,7 @@ class DiseaseController extends Controller
     public function create()
     {
         $sintomas = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
-        $enfermedades = Disease::with('rules')->orderBy('name', 'asc')->paginate(20);
+        $enfermedades = Disease::with('rules')->orderBy('name', 'asc')->paginate(10);
 
         return view('admin.disease.index')
             ->with('enfermedades', $enfermedades)

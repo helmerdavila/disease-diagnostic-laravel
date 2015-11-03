@@ -12,9 +12,9 @@ return [
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
-    */
+     */
 
-    'mailgun' => [
+    'mailgun'  => [
         'domain' => '',
         'secret' => '',
     ],
@@ -23,16 +23,21 @@ return [
         'secret' => '',
     ],
 
-    'ses' => [
+    'ses'      => [
         'key'    => '',
         'secret' => '',
         'region' => 'us-east-1',
     ],
 
-    'stripe' => [
+    'stripe'   => [
         'model'  => Tesis\User::class,
         'key'    => '',
         'secret' => '',
     ],
 
+    'facebook' => [
+        'client_id'     => '127614600923757',
+        'client_secret' => '078d399f5a2ce32742f2cdf3c387870d',
+        'redirect'      => 'http://tesis.app/fblogin',
+    ],
 ];

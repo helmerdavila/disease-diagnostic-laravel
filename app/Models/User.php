@@ -27,16 +27,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function diagnostics()
     {
-        return $this->belongsTo('Tesis\Models\Diagnostic', 'user_id');
+        return $this->hasMany(Diagnostic::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
     }
 
     public function getGender()
     {
         if ($this->gender == 1) {
             return 'M';
-        } elseif ($this->gender == 0) {
-            return 'F';
         }
+        return 'F';
+    }
+
+    public function getGenderColored()
+    {
+        if ($this->gender == 1) {
+            return '<span class="label label-primary">Masculino</span>';
+        }
+        return '<span class="label label-danger">Femenino</span>';
     }
 
     public function setPassword($password)

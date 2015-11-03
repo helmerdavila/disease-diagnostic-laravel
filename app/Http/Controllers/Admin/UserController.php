@@ -5,6 +5,7 @@ namespace Tesis\Http\Controllers\Admin;
 use Carbon\Carbon;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\UserRequest;
+use Tesis\Models\State;
 use Tesis\Models\User;
 use Tesis\Traits\HashTrait;
 
@@ -14,9 +15,12 @@ class UserController extends Controller
 
     public function create()
     {
-        $usuarios = User::orderBy('created_at', 'desc')->with('diagnostics')->paginate(20);
+        $states   = State::lists('name', 'id')->toArray();
+        $usuarios = User::with('state', 'diagnostics')->orderBy('created_at', 'desc')->paginate(20);
 
-        return view('admin.user.index')->with('usuarios', $usuarios);
+        return view('admin.user.index')
+            ->with('states', $states)
+            ->with('usuarios', $usuarios);
     }
 
     public function store(UserRequest $request)
@@ -35,9 +39,12 @@ class UserController extends Controller
     {
         $id = $this->decode($hash_id);
 
+        $states  = State::lists('name', 'id')->toArray();
         $usuario = User::findOrFail($id);
 
-        return view('admin.user.edit')->with('usuario', $usuario);
+        return view('admin.user.edit')
+            ->with('states', $states)
+            ->with('usuario', $usuario);
     }
 
     public function update($hash_id, UserRequest $request)
@@ -51,6 +58,15 @@ class UserController extends Controller
         $usuario = User::findOrFail($id);
 
         $usuario->update($request->all());
+
+        // actualizando departamento
+        if ($request->has('state')) {
+            if ($request->state != $usuario->state_id) {
+                $state = State::findOrFail($request->state);
+                $usuario->state()->associate($state);
+                $usuario->save();
+            }
+        }
 
         alert('Se modificó el usuario correctamente');
         return redirect()->route('admin::usuarios::create');

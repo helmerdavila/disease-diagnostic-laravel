@@ -9,7 +9,7 @@ class DiagnosticController extends Controller
 {
     public function index()
     {
-        $diagnostics = Diagnostic::orderBy('created_at', 'desc')->paginate(20);
+        $diagnostics = Diagnostic::with('disease', 'user')->orderBy('created_at', 'desc')->paginate(20);
 
         return view('admin.diagnostic.index')->with('diagnostics', $diagnostics);
     }

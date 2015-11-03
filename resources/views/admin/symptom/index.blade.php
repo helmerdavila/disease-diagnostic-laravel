@@ -11,6 +11,7 @@
             <div class="box-body">
                 {!! Form::open() !!}
                     {!! Field::text('name', null, ['ph' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '', 'label' => 'Nombre']) !!}
+                    {!! Field::text('description', null, ['ph' => 'Una breve descripcion del síntoma', 'autocomplete' => 'off', 'label' => 'Descripción']) !!}
                     {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>

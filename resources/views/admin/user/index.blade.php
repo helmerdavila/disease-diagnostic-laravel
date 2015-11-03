@@ -35,14 +35,15 @@
             <div class="box-header with-border">
                 <h3 class="box-title"><strong>Listado de Usuarios</strong></h3>
             </div>
-            <div class="box-body">
-                <table class="table table-responsive table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th class="text-center"><i class="fa fa-gear"></i></th>
                             <th>Datos</th>
                             <th>Correo</th>
                             <th>Género</th>
+                            <th>Departamento</th>
                             <th>Nacimiento</th>
                             <th>Teléfono</th>
                             <th>Celular</th>
@@ -55,7 +56,7 @@
                             <tr>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                             <i class="fa fa-gear"></i>  <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
@@ -67,7 +68,8 @@
                                 <td>{{ $usuario->name }} {{ $usuario->lastname }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td>{{ $usuario->getGender() }}</td>
-                                <td>{{ $usuario->birthday->format('d/m/Y') }}</td>
+                                <td>{{ $usuario->state->name or 'No Registrado' }}</td>
+                                <td>{{ isset($usuario->birthday) ? $usuario->birthday->format('d/m/Y') : '--' }}</td>
                                 <td>{{ $usuario->phone }}</td>
                                 <td>{{ $usuario->mobil }}</td>
                                 <td>{{ $usuario->created_at->format('d/m/Y') }}</td>

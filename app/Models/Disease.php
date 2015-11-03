@@ -12,7 +12,7 @@ class Disease extends Model
 
     public function rules()
     {
-        return $this->belongsToMany('Tesis\Models\Symptom', 'rules');
+        return $this->belongsToMany('Tesis\Models\Symptom', 'rules')->withTimeStamps();
     }
 
     public function diagnostics()
@@ -26,5 +26,12 @@ class Disease extends Model
     public function setNameAttribute($name)
     {
         $this->attributes['name'] = ucfirst($name);
+    }
+
+    public function scopeWhereSymptoms($query, $symptoms = [])
+    {
+        return $query->whereHas('rules', function ($query) use ($symptoms) {
+            $query->whereIn('symptom_id', $symptoms);
+        });
     }
 }

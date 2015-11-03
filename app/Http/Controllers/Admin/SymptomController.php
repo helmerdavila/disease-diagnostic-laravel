@@ -13,7 +13,7 @@ class SymptomController extends Controller
 
     public function create()
     {
-        $sintomas = Symptom::orderBy('name', 'asc')->with('rules')->paginate(20);
+        $sintomas = Symptom::orderBy('name', 'asc')->with('rules')->paginate(10);
 
         return view('admin.symptom.index')->with('sintomas', $sintomas);
     }

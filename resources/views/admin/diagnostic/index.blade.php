@@ -12,12 +12,21 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center"><i class="fa fa-gear"></i></th>
                             <th>Usuario</th>
+                            <th>Género</th>
+                            <th>Enfermedad</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($diagnostics as $diagnostic)
+                            <tr>
+                                <td>{{ "{$diagnostic->user->name} {$diagnostic->user->lastname}" }}</td>
+                                <th>{{ $diagnostic->user->getGender() }}</th>
+                                <td>{{ $diagnostic->disease->name }}</td>
+                                <td>{{ $diagnostic->created_at->format('d-m-Y') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 {!! $diagnostics->render() !!}

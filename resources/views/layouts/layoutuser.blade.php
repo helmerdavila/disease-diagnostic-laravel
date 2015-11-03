@@ -41,37 +41,16 @@
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            {{-- Notifications: style can be found in dropdown.less --}}
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
-                                    <li>
-                                        {{-- inner menu: contains the actual data --}}
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
                             {{-- User Account: style can be found in dropdown.less --}}
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="http://lorempixel.com/160/160/cats" class="user-image" alt="User Image">
+                                    <img src="{{ asset('img/user.png') }}" class="user-image" alt="Imagen de Usuario">
                                     <span class="hidden-xs">{{ Auth::user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     {{-- User image --}}
                                     <li class="user-header">
-                                        <img src="http://lorempixel.com/160/160/cats" class="img-circle" alt="User Image">
+                                        <img src="{{ asset('img/user.png') }}" class="img-circle" alt="Imagen de Usuario">
                                         <p>
                                             {{ Auth::user()->name }} - {{ Auth::user()->roles->first()->display_name }}
                                             <small>Miembro desde {{ Auth::user()->created_at->format('d-m-Y') }}</small>
@@ -99,7 +78,7 @@
                     {{-- Sidebar user panel --}}
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="http://lorempixel.com/160/160/cats" class="img-circle" alt="User Image">
+                            <img src="{{ asset('img/user.png') }}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>{{ Auth::user()->name }}</p>
@@ -114,18 +93,33 @@
                                 <i class="fa fa-home"></i> <span>Inicio</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('user::diagnosticos::index') }}">
+                        <li class="treeview">
+                            <a href="#">
                                 <i class="fa fa-user-md"></i> <span>Diagnósticos</span>
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="{{ route('user::diagnosticos::create') }}">
+                                        <i class="fa fa-circle-o"></i>
+                                        Nuevo Diagnostico
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('user::diagnosticos::index') }}">
+                                        <i class="fa fa-circle-o"></i>
+                                        Listar Diagnosticos
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('user::sintomas::index') }}">
                                 <i class="fa fa-eyedropper"></i> <span>Síntomas</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('user::enfermedades::index') }}">
                                 <i class="fa fa-heartbeat"></i> <span>Enfermedades</span>
                             </a>
                         </li>
