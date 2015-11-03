@@ -12,11 +12,11 @@ class Diagnostic extends Model
 
     public function disease()
     {
-        return $this->belongsTo('Tesis\Models\Disease', 'disease_id');
+        return $this->belongsTo(Disease::class, 'disease_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('Tesis\Models\User', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

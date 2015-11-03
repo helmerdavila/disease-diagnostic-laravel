@@ -4,6 +4,7 @@ namespace Tesis\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use Tesis\Http\Controllers\Controller;
+use Tesis\Models\Diagnostic;
 use Tesis\Models\Disease;
 use Tesis\Models\State;
 use Tesis\Models\User;
@@ -61,7 +62,8 @@ class ReportController extends Controller
         foreach ($months as $keyMonth => $value) {
 
             if ($keyMonth != 1) {
-                $newDate = $today->copy()->subMonth($keyMonth);
+                $newDate->subDay();
+                $newDate->startOfMonth();
             }
 
             // inicializamos a 0 por cada indice de diseases, no por el Id
@@ -161,7 +163,8 @@ class ReportController extends Controller
         foreach ($months as $keyMonth => $value) {
 
             if ($keyMonth != 1) {
-                $newDate = $today->copy()->subMonth($keyMonth);
+                $newDate->subDay();
+                $newDate->startOfMonth();
             }
 
             $aux = 0;
@@ -180,6 +183,60 @@ class ReportController extends Controller
 
         return response()->json([
             'names'  => [$disease->name],
+            'result' => $result,
+        ]);
+    }
+
+    /**
+     * Función que calcula la evolución de diagnósticos por enfermedad, anualmente
+     * se usa -1 porque Morris toma valores desde un array con index 0
+     */
+    public function anual_state_diagnostics($state_id)
+    {
+        $names    = $indexs    = [];
+        $diseases = Disease::all();
+
+        $diagnostics = Diagnostic::whereHas('user', function ($query) use ($state_id) {
+            $query->where('state_id', $state_id);
+        })->with('user')->get();
+
+        // llenamos un arreglo de indices y otro de nombres para la grafica
+        $diseases->each(function ($disease) use (&$names, &$indexs) {
+            $indexs[]                  = ($disease->id) - 1;
+            $names[($disease->id) - 1] = $disease->name;
+        });
+
+        $months = array_months();
+
+        $today   = Carbon::create(null, null, 1);
+        $newDate = $today->copy();
+
+        // Por cada mes mostramos cuantos diagnosticos se realizaron
+        foreach ($months as $keyMonth => $value) {
+
+            if ($keyMonth != 1) {
+                $newDate->subDay();
+                $newDate->startOfMonth();
+            }
+
+            foreach ($diseases as $disease) {
+                $aux[($disease->id) - 1] = 0;
+            }
+
+            foreach ($diagnostics as $diagnostic) {
+                if ($diagnostic->created_at->month == $newDate->month && $diagnostic->created_at->year == $newDate->year) {
+                    $aux[($diagnostic->disease_id) - 1]++;
+                }
+            }
+
+            $arrayMonth = ['month' => $value];
+            // aca no se utiliza merge, para que no reindexe la union de arrays
+            $result[] = $arrayMonth + $aux;
+        }
+
+        return response()->json([
+            'names'  => $names,
+            'indexs' => $indexs,
             'result' => $result,
         ]);
     }

@@ -26,7 +26,6 @@ $(function(){
     };
 
      if ($('#anual-disease-diagnostics').length) {
-
         $('#anual-disease').change(function(){
             var selectDisease = $('#anual-disease').val();
             $.get('/api/anual-disease-diagnostics/' + selectDisease, function(data){
@@ -41,6 +40,24 @@ $(function(){
                     labels: data.names
                 });
             }); 
+        });
+    };
+
+    if ($('#anual-state-diagnostics').length) {
+        $('#anual-state').change(function(){
+            var selectState = $('#anual-state').val();
+                $.get('/api/anual-state-diagnostics/' + selectState, function(data){
+                    // usado para limpiar la pantalla, causa divs fantasmas
+                    $('#anual-state-diagnostics').empty();
+                    Morris.Line({
+                        element: 'anual-state-diagnostics',
+                        data: data.result,
+                        lineColors : ['#dd4b39', '#f39c12', '#3c8dbc', '#f56954', '#00a65a'],
+                        xkey: 'month',
+                        ykeys: data.indexs,
+                        labels: data.names
+                    });
+                }); 
         });
     };
 

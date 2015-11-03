@@ -7,8 +7,11 @@ if (!function_exists('array_months')) {
         $newDate = $today->copy();
 
         for ($month = 1; $month <= 12; $month++) {
+            // si ya no es el primer mes, restamos un dia y mandamos la fecha
+            // a primer dia de mes
             if ($month != 1) {
-                $newDate = $today->copy()->subMonth($month);
+                $newDate->subDay();
+                $newDate->startOfMonth();
             }
             $months[$month] = "{$newDate->year}-{$newDate->month}";
         }
