@@ -59,7 +59,7 @@ class HomeController extends Controller
         }
 
         $user           = auth()->user();
-        $user->password = $request->new_password;
+        $user->password = bcrypt($request->new_password);
         $user->save();
 
         alert('Se cambió la contraseña con éxito');
