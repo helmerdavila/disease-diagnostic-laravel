@@ -51,10 +51,6 @@ class UserController extends Controller
     {
         $id = $this->decode($hash_id);
 
-        if ($request->has('birthday')) {
-            $request['birthday'] = Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d');
-        }
-
         $usuario = User::findOrFail($id);
 
         $usuario->update($request->all());

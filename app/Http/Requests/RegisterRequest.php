@@ -33,6 +33,7 @@ class RegisterRequest extends Request
             'email.email'                    => 'El correo debe tener formato de correo electrónico',
             'email.max'                      => 'El correo debe tener como máximo :max caracteres',
             'email.unique'                   => 'El correo ya se encuentra registrado',
+            'state.required'                 => 'El departamento es obligatorio',
             'password.required'              => 'La contraseña es obligatoria',
             'password.confirmed'             => 'La contraseña y su confirmación no coinciden',
             'password.between'               => 'La contraseña debe tener entre :min y :max caracteres',

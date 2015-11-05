@@ -11,7 +11,8 @@
             <div class="box-body">
                 {!! Form::open() !!}
                     {!! Field::text('name', $sintoma->name, ['placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '']) !!}
-                    {!! Form::submit('Editar', ['class' => 'btn btn-warning']) !!}
+                    {!! Field::text('description', $sintoma->description, ['placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off']) !!}
+                    {!! Form::submit('Actualizar', ['class' => 'btn btn-warning']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

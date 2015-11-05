@@ -81,7 +81,7 @@ $(function(){
         }); 
     };
 
-    if ($('#top-5-user-diagnostics')) {
+    if ($('#top-5-user-diagnostics').length) {
         $.get('/api/top-users-diagnostics', function(data){
             Morris.Donut({
                 element: 'top-5-user-diagnostics',
@@ -91,7 +91,7 @@ $(function(){
         });
     };
 
-    if ($('#top-5-diagnostic-diseases')) {
+    if ($('#top-5-diagnostic-diseases').length) {
         $.get('/api/top-diseases-diagnostics', function(data){
             Morris.Donut({
                 element: 'top-5-diagnostic-diseases',

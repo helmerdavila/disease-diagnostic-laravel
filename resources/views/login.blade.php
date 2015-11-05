@@ -53,11 +53,6 @@
                 </div>
                 {!! Form::close() !!}
 
-                <div class="social-auth-links text-center">
-                    <p>- o -</p>
-                    <a href="{{ route('facebookLogin') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Iniciar sesión con Facebook</a>
-                </div>{{-- /.social-auth-links --}}
-
                 <a href="#">Olvidé mi contraseña</a><br>
                 <a href="{{ route('showRegister') }}" class="text-center">Registrarse</a>
             </div>{{-- /.login-box-body --}}
