@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                 @endif
-                <h4>Elija si posee algunos de los siguientes síntomas</h4>
+                <h4>Elija al menos tres de esta lista de los siguientes síntomas</h4>
                 {!! Form::open() !!}
                     @foreach ($sintomas as $index => $sintoma)
                         <input type="checkbox" name="sintomas[]" value="{{ $index }}" data-labelauty="{{ $sintoma }}"/>
