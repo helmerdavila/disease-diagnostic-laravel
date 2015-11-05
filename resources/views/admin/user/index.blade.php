@@ -1,10 +1,6 @@
 @extends('layouts.layoutadmin')
-@section('title')
-    Usuarios
-@stop
-@section('breadcrumb')
-    Usuarios
-@stop
+@section('title') Usuarios @stop
+@section('breadcrumb') Usuarios @stop
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -57,7 +53,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                            <i class="fa fa-gear"></i>  <span class="caret"></span>
+                                            <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="{{ route('admin::usuarios::edit', Hashids::encode($usuario->id)) }}"><i class="fa fa-pencil"></i> Editar</a></li>
