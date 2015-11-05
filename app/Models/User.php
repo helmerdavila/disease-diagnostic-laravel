@@ -35,6 +35,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo(State::class);
     }
 
+    public function getFullName()
+    {
+        return "{$this->name} {$this->lastname}";
+    }
+
     public function getGender()
     {
         if ($this->gender == 1) {
@@ -56,7 +61,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function setBirthday($birthday)
+    public function setBirthdayAttribute($birthday)
     {
         $this->attributes['birthday'] = Carbon::createFromFormat('d/m/Y', $birthday)->format('Y-m-d');
     }

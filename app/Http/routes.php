@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
      */
     Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
         get('/inicio', ['as' => 'home', 'uses' => 'Admin\HomeController@home']);
+        get('/perfil', ['as' => 'perfil', 'uses' => 'Admin\HomeController@profile']);
+        post('/actualizar-perfil', ['as' => 'perfil::actualizar', 'uses' => 'Admin\HomeController@profile_update']);
+        post('/actualizar-password', ['as' => 'password::actualizar', 'uses' => 'Admin\HomeController@password_update']);
 
         // sintomas
         Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
@@ -71,6 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
      */
     Route::group(['prefix' => 'user', 'as' => 'user::'], function () {
         get('/inicio', ['as' => 'home', 'uses' => 'User\HomeController@index']);
+        get('/perfil', ['as' => 'perfil', 'uses' => 'User\HomeController@profile']);
+        post('/actualizar-perfil', ['as' => 'perfil::actualizar', 'uses' => 'User\HomeController@profile_update']);
+        post('/actualizar-password', ['as' => 'password::actualizar', 'uses' => 'User\HomeController@password_update']);
 
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
             get('/nuevo', ['as' => 'create', 'uses' => 'User\DiagnosticController@create']);

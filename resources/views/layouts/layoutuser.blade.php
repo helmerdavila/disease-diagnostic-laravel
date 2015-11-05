@@ -45,21 +45,21 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="{{ asset('img/user.png') }}" class="user-image" alt="Imagen de Usuario">
-                                    <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                                    <span class="hidden-xs">{{ auth()->user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     {{-- User image --}}
                                     <li class="user-header">
                                         <img src="{{ asset('img/user.png') }}" class="img-circle" alt="Imagen de Usuario">
                                         <p>
-                                            {{ Auth::user()->name }} - {{ Auth::user()->roles->first()->display_name }}
-                                            <small>Miembro desde {{ Auth::user()->created_at->format('d-m-Y') }}</small>
+                                            {{ auth()->user()->name }} - {{ auth()->user()->roles->first()->display_name }}
+                                            <small>Miembro desde {{ auth()->user()->created_at->format('d-m-Y') }}</small>
                                         </p>
                                     </li>
                                     {{-- Menu Footer--}}
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="{{ route('user::perfil') }}" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href={{ route('logoutSession') }} class="btn btn-default btn-flat">Salir</a>
@@ -81,7 +81,7 @@
                             <img src="{{ asset('img/user.png') }}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>{{ Auth::user()->name }}</p>
+                            <p>{{ auth()->user()->name }}</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Conectado</a>
                         </div>
                     </div>

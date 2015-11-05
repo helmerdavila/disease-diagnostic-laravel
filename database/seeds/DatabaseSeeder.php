@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(SymptomSeeder::class);
         $this->call(DiseaseSeeder::class);
+        $this->call(DiagnosticSeeder::class);
         Model::reguard();
     }
 }
@@ -65,12 +66,13 @@ class UserTableSeeder extends Seeder
         $rolUsuario->save();
 
         // creamos el usuario administrador y un usuario de ejemplo
-        $admin           = new User;
-        $admin->email    = 'admin@admin.com';
-        $admin->password = bcrypt('administrador');
-        $admin->name     = 'Administrador';
-        $admin->gender   = 1;
-        $admin->birthday = '1991-01-11';
+        $admin             = new User;
+        $admin->email      = 'admin@admin.com';
+        $admin->password   = bcrypt('administrador');
+        $admin->name       = 'Administrador';
+        $admin->gender     = 1;
+        $admin->birthday   = '1991-01-11';
+        $usuario->state_id = 1;
         $admin->save();
         $admin->attachRole($rolAdmin);
 
@@ -81,6 +83,7 @@ class UserTableSeeder extends Seeder
         $usuario->lastname = 'Nomberto Coronado';
         $usuario->gender   = 0;
         $usuario->birthday = '1991-01-11';
+        $usuario->state_id = 1;
         $usuario->save();
         $usuario->attachRole($rolUsuario);
 
