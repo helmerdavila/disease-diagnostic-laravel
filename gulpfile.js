@@ -16,6 +16,8 @@ elixir(function(mix){
         'skin-blue-light.min.css',
         // labelauty
         'jquery-labelauty.css',
+        // daterange
+        'daterange.css',
         // morris
         'morris.min.css'
     ], 'public/css/all.css');
@@ -35,6 +37,12 @@ elixir(function(mix){
         'select2.full.min.js',
         // labelauty
         'jquery-labelauty.js',
+        // moment
+        'moment.js',
+        // daterangepicker
+        'daterangepicker.js',
+        // inputmask
+        'jquery.inputmask.bundle.min.js',
         // app.js
         'app.min.js',
         // javascript de la aplicacion

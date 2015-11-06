@@ -65,12 +65,11 @@ class AuthController extends Controller
      */
     public function showRegisterPost(RegisterRequest $request)
     {
-        $user           = new User;
-        $user->name     = $request->name;
-        $user->email    = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->gender   = $request->gender;
-        $user->save();
+        $form = collect_clean($request->all());
+
+        $request['password'] = bcrypt($request->password);
+
+        $user = User::create($form->toArray());
         $user->attachRole(2);
 
         alert('Cuenta creada correctamente, puede iniciar sesión');
