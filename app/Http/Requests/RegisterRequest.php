@@ -14,7 +14,7 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'name'                  => 'required|between:2,255',
+            'name'                  => 'required|between:2,255|alpha_spaces',
             'email'                 => 'required|email|max:255|unique:users,email',
             'state'                 => 'required',
             'password'              => 'required|confirmed|between:6,20',
@@ -29,6 +29,7 @@ class RegisterRequest extends Request
         return [
             'name.required'                  => 'El nombre es obligatorio',
             'name.between'                   => 'El nombre debe contener entre :min y :max caracteres',
+            'name.alpha_spaces'              => 'El nombre sólo debe contener letras',
             'email.required'                 => 'El correo debe ser obligatorio',
             'email.email'                    => 'El correo debe tener formato de correo electrónico',
             'email.max'                      => 'El correo debe tener como máximo :max caracteres',
