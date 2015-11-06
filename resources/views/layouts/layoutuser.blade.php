@@ -148,10 +148,12 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; {{ date('Y') }} Dávila Mundaca Helmer & Nomberto Coronado Lesly</strong> Ing. en Computación e Informática.
+                <strong>Copyright &copy; {{ date('Y') }} Dávila Mundaca Helmer &amp; Nomberto Coronado Lesly</strong> Ing. en Computación e Informática.
             </footer>
         </div>{{-- ./wrapper --}}
         {{-- Compiled scripts --}}
         <script src="{{ elixir('js/all.js') }}"></script>
+        <script src="{{ asset('build/js/morris.min.js') }}"></script>
+        <script src="{{ asset('build/js/graphs.js') }}"></script>
     </body>
 </html>

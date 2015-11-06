@@ -2,6 +2,7 @@
 
 namespace Tesis\Providers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // validador solo para cadenas con espacios
+        Validator::extend('alpha_spaces', function ($attribute, $value) {
+            return preg_match('/^[\pL\s]+$/u', $value);
+        });
     }
 
     /**

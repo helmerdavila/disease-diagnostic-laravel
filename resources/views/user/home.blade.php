@@ -12,7 +12,7 @@
                 <div class="icon">
                     <i class="fa fa-user-md"></i>
                 </div>
-                <a href="" class="small-box-footer">
+                <a href="{{ route('user::diagnosticos::index') }}" class="small-box-footer">
                     Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -26,7 +26,7 @@
                 <div class="icon">
                     <i class="fa fa-heartbeat"></i>
                 </div>
-                <a href="" class="small-box-footer">
+                <a href="{{ route('user::enfermedades::index') }}" class="small-box-footer">
                     Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -40,7 +40,7 @@
                 <div class="icon">
                     <i class="fa fa-eyedropper"></i>
                 </div>
-                <a href="" class="small-box-footer">
+                <a href="{{ route('user::sintomas::index') }}" class="small-box-footer">
                     Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -50,20 +50,35 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <div class="box-title">Mis 5 últimos diagnósticos</div>
+                    <div class="box-title">Mis últimos diagnósticos</div>
                 </div>
                 <div class="box-body">
-                    Contenido
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th>Enfermedad</th>
+                                <th>Realizado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($diagnostics as $diagnostic)
+                            <tr>
+                                <td>{{ $diagnostic->disease->name }}</td>
+                                <td>{{ $diagnostic->created_at->format('d-m-Y') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <div class="box-title">Donut char con enfermedades y cantidad de veces indicada</div>
+                    <div class="box-title">Enfermedades y número de veces diagnosticada</div>
                 </div>
                 <div class="box-body">
-                    Contenido
+                    <div id="user-diseases"></div>
                 </div>
             </div>
         </div>

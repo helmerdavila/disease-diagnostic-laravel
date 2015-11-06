@@ -1,3 +1,4 @@
+
 <?php
 
 if (!function_exists('array_months')) {
@@ -17,5 +18,27 @@ if (!function_exists('array_months')) {
         }
 
         return $months;
+    }
+}
+
+if (!function_exists('collect_clean')) {
+    /**
+     * Transforma un array en coleccion y se encarga de limpiar los valores
+     * que se encuentran vacios
+     *
+     * @param  array                           $array
+     * @return Illuminate\Support\Collection
+     */
+    function collect_clean($array = [])
+    {
+        $collection = collect($array);
+        $collection = $collection->filter(function ($element) {
+            if ($element === '') {
+                return false;
+            }
+            return true;
+        });
+
+        return $collection;
     }
 }

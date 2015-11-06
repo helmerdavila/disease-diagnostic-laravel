@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
         get('/top-diseases-diagnostics', 'Admin\ReportController@top_diseases_diagnostics');
         get('/anual-disease-diagnostics/{disease_id}', 'Admin\ReportController@anual_disease_diagnostics');
         get('/anual-state-diagnostics/{state_id}', 'Admin\ReportController@anual_state_diagnostics');
+        get('/user-diseases', 'User\ReportController@user_diseases');
     });
 
     /**
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
             post('/listar', ['as' => 'store', 'uses' => 'Admin\UserController@store']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\UserController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\UserController@update']);
+            post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\UserController@delete']);
         });
 
         // Reportes

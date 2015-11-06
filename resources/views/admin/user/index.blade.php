@@ -50,16 +50,14 @@
                     <tbody>
                         @foreach ($usuarios as $usuario)
                             <tr>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('admin::usuarios::edit', Hashids::encode($usuario->id)) }}"><i class="fa fa-pencil"></i> Editar</a></li>
-                                            <li><a href=""><i class="fa fa-times"></i> Eliminar</a></li>
-                                        </ul>
-                                    </div>
+                                <td>
+                                    @include('partials._boton', [
+                                        'object' => $usuario,
+                                        'editRoute' => 'admin::usuarios::edit',
+                                        'deleteRoute' => 'admin::usuarios::delete',
+                                        'name' => $usuario->getFullName(),
+                                        'content' => 'el usuario',
+                                    ])
                                 </td>
                                 <td>{{ $usuario->name }} {{ $usuario->lastname }}</td>
                                 <td>{{ $usuario->email }}</td>

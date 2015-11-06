@@ -25,11 +25,13 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+        $form = collect_clean($request->all());
+
         if ($request->has('birthday')) {
             $request['birthday'] = Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d');
         }
 
-        User::create($request->all());
+        User::create($form->toArray());
 
         alert('Usuario registrado correctamente');
         return redirect()->back();
@@ -49,11 +51,12 @@ class UserController extends Controller
 
     public function update($hash_id, UserRequest $request)
     {
-        $id = $this->decode($hash_id);
+        $id   = $this->decode($hash_id);
+        $form = collect_clean($request->all());
 
         $usuario = User::findOrFail($id);
 
-        $usuario->update($request->all());
+        $usuario->update($form->toArray());
 
         // actualizando departamento
         if ($request->has('state')) {
@@ -66,5 +69,16 @@ class UserController extends Controller
 
         alert('Se modificó el usuario correctamente');
         return redirect()->route('admin::usuarios::create');
+    }
+
+    public function delete($hash_id)
+    {
+        $id = $this->decode($hash_id);
+
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        alert('Se eliminó el usuario con éxito');
+        return redirect()->back();
     }
 }
