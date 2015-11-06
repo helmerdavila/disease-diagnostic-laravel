@@ -67,4 +67,15 @@ class UserController extends Controller
         alert('Se modificó el usuario correctamente');
         return redirect()->route('admin::usuarios::create');
     }
+
+    public function delete($hash_id)
+    {
+        $id = $this->decode($hash_id);
+
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        alert('Se eliminó el usuario con éxito');
+        return redirect()->back();
+    }
 }

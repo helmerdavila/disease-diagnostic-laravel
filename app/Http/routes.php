@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
             post('/listar', ['as' => 'store', 'uses' => 'Admin\UserController@store']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\UserController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\UserController@update']);
+            post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\UserController@delete']);
         });
 
         // Reportes
