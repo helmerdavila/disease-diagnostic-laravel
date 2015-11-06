@@ -100,4 +100,15 @@ $(function(){
             });
         });
     };
+
+    if ($('#user-diseases').length) {
+        // obtener los valores desde /api/user-diseases
+        $.get('/api/user-diseases', function(data){
+            Morris.Donut({
+                element: 'user-diseases',
+                data: data,
+                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+            });
+        }); 
+    };
 });

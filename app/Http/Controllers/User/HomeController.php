@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\PasswordRequest;
 use Tesis\Http\Requests\ProfileRequest;
+use Tesis\Models\Diagnostic;
 use Tesis\Models\Disease;
 use Tesis\Models\State;
 use Tesis\Models\Symptom;
@@ -17,10 +18,17 @@ class HomeController extends Controller
         $countDiagnostic = count(auth()->user()->diagnostics);
         $countDiseases   = Disease::count();
         $countSymptom    = Symptom::count();
+        $diagnostics     = Diagnostic::with('disease')
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('user.home')
             ->with('countSymptom', $countSymptom)
             ->with('countDiseases', $countDiseases)
-            ->with('countDiagnostic', $countDiagnostic);
+            ->with('countDiagnostic', $countDiagnostic)
+            ->with('diagnostics', $diagnostics);
     }
 
     public function profile()
