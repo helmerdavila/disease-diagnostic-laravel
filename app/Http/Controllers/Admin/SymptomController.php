@@ -3,6 +3,7 @@
 namespace Tesis\Http\Controllers\Admin;
 
 use Tesis\Http\Controllers\Controller;
+use Tesis\Http\Requests\SearchRequest;
 use Tesis\Http\Requests\SymptomRequest;
 use Tesis\Models\Symptom;
 use Tesis\Traits\HashTrait;
@@ -61,5 +62,16 @@ class SymptomController extends Controller
 
         alert('Se eliminó el síntoma con éxito');
         return redirect()->route('admin::sintomas::listar');
+    }
+
+    public function search(SearchRequest $request)
+    {
+        if (!$request->has('search')) {
+            return redirect()->route('admin::sintoma::listar');
+        }
+
+        $sintomas = Symptom::search($request->search)->get();
+
+        return view('admin.symptom.result')->with('sintomas', $sintomas);
     }
 }

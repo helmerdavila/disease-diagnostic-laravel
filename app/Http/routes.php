@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
             get('/listar', ['as' => 'create', 'uses' => 'Admin\SymptomController@create']);
             post('/listar', ['as' => 'store', 'uses' => 'Admin\SymptomController@store']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\SymptomController@search']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\SymptomController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\SymptomController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\SymptomController@delete']);
