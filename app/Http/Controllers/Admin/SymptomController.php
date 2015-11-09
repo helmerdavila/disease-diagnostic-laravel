@@ -61,13 +61,13 @@ class SymptomController extends Controller
         $sintoma->delete();
 
         alert('Se eliminó el síntoma con éxito');
-        return redirect()->route('admin::sintomas::listar');
+        return redirect()->route('admin::sintomas::create');
     }
 
     public function search(SearchRequest $request)
     {
         if (!$request->has('search')) {
-            return redirect()->route('admin::sintoma::listar');
+            return redirect()->route('admin::sintoma::create');
         }
 
         $sintomas = Symptom::search($request->search)->get();

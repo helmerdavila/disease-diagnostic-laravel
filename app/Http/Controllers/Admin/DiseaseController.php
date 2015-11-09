@@ -80,7 +80,7 @@ class DiseaseController extends Controller
     public function search(SearchRequest $request)
     {
         if (!$request->has('search')) {
-            return redirect()->route('admin::enfermedades::listar');
+            return redirect()->route('admin::enfermedades::create');
         }
 
         $enfermedades = Disease::search($request->search)->get();

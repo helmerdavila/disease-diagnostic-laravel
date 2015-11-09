@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
         // diagnosticos
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
             get('/listar', ['as' => 'index', 'uses' => 'Admin\DiagnosticController@index']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\DiagnosticController@search']);
         });
 
         // usuarios

@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Listado de Diagnósticos</strong></h3>
+                <h3 class="box-title"><strong>Búsqueda de Diagnósticos</strong></h3>
             </div>
             <div class="box-body">
                 {!! Form::open(['method' => 'GET', 'route' => 'admin::diagnosticos::buscar']) !!}
@@ -22,17 +22,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($diagnostics as $diagnostic)
+                        @forelse ($diagnostics as $diagnostic)
                             <tr>
                                 <td>{{ "{$diagnostic->user->name} {$diagnostic->user->lastname}" }}</td>
                                 <th>{{ $diagnostic->user->getGender() }}</th>
                                 <td>{{ $diagnostic->disease->name }}</td>
                                 <td>{{ $diagnostic->created_at->format('d-m-Y') }}</td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td>No se encontraron diagnósticos</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-                {!! $diagnostics->render() !!}
             </div>
         </div>
     </div>
