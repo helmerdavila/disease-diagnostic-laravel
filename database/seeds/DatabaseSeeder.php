@@ -47,6 +47,7 @@ class TruncateTables extends Seeder
 
 class UserTableSeeder extends Seeder
 {
+    const FAKES_USERS = 200;
     /**
      * bcrypt = funcion para encriptar contraseñas, equivalente a Hash::make
      */
@@ -66,13 +67,13 @@ class UserTableSeeder extends Seeder
         $rolUsuario->save();
 
         // creamos el usuario administrador y un usuario de ejemplo
-        $admin             = new User;
-        $admin->email      = 'admin@admin.com';
-        $admin->password   = bcrypt('administrador');
-        $admin->name       = 'Administrador';
-        $admin->gender     = 1;
-        $admin->birthday   = '1991-01-11';
-        $usuario->state_id = 1;
+        $admin           = new User;
+        $admin->email    = 'admin@admin.com';
+        $admin->password = bcrypt('admin');
+        $admin->name     = 'Administrador';
+        $admin->gender   = 1;
+        $admin->birthday = '11/01/1991';
+        $admin->state_id = 1;
         $admin->save();
         $admin->attachRole($rolAdmin);
 
@@ -82,12 +83,12 @@ class UserTableSeeder extends Seeder
         $usuario->name     = 'Lesly Yohana';
         $usuario->lastname = 'Nomberto Coronado';
         $usuario->gender   = 0;
-        $usuario->birthday = '1991-01-11';
+        $usuario->birthday = '11/01/1991';
         $usuario->state_id = 1;
         $usuario->save();
         $usuario->attachRole($rolUsuario);
 
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < self::FAKES_USERS; $i++) {
             $user = factory(Tesis\Models\User::class)->create();
             $user->attachRole($rolUsuario);
         }
