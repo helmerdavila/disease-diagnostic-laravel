@@ -4,29 +4,6 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-success box-solid {!! count($errors) > 0 ? '' : 'collapsed-box' !!}">
-            <div class="box-header with-border">
-                <h3 class="box-title"><strong>Nuevo Usuario</strong></h3>
-                <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse">
-                        @if (count($errors) > 0)
-                            <i class="fa fa-minus"></i>
-                        @else
-                            <i class="fa fa-plus"></i>
-                        @endif
-                    </button>
-                </div>
-            </div>
-            <div class="box-body" {!! count($errors) > 0 ? 'style="display:block"' : '' !!}>
-                {!! Form::open() !!}
-                    @include('admin.user._form', ['buttonText' => 'Guardar', 'buttonColor' => 'success'])
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title"><strong>Listado de Usuarios</strong></h3>
@@ -78,7 +55,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $usuarios->render() !!}
                 </div>
             </div>
         </div>

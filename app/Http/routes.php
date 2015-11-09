@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'usuarios', 'as' => 'usuarios::'], function () {
             get('/listar', ['as' => 'create', 'uses' => 'Admin\UserController@create']);
             post('/listar', ['as' => 'store', 'uses' => 'Admin\UserController@store']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\UserController@search']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\UserController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\UserController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\UserController@delete']);
