@@ -4,6 +4,7 @@ namespace Tesis\Http\Controllers\Admin;
 
 use Tesis\Http\Controllers\Controller;
 use Tesis\Http\Requests\DiseaseRequest;
+use Tesis\Http\Requests\SearchRequest;
 use Tesis\Models\Disease;
 use Tesis\Models\Symptom;
 use Tesis\Traits\HashTrait;
@@ -14,7 +15,7 @@ class DiseaseController extends Controller
 
     public function create()
     {
-        $sintomas = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $sintomas     = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
         $enfermedades = Disease::with('rules')->orderBy('name', 'asc')->paginate(10);
 
         return view('admin.disease.index')
@@ -26,14 +27,6 @@ class DiseaseController extends Controller
     {
         $enfermedad = Disease::create($request->all());
 
-        /*
-        foreach ($request->input('sintomas') as $sintoma_id) {
-        $regla = new Rule;
-        $regla->disease_id = $enfermedad->id;
-        $regla->symptom_id = $sintoma_id;
-        $regla->save();
-        }
-         */
         $enfermedad->rules()->sync($request->input('sintomas'));
 
         alert('Se ingresó la enfermedad correctamente');
@@ -42,9 +35,9 @@ class DiseaseController extends Controller
 
     public function edit($hash_id)
     {
-        $id = $this->decode($hash_id);
+        $id         = $this->decode($hash_id);
         $enfermedad = Disease::findOrFail($id);
-        $sintomas = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $sintomas   = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
         $e_sintomas = $enfermedad->rules->lists('id')->toArray();
 
         return view('admin.disease.edit')
@@ -82,5 +75,16 @@ class DiseaseController extends Controller
 
         alert('Se eliminó la enfermedad correctamente', 'danger');
         return redirect()->back();
+    }
+
+    public function search(SearchRequest $request)
+    {
+        if (!$request->has('search')) {
+            return redirect()->route('admin::enfermedades::listar');
+        }
+
+        $enfermedades = Disease::search($request->search)->get();
+
+        return view('admin.disease.result')->with('enfermedades', $enfermedades);
     }
 }

@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'enfermedades', 'as' => 'enfermedades::'], function () {
             get('/listar', ['as' => 'create', 'uses' => 'Admin\DiseaseController@create']);
             post('/listar', ['as' => 'store', 'uses' => 'Admin\DiseaseController@store']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\DiseaseController@search']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\DiseaseController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\DiseaseController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\DiseaseController@delete']);

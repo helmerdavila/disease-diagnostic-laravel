@@ -20,7 +20,7 @@
                         <th class="text-center">Enfermedades</th>
                     </thead>
                     <tbody>
-                        @foreach ($sintomas as $sintoma)
+                        @forelse ($sintomas as $sintoma)
                             <tr>
                                 <td>
                                     @include('partials._boton', [
@@ -37,7 +37,11 @@
                                     <span class="label label-primary">{{ $sintoma->rules->count() }}</span>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td>No se encontraron síntomas con ese nombre</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
