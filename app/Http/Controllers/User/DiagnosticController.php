@@ -29,13 +29,19 @@ class DiagnosticController extends Controller
 
     public function analyze(Request $request)
     {
-        $this->validate($request, ['sintomas' => 'required|min:2']);
+        $this->validate($request, [
+            'sintomas' => 'required|min:3',
+        ], [
+            'sintomas.required' => 'Debe seleccionar síntomas para continuar',
+            'sintomas.min'      => 'Debe seleccionar al menos :min síntomas para continuar',
+        ]);
 
         $enfermedades = Disease::whereSymptoms($request->sintomas)->get();
 
         // sino hay enfermedad se redirige a una pagina diciendo que de nuevo
         // proceda a ingresar los sintomas refinando su busqueda
         if (empty($enfermedades)) {
+            alert('No se pudo encontrar un diagnóstico con los síntomas ingresados', 'danger');
             return redirect()->route('user::diagnosticos::show');
         }
 
@@ -47,13 +53,18 @@ class DiagnosticController extends Controller
                 $numero_sintomas--;
             }
 
-            return ($numero_sintomas === 0) ? true : false;
+            return ($numero_sintomas == 0) ? true : false;
 
         })->first();
 
-        $diagnostico = new Diagnostic();
+        if (empty($enfermedad)) {
+            alert('No se pudo encontrar un diagnóstico con los síntomas ingresados', 'danger');
+            return redirect()->route('user::diagnosticos::show');
+        }
+
+        $diagnostico             = new Diagnostic();
         $diagnostico->disease_id = $enfermedad->id;
-        $diagnostico->user_id = $request->user()->id;
+        $diagnostico->user_id    = $request->user()->id;
         $diagnostico->save();
 
         return redirect()

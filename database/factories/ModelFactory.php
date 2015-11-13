@@ -15,7 +15,7 @@ $factory->define(Tesis\Models\User::class, function ($faker) {
         'name'     => $faker->firstName,
         'lastname' => $faker->lastName,
         'email'    => $faker->unique()->email,
-        'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'birthday' => $faker->date($format = 'd/m/Y', $max = 'now'),
         'phone'    => $faker->unique()->randomNumber(6),
         'mobil'    => $faker->unique()->randomNumber(9),
         'gender'   => $faker->numberBetween(0, 1),

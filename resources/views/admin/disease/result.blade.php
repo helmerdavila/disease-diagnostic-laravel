@@ -1,26 +1,12 @@
 @extends('layouts.layoutadmin')
-@section('title') Enfermedades @stop
-@section('breadcrumb') Enfermedades @stop
+@section('title') Búsqueda Enfermedades @stop
+@section('breadcrumb') Búsqueda Enfermedades @stop
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-success box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title"><strong>Nueva Enfermedad</strong></h3>
-            </div>
-            <div class="box-body">
-                {!! Form::open() !!}
-                    @include('admin.disease._form', ['buttonText' => 'Guardar', 'color' => 'success'])
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-12">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Listado de Enfermedades</strong></h3>
+                <h3 class="box-title"><strong>Búsqueda de Enfermedades</strong></h3>
             </div>
             <div class="box-body">
                 <div class="table-responsive">
@@ -39,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($enfermedades as $enfermedad)
+                            @forelse ($enfermedades as $enfermedad)
                                 <tr>
                                     <td>
                                         @include('partials._boton', [
@@ -62,7 +48,11 @@
                                         <span class="label label-primary">{{ $enfermedad->diagnostics->count() }}</span>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td>No se encontraron enfermedades con ese nombre</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                 </table>
                 </div>

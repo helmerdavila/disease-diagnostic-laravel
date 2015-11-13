@@ -3,12 +3,19 @@ namespace Tesis\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Symptom extends Model
 {
-    use SoftDeletes;
+    use SearchableTrait, SoftDeletes;
 
     protected $fillable = ['name', 'deleted_at'];
+
+    protected $searchable = [
+        'columns' => [
+            'name' => 10,
+        ],
+    ];
 
     public function rules()
     {

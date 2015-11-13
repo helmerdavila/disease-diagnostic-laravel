@@ -1,11 +1,20 @@
 <?php
 
-// rutas para logueo y cerrar sesión
+// Rutas para logueo y cerrar sesión
 get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
+
 post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
 get('/registrar', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
 post('/registrar', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
 get('/cerrar', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
+
+// Rutas para resetear contraseñas
+get('password/email', 'Auth\PasswordController@getEmail');
+post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+get('password/reset/{token}', 'Auth\PasswordController@getReset');
+post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -35,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
             get('/listar', ['as' => 'create', 'uses' => 'Admin\SymptomController@create']);
             post('/listar', ['as' => 'store', 'uses' => 'Admin\SymptomController@store']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\SymptomController@search']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\SymptomController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\SymptomController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\SymptomController@delete']);
@@ -44,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'enfermedades', 'as' => 'enfermedades::'], function () {
             get('/listar', ['as' => 'create', 'uses' => 'Admin\DiseaseController@create']);
             post('/listar', ['as' => 'store', 'uses' => 'Admin\DiseaseController@store']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\DiseaseController@search']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\DiseaseController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\DiseaseController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\DiseaseController@delete']);
@@ -52,12 +63,14 @@ Route::group(['middleware' => 'auth'], function () {
         // diagnosticos
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
             get('/listar', ['as' => 'index', 'uses' => 'Admin\DiagnosticController@index']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\DiagnosticController@search']);
         });
 
         // usuarios
         Route::group(['prefix' => 'usuarios', 'as' => 'usuarios::'], function () {
             get('/listar', ['as' => 'create', 'uses' => 'Admin\UserController@create']);
             post('/listar', ['as' => 'store', 'uses' => 'Admin\UserController@store']);
+            get('/buscar', ['as' => 'buscar', 'uses' => 'Admin\UserController@search']);
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\UserController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\UserController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\UserController@delete']);

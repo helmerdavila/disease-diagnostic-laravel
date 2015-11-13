@@ -3,7 +3,9 @@
 namespace Tesis\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Tesis\Http\Controllers\Controller;
+use Tesis\Http\Requests\SearchRequest;
 use Tesis\Http\Requests\UserRequest;
 use Tesis\Models\State;
 use Tesis\Models\User;
@@ -11,7 +13,7 @@ use Tesis\Traits\HashTrait;
 
 class UserController extends Controller
 {
-    use HashTrait;
+    use SearchableTrait, HashTrait;
 
     public function create()
     {
@@ -80,5 +82,16 @@ class UserController extends Controller
 
         alert('Se eliminó el usuario con éxito');
         return redirect()->back();
+    }
+
+    public function search(SearchRequest $request)
+    {
+        if (!$request->has('search')) {
+            return redirect()->route('admin::usuarios::create');
+        }
+
+        $usuarios = User::search($request->search)->with('state', 'diagnostics')->get();
+
+        return view('admin.user.result')->with('usuarios', $usuarios);
     }
 }

@@ -41,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <div class="checkbox">
+                        <div class="checkbox recordar">
                             <label>
                                 <input type="checkbox" name="remember" data-labelauty="No recordarme|Recordarme"/>
                             </label>
@@ -53,7 +53,7 @@
                 </div>
                 {!! Form::close() !!}
 
-                <a href="#">Olvidé mi contraseña</a><br>
+                <a href="/password/email">Olvidé mi contraseña</a><br>
                 <a href="{{ route('showRegister') }}" class="text-center">Registrarse</a>
             </div>{{-- /.login-box-body --}}
         </div>{{-- /.login-box --}}

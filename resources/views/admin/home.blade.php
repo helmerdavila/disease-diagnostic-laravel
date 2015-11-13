@@ -1,10 +1,6 @@
 @extends('layouts.layoutadmin')
-@section('breadcrumb')
-    Inicio
-@stop
-@section('title')
-    Inicio
-@stop
+@section('breadcrumb') Inicio @stop
+@section('title') Inicio @stop
 @section('content')
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -16,7 +12,7 @@
                 <div class="icon">
                     <i class="fa fa-user-md"></i>
                 </div>
-                <a href="" class="small-box-footer">
+                <a href="{{ route('admin::diagnosticos::index') }}" class="small-box-footer">
                     Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -30,7 +26,7 @@
                 <div class="icon">
                     <i class="fa fa-heartbeat"></i>
                 </div>
-                <a href="" class="small-box-footer">
+                <a href="{{ route('admin::enfermedades::create') }}" class="small-box-footer">
                     Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -44,7 +40,7 @@
                 <div class="icon">
                     <i class="fa fa-eyedropper"></i>
                 </div>
-                <a href="" class="small-box-footer">
+                <a href="{{ route('admin::sintomas::create') }}" class="small-box-footer">
                     Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

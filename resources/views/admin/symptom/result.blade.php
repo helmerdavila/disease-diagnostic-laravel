@@ -1,28 +1,12 @@
 @extends('layouts.layoutadmin')
-@section('title') Síntomas @stop
-@section('breadcrumb') Síntomas @stop
+@section('title') Búsqueda Síntomas @stop
+@section('breadcrumb') Búsqueda Síntomas @stop
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-success box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title"><strong>Nuevo Síntoma</strong></h3>
-            </div>
-            <div class="box-body">
-                {!! Form::open() !!}
-                    {!! Field::text('name', null, ['ph' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '', 'label' => 'Nombre']) !!}
-                    {!! Field::text('description', null, ['ph' => 'Una breve descripcion del síntoma', 'autocomplete' => 'off', 'label' => 'Descripción']) !!}
-                    {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-12">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Listado de Síntomas</strong></h3>
+                <h3 class="box-title"><strong>Búsqueda de Síntomas</strong></h3>
             </div>
             <div class="box-body">
                 {!! Form::open(['method' => 'GET', 'route' => 'admin::sintomas::buscar']) !!}
@@ -36,7 +20,7 @@
                         <th class="text-center">Enfermedades</th>
                     </thead>
                     <tbody>
-                        @foreach ($sintomas as $sintoma)
+                        @forelse ($sintomas as $sintoma)
                             <tr>
                                 <td>
                                     @include('partials._boton', [
@@ -53,10 +37,13 @@
                                     <span class="label label-primary">{{ $sintoma->rules->count() }}</span>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td>No se encontraron síntomas con ese nombre</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-                {!! $sintomas->render() !!}
             </div>
         </div>
     </div>
