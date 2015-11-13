@@ -155,6 +155,16 @@ input.labelauty + label > span.labelauty-checked-image
 {
 	background-image: url( input-checked.png );
 }
+
+.recordar.checkbox
+{
+	margin-top: 0px;
+}
+
+.recordar.checkbox label
+{
+	padding-left: 0px;
+}
 /*!
  * Stylesheet for the Date Range Picker, for use with Bootstrap 3.x
  *

@@ -41,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <div class="checkbox">
+                        <div class="checkbox recordar">
                             <label>
                                 <input type="checkbox" name="remember" data-labelauty="No recordarme|Recordarme"/>
                             </label>
