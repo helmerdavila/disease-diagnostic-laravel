@@ -53,7 +53,7 @@
                 </div>
                 {!! Form::close() !!}
 
-                <a href="#">Olvidé mi contraseña</a><br>
+                <a href="/password/email">Olvidé mi contraseña</a><br>
                 <a href="{{ route('showRegister') }}" class="text-center">Registrarse</a>
             </div>{{-- /.login-box-body --}}
         </div>{{-- /.login-box --}}
