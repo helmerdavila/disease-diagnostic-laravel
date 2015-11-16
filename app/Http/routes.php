@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      * Rutas para el Administrador
      */
-    Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin::', 'middleware' => 'soloAdmin'], function () {
         get('/inicio', ['as' => 'home', 'uses' => 'Admin\HomeController@home']);
         get('/perfil', ['as' => 'perfil', 'uses' => 'Admin\HomeController@profile']);
         post('/actualizar-perfil', ['as' => 'perfil::actualizar', 'uses' => 'Admin\HomeController@profile_update']);
@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      * Rutas para el usuario
      */
-    Route::group(['prefix' => 'user', 'as' => 'user::'], function () {
+    Route::group(['prefix' => 'user', 'as' => 'user::', 'middleware' => 'soloPaciente'], function () {
         get('/inicio', ['as' => 'home', 'uses' => 'User\HomeController@index']);
         get('/perfil', ['as' => 'perfil', 'uses' => 'User\HomeController@profile']);
         post('/actualizar-perfil', ['as' => 'perfil::actualizar', 'uses' => 'User\HomeController@profile_update']);

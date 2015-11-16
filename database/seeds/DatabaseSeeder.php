@@ -73,11 +73,11 @@ class StaffSeeder extends Seeder
         $rolAdmin->description  = 'Usuario con todos los permisos del sistema';
         $rolAdmin->save();
 
-        $rolUsuario               = new Role;
-        $rolUsuario->name         = 'usuario';
-        $rolUsuario->display_name = 'Paciente';
-        $rolUsuario->description  = 'Paciente del Sistema';
-        $rolUsuario->save();
+        $rolPaciente               = new Role;
+        $rolPaciente->name         = 'paciente';
+        $rolPaciente->display_name = 'Paciente';
+        $rolPaciente->description  = 'Paciente del Sistema';
+        $rolPaciente->save();
 
         // creamos el usuario administrador y un usuario de ejemplo
         $admin           = new User;
@@ -90,16 +90,16 @@ class StaffSeeder extends Seeder
         $admin->save();
         $admin->attachRole($rolAdmin);
 
-        $usuario           = new User;
-        $usuario->email    = 'paciente@paciente.com';
-        $usuario->password = bcrypt('paciente');
-        $usuario->name     = 'Paciente';
-        $usuario->lastname = 'de Prueba';
-        $usuario->gender   = 0;
-        $usuario->birthday = '11/01/1991';
-        $usuario->state_id = 1;
-        $usuario->save();
-        $usuario->attachRole($rolUsuario);
+        $paciente           = new User;
+        $paciente->email    = 'paciente@paciente.com';
+        $paciente->password = bcrypt('paciente');
+        $paciente->name     = 'Paciente';
+        $paciente->lastname = 'de Prueba';
+        $paciente->gender   = 0;
+        $paciente->birthday = '11/01/1991';
+        $paciente->state_id = 1;
+        $paciente->save();
+        $paciente->attachRole($rolPaciente);
     }
 }
 
@@ -112,11 +112,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $rolUsuario = Role::findOrFail(self::USER_ROLE);
+        $rolPaciente = Role::findOrFail(self::USER_ROLE);
 
         for ($i = 0; $i < self::FAKES_USERS; $i++) {
             $user = factory(Tesis\Models\User::class)->create();
-            $user->attachRole($rolUsuario);
+            $user->attachRole($rolPaciente);
         }
     }
 }
