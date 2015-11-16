@@ -1,12 +1,12 @@
 @extends('layouts.layoutadmin')
-@section('title') Usuarios @stop
-@section('breadcrumb') Usuarios @stop
+@section('title') Pacientes @stop
+@section('breadcrumb') Pacientes @stop
 @section('content')
 <div class="row">
     <div class="col-md-12">
         <div class="box box-success box-solid {!! count($errors) > 0 ? '' : 'collapsed-box' !!}">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Nuevo Usuario</strong></h3>
+                <h3 class="box-title"><strong>Nuevo Paciente</strong></h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse">
                         @if (count($errors) > 0)
@@ -29,7 +29,7 @@
     <div class="col-md-12">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Listado de Usuarios</strong></h3>
+                <h3 class="box-title"><strong>Listado de Pacientes</strong></h3>
             </div>
             <div class="box-body">
                 {!! Form::open(['method' => 'GET', 'route' => 'admin::usuarios::buscar']) !!}
@@ -60,7 +60,7 @@
                                             'editRoute' => 'admin::usuarios::edit',
                                             'deleteRoute' => 'admin::usuarios::delete',
                                             'name' => $usuario->getFullName(),
-                                            'content' => 'el usuario',
+                                            'content' => 'el paciente',
                                         ])
                                     </td>
                                     <td>{{ $usuario->name }} {{ $usuario->lastname }}</td>

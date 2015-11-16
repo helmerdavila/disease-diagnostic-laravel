@@ -41,7 +41,7 @@ class AuthController extends Controller
         $remember = intval($request->input('remember', 0));
 
         if (Auth::attempt($request->only('email', 'password'), $remember)) {
-            if (Auth::user()->hasRole('usuario')) {
+            if (Auth::user()->hasRole('paciente')) {
                 return redirect()->intended(route('user::home'));
             }
             if (Auth::user()->hasRole('admin')) {

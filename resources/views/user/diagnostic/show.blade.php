@@ -11,12 +11,12 @@
             <div class="box-body">
                 <div class="jumbotron">
                     @unless (empty($diagnostico))
-                        <h5>Usted padece</h5>
-                        <h1>{{ $diagnostico->disease->name }}</h1>
-                        <p>Descripción de Enfermedad</p>
+                        <h5 class="text-center"><strong>Usted padece</strong></h5>
+                        <h1 class="text-center"><strong>{{ $diagnostico->disease->name }}</strong></h1>
+                        <p class="text-center">Descripción de Enfermedad</p>
                     @else
-                        <h5>Usted no padece ningúna enfermedad</h5>
-                        <p>El sistema no ha logrado encontar alguna enfermedad con los síntomas ingresados
+                        <h5 class="text-center">Usted no padece ningúna enfermedad</h5>
+                        <p class="text-center">El sistema no ha logrado encontar alguna enfermedad con los síntomas ingresados
                         revise los síntomas que ingresó</p>
                     @endunless
                 </div>

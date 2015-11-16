@@ -40,6 +40,7 @@ class CreateTableStates extends Migration
                 ['name' => 'Tacna'],
                 ['name' => 'Tumbes'],
                 ['name' => 'Ucayali'],
+                ['name' => 'Otro'],
             ]);
         }
     }
