@@ -18,7 +18,10 @@ class UserController extends Controller
     public function create()
     {
         $states   = State::lists('name', 'id')->toArray();
-        $usuarios = User::with('state', 'diagnostics')->orderBy('created_at', 'desc')->paginate(20);
+        $usuarios = User::with('state', 'diagnostics')
+            ->whereNotIn('id', [1, 2])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
 
         return view('admin.user.index')
             ->with('states', $states)

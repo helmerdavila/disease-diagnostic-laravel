@@ -15,7 +15,7 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
-                            <th>Usuario</th>
+                            <th>Paciente</th>
                             <th>Género</th>
                             <th>Enfermedad</th>
                             <th>Fecha</th>

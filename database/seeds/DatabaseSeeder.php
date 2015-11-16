@@ -75,8 +75,8 @@ class StaffSeeder extends Seeder
 
         $rolUsuario               = new Role;
         $rolUsuario->name         = 'usuario';
-        $rolUsuario->display_name = 'Usuario';
-        $rolUsuario->description  = 'Usuario común del sistema';
+        $rolUsuario->display_name = 'Paciente';
+        $rolUsuario->description  = 'Paciente del Sistema';
         $rolUsuario->save();
 
         // creamos el usuario administrador y un usuario de ejemplo
@@ -91,8 +91,8 @@ class StaffSeeder extends Seeder
         $admin->attachRole($rolAdmin);
 
         $usuario           = new User;
-        $usuario->email    = 'usuario@usuario.com';
-        $usuario->password = bcrypt('usuario');
+        $usuario->email    = 'paciente@paciente.com';
+        $usuario->password = bcrypt('paciente');
         $usuario->name     = 'Paciente';
         $usuario->lastname = 'de Prueba';
         $usuario->gender   = 0;

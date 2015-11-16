@@ -111,7 +111,7 @@
                         </li>
                         <li>
                             <a href="{{ route('admin::usuarios::create') }}">
-                                <i class="fa fa-users"></i> <span>Usuarios</span>
+                                <i class="fa fa-users"></i> <span>Pacientes</span>
                             </a>
                         </li>
                         <li>
