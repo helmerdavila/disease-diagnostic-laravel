@@ -8,26 +8,43 @@ use Tesis\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
-
-    /**
-     * Set foreign key hace que se active y desactive las
-     * claves foraneas para poder limpiar la base de
-     * datos sin que aparezca ningun tipo de errores
-     */
     public function run()
     {
         Model::unguard();
+        $this->call(ProductionSeeder::class);
+        Model::reguard();
+    }
+}
+
+class DevelopmentSeeder extends Seeder
+{
+    public function run()
+    {
         $this->call(TruncateTables::class);
-        $this->call(UserTableSeeder::class);
+        $this->call(StaffSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(SymptomSeeder::class);
         $this->call(DiseaseSeeder::class);
         $this->call(DiagnosticSeeder::class);
-        Model::reguard();
+    }
+}
+
+class ProductionSeeder extends Seeder
+{
+    public function run()
+    {
+        $this->call(TruncateTables::class);
+        $this->call(StaffSeeder::class);
     }
 }
 
 class TruncateTables extends Seeder
 {
+    /**
+     * Set foreign key hace que se active y desactive las
+     * claves foraneas para poder limpiar la base de
+     * datos sin que aparezca ningun tipo de errores
+     */
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -45,12 +62,8 @@ class TruncateTables extends Seeder
     }
 }
 
-class UserTableSeeder extends Seeder
+class StaffSeeder extends Seeder
 {
-    const FAKES_USERS = 200;
-    /**
-     * bcrypt = funcion para encriptar contraseñas, equivalente a Hash::make
-     */
     public function run()
     {
         //creamos primero rol administrador y de usuario
@@ -80,19 +93,31 @@ class UserTableSeeder extends Seeder
         $usuario           = new User;
         $usuario->email    = 'usuario@usuario.com';
         $usuario->password = bcrypt('usuario');
-        $usuario->name     = 'Lesly Yohana';
-        $usuario->lastname = 'Nomberto Coronado';
+        $usuario->name     = 'Paciente';
+        $usuario->lastname = 'de Prueba';
         $usuario->gender   = 0;
         $usuario->birthday = '11/01/1991';
         $usuario->state_id = 1;
         $usuario->save();
         $usuario->attachRole($rolUsuario);
+    }
+}
+
+class UserSeeder extends Seeder
+{
+    const FAKES_USERS = 200;
+    const USER_ROLE   = 2;
+    /**
+     * bcrypt = funcion para encriptar contraseñas, equivalente a Hash::make
+     */
+    public function run()
+    {
+        $rolUsuario = Role::findOrFail(self::USER_ROLE);
 
         for ($i = 0; $i < self::FAKES_USERS; $i++) {
             $user = factory(Tesis\Models\User::class)->create();
             $user->attachRole($rolUsuario);
         }
-
     }
 }
 

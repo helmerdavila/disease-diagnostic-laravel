@@ -13,10 +13,12 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $diseases = Disease::orderBy('name', 'asc')->lists('name', 'id')->toArray();
-        $states   = State::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $diseases        = Disease::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $states          = State::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $countDiagnostic = Diagnostic::count();
 
         return view('admin.reports.index')
+            ->with('countDiagnostic', $countDiagnostic)
             ->with('diseases', $diseases)
             ->with('states', $states);
     }

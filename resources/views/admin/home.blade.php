@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+    @if ($countDiagnostic > 0)
     <div class="row">
         <div class="col-md-12">
             <div class="box box-danger">
@@ -58,6 +59,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="box box-success">
@@ -84,6 +86,7 @@
                 </div>
             </div>
         </div>
+        @if ($countDiagnostic > 0)
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -94,5 +97,6 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @stop
