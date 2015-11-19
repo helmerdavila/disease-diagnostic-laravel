@@ -9,7 +9,7 @@ class Disease extends Model
 {
     use SearchableTrait, SoftDeletes;
 
-    protected $fillable = ['name', 'name_c', 'deleted_at'];
+    protected $fillable = ['name', 'name_c', 'description', 'deleted_at'];
 
     protected $searchable = [
         'columns' => [

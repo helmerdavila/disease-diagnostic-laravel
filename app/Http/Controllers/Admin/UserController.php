@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $states   = State::lists('name', 'id')->toArray();
         $usuarios = User::with('state', 'diagnostics')
-            ->whereNotIn('id', [1, 2])
+            ->whereNotIn('id', [1])
             ->orderBy('created_at', 'desc')
             ->paginate(20);
 
