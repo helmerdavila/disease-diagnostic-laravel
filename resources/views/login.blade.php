@@ -40,14 +40,12 @@
                     {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
                 </div>
                 <div class="row">
-                    <div class="col-xs-7">
+                    <div class="col-md-6">
                         <div class="checkbox recordar">
-                            <label>
-                                <input type="checkbox" name="remember" data-labelauty="No recordarme|Recordarme"/>
-                            </label>
+                            <input type="checkbox" name="remember" data-labelauty="No recordarme|Recordarme"/>
                         </div>
                     </div>{{-- /.col --}}
-                    <div class="col-xs-5">
+                    <div class="col-md-6">
                         {!! Form::submit('Entrar', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
                     </div>{{-- /.col --}}
                 </div>

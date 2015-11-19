@@ -9,7 +9,7 @@ class Symptom extends Model
 {
     use SearchableTrait, SoftDeletes;
 
-    protected $fillable = ['name', 'deleted_at'];
+    protected $fillable = ['name', 'description', 'deleted_at'];
 
     protected $searchable = [
         'columns' => [

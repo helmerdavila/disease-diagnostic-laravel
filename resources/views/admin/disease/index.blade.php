@@ -4,9 +4,18 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-success box-solid">
+        <div class="box box-success box-solid {!! count($errors) > 0 ? '' : 'collapsed-box' !!}">
             <div class="box-header with-border">
                 <h3 class="box-title"><strong>Nueva Enfermedad</strong></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse">
+                        @if (count($errors) > 0)
+                            <i class="fa fa-minus"></i>
+                        @else
+                            <i class="fa fa-plus"></i>
+                        @endif
+                    </button>
+                </div>
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
