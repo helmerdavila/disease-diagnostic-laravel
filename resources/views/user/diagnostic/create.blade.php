@@ -18,12 +18,17 @@
                         </ul>
                     </div>
                 @endif
-                <h4>Elija al menos tres de esta lista de los siguientes síntomas</h4>
-                {!! Form::open() !!}
+                <h4>Elija uno de los siguientes síntomas a continuación</h4>
+                {!! Form::open(['route' => 'user::diagnosticos::analyze']) !!}
+                    <div class="form-group">
+                        {!! Form::select('sintoma', $sintomas, null, ['class' => 'select2', 'data-width' => '100%']) !!}
+                    </div>
+                    {{--
                     @foreach ($sintomas as $index => $sintoma)
                         <input type="checkbox" name="sintomas[]" value="{{ $index }}" data-labelauty="{{ $sintoma }}"/>
                     @endforeach
-                    {!! Form::submit('Diagnosticar &raquo;', ['class' => 'btn btn-success']) !!}
+                    --}}
+                    {!! Form::submit('Continuar &raquo;', ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
