@@ -42,6 +42,7 @@ class Handler extends ExceptionHandler
         if ($e instanceof Illuminate\Database\Eloquent\ModelNotFoundException) {
             return abort(404);
         }
+
         return parent::render($request, $e);
     }
 }

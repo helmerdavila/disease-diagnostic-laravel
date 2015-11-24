@@ -40,3 +40,10 @@ $ ->
     # hide alert
     $(".alert").delay(5000).slideUp 200, ()->
         $(@).alert 'close'
+
+    # prevent dropdown behind table-responsive
+    $('.table-responsive').on 'show.bs.dropdown', ()->
+        $('.table-responsive'). css 'overflow', 'inherit'
+
+    $('.table-responsive').on 'hide.bs.dropdown', ()->
+        $('.table-responsive'). css 'overflow', 'auto'

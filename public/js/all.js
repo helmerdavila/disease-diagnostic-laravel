@@ -14260,8 +14260,14 @@ function _init(){"use strict";$.AdminLTE.layout={activate:function(){var a=this;
       modal.find('#modalTitle').text(title);
       return modal.find('#modalContent').text(content);
     });
-    return $(".alert").delay(5000).slideUp(200, function() {
+    $(".alert").delay(5000).slideUp(200, function() {
       return $(this).alert('close');
+    });
+    $('.table-responsive').on('show.bs.dropdown', function() {
+      return $('.table-responsive').css('overflow', 'inherit');
+    });
+    return $('.table-responsive').on('hide.bs.dropdown', function() {
+      return $('.table-responsive').css('overflow', 'auto');
     });
   });
 

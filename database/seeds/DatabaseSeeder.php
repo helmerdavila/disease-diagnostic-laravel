@@ -143,10 +143,29 @@ class DiseaseSeeder extends Seeder
         factory(Tesis\Models\Disease::class, 20)
             ->create()
             ->each(function ($disease) use ($faker) {
-                $disease->rules()->sync([
-                    $faker->numberBetween(1, 50),
-                    $faker->numberBetween(1, 50),
-                    $faker->numberBetween(1, 50),
+
+                $firstRule = DB::table('rules')->orderBy('id', 'desc')->first();
+
+                if (empty($firstRule)) {
+                    $nextRuleNumber = 1;
+                } else {
+                    $nextRuleNumber = intval($firstRule->number) + 1;
+                }
+
+                DB::table('rules')->insert([
+                    [
+                        'number'     => $nextRuleNumber,
+                        'disease_id' => $disease->id,
+                        'symptom_id' => $faker->numberBetween(1, 50),
+                    ], [
+                        'number'     => $nextRuleNumber,
+                        'disease_id' => $disease->id,
+                        'symptom_id' => $faker->numberBetween(1, 50),
+                    ], [
+                        'number'     => $nextRuleNumber,
+                        'disease_id' => $disease->id,
+                        'symptom_id' => $faker->numberBetween(1, 50),
+                    ],
                 ]);
             });
     }

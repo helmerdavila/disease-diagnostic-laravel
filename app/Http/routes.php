@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function () {
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\DiseaseController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\DiseaseController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\DiseaseController@delete']);
+            get('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'Admin\DiseaseController@add_rule']);
+            post('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'Admin\DiseaseController@add_rule']);
+            post('/eliminar-regla/{id}', ['as' => 'regla::delete', 'uses' => 'Admin\DiseaseController@delete_rule']);
         });
 
         // diagnosticos
@@ -93,7 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
             get('/nuevo', ['as' => 'create', 'uses' => 'User\DiagnosticController@create']);
-            post('/nuevo', ['as' => 'analyze', 'uses' => 'User\DiagnosticController@analyze']);
+            post('/nuevo', 'User\DiagnosticController@create');
+            post('/analizar', ['as' => 'analyze', 'uses' => 'User\DiagnosticController@analyze']);
             get('/listar', ['as' => 'index', 'uses' => 'User\DiagnosticController@index']);
             get('/mostrar/{id?}', ['as' => 'show', 'uses' => 'User\DiagnosticController@show']);
         });
