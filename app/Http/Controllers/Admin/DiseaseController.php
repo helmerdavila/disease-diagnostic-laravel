@@ -123,4 +123,12 @@ class DiseaseController extends Controller
             ->with('reglas', $reglas)
             ->with('sintomas', $sintomas);
     }
+
+    public function delete_rule($ruleNumber)
+    {
+        $rules = Rule::whereNumber($ruleNumber)->delete();
+
+        alert('Se eliminó la regla con éxito');
+        return redirect()->back();
+    }
 }

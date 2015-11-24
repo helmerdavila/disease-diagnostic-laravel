@@ -37,9 +37,10 @@
                             @foreach ($reglas as $index => $regla)
                                 <tr>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-xs">
-                                            <i class="fa fa-close"></i>
-                                        </a>
+                                        <a href="" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#deleteModal"
+                                            data-title="Eliminar Regla" data-content="esta regla"
+                                            data-route="{{ route('admin::enfermedades::regla::delete', $index) }}">
+                                        <i class="fa fa-times"></i> Eliminar</a>
                                     </td>
                                     <td>Regla {{ $index }}</td>
                                     <td>

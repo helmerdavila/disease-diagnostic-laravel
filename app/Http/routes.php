@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\DiseaseController@delete']);
             get('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'Admin\DiseaseController@add_rule']);
             post('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'Admin\DiseaseController@add_rule']);
+            post('/eliminar-regla/{id}', ['as' => 'regla::delete', 'uses' => 'Admin\DiseaseController@delete_rule']);
         });
 
         // diagnosticos
