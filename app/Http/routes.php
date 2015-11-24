@@ -58,8 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
             get('/editar/{id}', ['as' => 'edit', 'uses' => 'Admin\DiseaseController@edit']);
             post('/editar/{id}', ['as' => 'update', 'uses' => 'Admin\DiseaseController@update']);
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\DiseaseController@delete']);
-            get('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'ADmin\DiseaseController@add_rule']);
-            post('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'ADmin\DiseaseController@add_rule']);
+            get('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'Admin\DiseaseController@add_rule']);
+            post('/agregar-regla/{id}', ['as' => 'regla', 'uses' => 'Admin\DiseaseController@add_rule']);
         });
 
         // diagnosticos
