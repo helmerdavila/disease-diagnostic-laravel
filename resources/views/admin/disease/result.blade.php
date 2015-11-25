@@ -28,13 +28,7 @@
                             @forelse ($enfermedades as $enfermedad)
                                 <tr>
                                     <td>
-                                        @include('partials._boton', [
-                                            'object' => $enfermedad,
-                                            'editRoute' => 'admin::enfermedades::edit',
-                                            'deleteRoute' => 'admin::enfermedades::delete',
-                                            'name' => $enfermedad->name . " ($enfermedad->name_c)",
-                                            'content' => 'la enfermedad',
-                                        ])
+                                        @include('admin.disease.boton')
                                     </td>
                                     <td>{{ $enfermedad->name }}</td>
                                     <td>{{ $enfermedad->name_c }}</td>

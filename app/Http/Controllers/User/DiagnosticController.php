@@ -33,63 +33,111 @@ class DiagnosticController extends Controller
 
     public function analyze(Request $request)
     {
-        $this->validate($request, [
-            'sintoma' => 'required',
-        ], [
-            'sintoma.required' => 'Debe seleccionar un síntoma para continuar',
-        ]);
+        if ($request->isMethod('post')) {
+            $this->validate($request, [
+                'sintoma' => 'required',
+            ], [
+                'sintoma.required' => 'Debe seleccionar un síntoma para continuar',
+            ]);
 
-        if ($request->session()->has('session_sintomas')) {
-            $symptoms   = $request->session()->get('session_sintomas');
-            $symptoms[] = $request->sintoma;
-            $request->session()->put(['session_sintomas' => $symptoms]);
-        } else {
-            $request->session()->put(['session_sintomas' => [$request->sintoma]]);
+            if ($request->session()->has('session_sintomas')) {
+                // Acá busca si el elemento no está en el array de session, para agregarlo
+                $sessionSymptoms = $request->session()->get('session_sintomas');
+                if (!in_array($request->sintoma, $sessionSymptoms)) {
+                    $sessionSymptoms[] = $request->sintoma;
+                    $request->session()->put(['session_sintomas' => $sessionSymptoms]);
+                }
+            } else {
+                $request->session()->put(['session_sintomas' => [$request->sintoma]]);
+            }
         }
 
-        $symptoms = $request->session()->get('session_sintomas');
+        $sessionSymptoms = $request->session()->get('session_sintomas');
 
-        // Buscamos reglas con los síntomas obtenidos de la sesión primero buscando
+        // Buscamos en la tabla de reglas con los síntomas obtenidos de la sesión primero buscando
         // por síntomas  y después buscando por número de regla
-        $rules = Rule::whereIn('symptom_id', $symptoms)->get()->groupBy('number');
-
+        $rules = Rule::with('symptom')->whereIn('symptom_id', $sessionSymptoms)->get()->groupBy('number');
+        //dd($rules, $sessionSymptoms);
         list($rulesKeys, $value) = array_divide($rules->toArray());
 
-        $rules = Rule::whereIn('number', $rulesKeys)->get()->groupBy('number');
+        // Después buscamos en la tabla de reglas en base a número de su regla
+        // obtenido en la anterior operación
+        $rules = Rule::with('symptom')->whereIn('number', $rulesKeys)->get()->groupBy('number');
 
-        $rules = $rules->map(function ($value, $key) {
-            return $value->groupBy('symptom_id');
+        //Agrupamos los interiores de las reglas en base al número de su síntoma
+        $rules = $rules->map(function ($symptoms, $key) {
+            return $symptoms->groupBy('symptom_id');
         });
+        // Filtramos solo las reglas que contengan un número de síntomas igual a
+        // los de la sesión o mayores y que los síntomas de la sesión estén
+        // contenidos en cada una de las reglas.
+        // Ej: [1,7,9] >= [1, 9] && [1,9] = [1,9]
+        $rules = $rules->filter(function ($rule) use ($sessionSymptoms) {
+            list($symptomKeys) = array_divide($rule->toArray());
+            $intersect         = array_intersect($sessionSymptoms, $symptomKeys);
 
-        $symptomForSelect = [];
-        $diagnosticId     = 0;
+            if (($rule->count() >= count($sessionSymptoms)) && ($intersect == $sessionSymptoms)) {
+                return true;
+            }
+        });
+        //dd($rules, $sessionSymptoms);
+
+        $symptomsForSelect = [];
+        $diagnosticId      = 0;
+        $maxSymptomKey     = 0;
         //dd($rules);
-        $rules->each(function ($ruleNumber, $key) use ($symptoms, &$symptomForSelect, $request, &$diagnosticId) {
-            list($symptomKeys, $someRule) = array_divide($ruleNumber->toArray());
-            $difference                   = array_diff($symptomKeys, $symptoms);
+        foreach ($rules as $key => $ruleNumber) {
+
+            list($symptomKeys) = array_divide($ruleNumber->toArray());
+
+            $difference = array_diff($symptomKeys, $sessionSymptoms);
+
+            // Contamos el arreglo de sintomas para saber cual es el que tendrá
+            // más elementos y lo asignamos a la variable maxSymptomKey
+            if (count($symptomKeys) > $maxSymptomKey) {
+                $maxSymptomKey = count($symptomKeys);
+            }
+
+            //dd($difference, $symptomKeys);
             // Si esta vacío significa que no hay diferencias
             if (empty($difference)) {
-                // tomamos el primer elemento del primer elemento de la colleccion
+                // tomamos el primer elemento del primer elemento de la coleccion
                 // (está ordenado por id_sintoma)
                 $diseaseKey   = $ruleNumber->first()->first()->disease_id;
                 $diagnosticId = $this->generateDiagnostic($diseaseKey, $request->user()->id);
-                return false;
+            } elseif ($symptomKeys == $difference) {
+                alert('No se encontró ninguna enfermedad con los síntomas brindados, intente de nuevo', 'danger');
+                return redirect()->route('user::diagnosticos::create');
             } else {
-                foreach ($difference as $symptomIndex) {
-                    $tempSymptom                     = Symptom::findOrFail($symptomIndex);
-                    $symptomForSelect[$symptomIndex] = $tempSymptom->name;
+                $tempSymptoms = Symptom::findOrFail($difference);
+                foreach ($tempSymptoms as $tempSymptom) {
+                    $symptomsForSelect[$tempSymptom->id] = $tempSymptom->name;
                 }
             }
-        });
+        }
 
         if (empty($diagnosticId)) {
 
-            if (empty($symptomForSelect)) {
-                alert('No se encontró ninguna enfermedad con los síntomas brindados, intente de nuevo', 'warning');
+            // Si se acabaron los síntomas o si los síntomas en sesión son mayores
+            // al mayor arreglo por regla entonces es porque la enfermedad es
+            // indetectable con los síntomas ingresados.
+            // Ej: Máxima Regla = [1, 3, 9, 10]
+            // Ej: Síntoma en sesión = [1, 3, 4, 5, 9, 10, 13]
+            $numberSessionSymtoms = count($request->session()->get('session_sintomas'));
+            if (empty($symptomsForSelect) || ($numberSessionSymtoms > $maxSymptomKey)) {
+                alert('No se encontró ninguna enfermedad con los síntomas brindados, intente de nuevo', 'danger');
                 return redirect()->route('user::diagnosticos::create');
             }
 
-            return view('user.diagnostic.create')->with('sintomas', $symptomForSelect);
+            // Listar los síntomas escogidos
+            $tempSymptoms = Symptom::findOrFail($request->session()->get('session_sintomas'));
+            foreach ($tempSymptoms as $tempSymptom) {
+                $showSymptoms[$tempSymptom->id] = $tempSymptom->name;
+            }
+
+            return view('user.diagnostic.create')
+                ->with('showSymptoms', $showSymptoms)
+                ->with('sintomas', $symptomsForSelect);
         }
 
         $request->session()->forget('session_sintomas');
@@ -106,38 +154,32 @@ class DiagnosticController extends Controller
 
         return $diagnostic->id;
     }
-    /*
-    $enfermedades = Disease::whereSymptoms($request->sintomas)->get();
 
-    // sino hay enfermedad se redirige a una pagina diciendo que de nuevo
-    // proceda a ingresar los sintomas refinando su busqueda
-    if (empty($enfermedades)) {
-    alert('No se pudo encontrar un diagnóstico con los síntomas ingresados', 'danger');
-    return redirect()->route('user::diagnosticos::show');
+    public function delete_symptom($symptomId, Request $request)
+    {
+        if (!$request->session()->has('session_sintomas')) {
+            abort(404);
+        }
+
+        $sessionSymptoms = $request->session()->get('session_sintomas');
+
+        $key = array_search($symptomId, $sessionSymptoms);
+
+        if ($key !== false) {
+            unset($sessionSymptoms[$key]);
+        } else {
+            abort(404);
+        }
+
+        if (empty($sessionSymptoms)) {
+            return redirect()->route('user::diagnosticos::create');
+        }
+
+        $request->session()->put(['session_sintomas' => $sessionSymptoms]);
+
+        alert('Se eliminó el síntoma ingresado con éxito');
+        return redirect()->back();
     }
-
-    $enfermedad = $enfermedades->filter(function ($enfermedad) use ($request) {
-
-    $numero_sintomas = count($request->sintomas);
-
-    foreach ($enfermedad->rules as $rule) {
-    $numero_sintomas--;
-    }
-
-    return ($numero_sintomas == 0) ? true : false;
-
-    })->first();
-
-    if (empty($enfermedad)) {
-    alert('No se pudo encontrar un diagnóstico con los síntomas ingresados', 'danger');
-    return redirect()->route('user::diagnosticos::show');
-    }
-
-    $diagnostico             = new Diagnostic();
-    $diagnostico->disease_id = $enfermedad->id;
-    $diagnostico->user_id    = $request->user()->id;
-    $diagnostico->save();
-     */
 
     public function show($hashed = null)
     {
@@ -155,4 +197,36 @@ class DiagnosticController extends Controller
 
         return view('user.diagnostic.show')->with('diagnostico', $diagnostico);
     }
+    /*
+$enfermedades = Disease::whereSymptoms($request->sintomas)->get();
+
+// sino hay enfermedad se redirige a una pagina diciendo que de nuevo
+// proceda a ingresar los sintomas refinando su busqueda
+if (empty($enfermedades)) {
+alert('No se pudo encontrar un diagnóstico con los síntomas ingresados', 'danger');
+return redirect()->route('user::diagnosticos::show');
+}
+
+$enfermedad = $enfermedades->filter(function ($enfermedad) use ($request) {
+
+$numero_sintomas = count($request->sintomas);
+
+foreach ($enfermedad->rules as $rule) {
+$numero_sintomas--;
+}
+
+return ($numero_sintomas == 0) ? true : false;
+
+})->first();
+
+if (empty($enfermedad)) {
+alert('No se pudo encontrar un diagnóstico con los síntomas ingresados', 'danger');
+return redirect()->route('user::diagnosticos::show');
+}
+
+$diagnostico             = new Diagnostic();
+$diagnostico->disease_id = $enfermedad->id;
+$diagnostico->user_id    = $request->user()->id;
+$diagnostico->save();
+ */
 }
