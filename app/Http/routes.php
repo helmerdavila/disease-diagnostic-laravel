@@ -97,9 +97,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'diagnosticos', 'as' => 'diagnosticos::'], function () {
             get('/nuevo', ['as' => 'create', 'uses' => 'User\DiagnosticController@create']);
             post('/nuevo', 'User\DiagnosticController@create');
+            get('/analizar', 'User\DiagnosticController@analyze');
             post('/analizar', ['as' => 'analyze', 'uses' => 'User\DiagnosticController@analyze']);
             get('/listar', ['as' => 'index', 'uses' => 'User\DiagnosticController@index']);
             get('/mostrar/{id?}', ['as' => 'show', 'uses' => 'User\DiagnosticController@show']);
+            get('/eliminar-sintoma/{id}', ['as' => 'delete::symptom', 'uses' => 'User\DiagnosticController@delete_symptom']);
         });
 
         Route::group(['prefix' => 'sintomas', 'as' => 'sintomas::'], function () {
