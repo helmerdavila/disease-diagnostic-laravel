@@ -64,13 +64,15 @@ class DiseaseController extends Controller
         $enfermedad = Disease::findOrFail($id);
 
         if ($enfermedad->diagnostics->count() > 0) {
-            alert('No se puede eliminar una enfermedad con diagnósticos');
+            alert('No se puede eliminar una enfermedad con diagnósticos', 'danger');
             return redirect()->back();
         }
 
+        $rules = Rule::whereDiseaseId($enfermedad->id)->delete();
+
         $enfermedad->delete();
 
-        alert('Se eliminó la enfermedad correctamente', 'danger');
+        alert('Se eliminó la enfermedad y/o sus reglas correctamente');
         return redirect()->back();
     }
 
