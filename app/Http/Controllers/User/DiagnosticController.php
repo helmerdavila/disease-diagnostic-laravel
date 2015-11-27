@@ -105,10 +105,18 @@ class DiagnosticController extends Controller
                 // (está ordenado por id_sintoma)
                 $diseaseKey   = $ruleNumber->first()->first()->disease_id;
                 $diagnosticId = $this->generateDiagnostic($diseaseKey, $request->user()->id);
+
+                $request->session()->forget('session_sintomas');
+
+                return redirect()->route('user::diagnosticos::show', $this->encode($diagnosticId));
+
             } elseif ($symptomKeys == $difference) {
+
                 alert('No se encontró ninguna enfermedad con los síntomas brindados, intente de nuevo', 'danger');
                 return redirect()->route('user::diagnosticos::create');
+
             } else {
+
                 $tempSymptoms = Symptom::findOrFail($difference);
                 foreach ($tempSymptoms as $tempSymptom) {
                     $symptomsForSelect[$tempSymptom->id] = $tempSymptom->name;
@@ -116,33 +124,26 @@ class DiagnosticController extends Controller
             }
         }
 
-        if (empty($diagnosticId)) {
-
-            // Si se acabaron los síntomas o si los síntomas en sesión son mayores
-            // al mayor arreglo por regla entonces es porque la enfermedad es
-            // indetectable con los síntomas ingresados.
-            // Ej: Máxima Regla = [1, 3, 9, 10]
-            // Ej: Síntoma en sesión = [1, 3, 4, 5, 9, 10, 13]
-            $numberSessionSymtoms = count($request->session()->get('session_sintomas'));
-            if (empty($symptomsForSelect) || ($numberSessionSymtoms > $maxSymptomKey)) {
-                alert('No se encontró ninguna enfermedad con los síntomas brindados, intente de nuevo', 'danger');
-                return redirect()->route('user::diagnosticos::create');
-            }
-
-            // Listar los síntomas escogidos
-            $tempSymptoms = Symptom::findOrFail($request->session()->get('session_sintomas'));
-            foreach ($tempSymptoms as $tempSymptom) {
-                $showSymptoms[$tempSymptom->id] = $tempSymptom->name;
-            }
-
-            return view('user.diagnostic.create')
-                ->with('showSymptoms', $showSymptoms)
-                ->with('sintomas', $symptomsForSelect);
+        // Si se acabaron los síntomas o si los síntomas en sesión son mayores
+        // al mayor arreglo por regla entonces es porque la enfermedad es
+        // indetectable con los síntomas ingresados.
+        // Ej: Máxima Regla = [1, 3, 9, 10]
+        // Ej: Síntoma en sesión = [1, 3, 4, 5, 9, 10, 13]
+        $numberSessionSymtoms = count($request->session()->get('session_sintomas'));
+        if (empty($symptomsForSelect) || ($numberSessionSymtoms > $maxSymptomKey)) {
+            alert('No se encontró ninguna enfermedad con los síntomas brindados, intente de nuevo', 'danger');
+            return redirect()->route('user::diagnosticos::create');
         }
 
-        $request->session()->forget('session_sintomas');
-        return redirect()
-            ->route('user::diagnosticos::show', $this->encode($diagnosticId));
+        // Listar los síntomas escogidos
+        $tempSymptoms = Symptom::findOrFail($request->session()->get('session_sintomas'));
+        foreach ($tempSymptoms as $tempSymptom) {
+            $showSymptoms[$tempSymptom->id] = $tempSymptom->name;
+        }
+
+        return view('user.diagnostic.create')
+            ->with('showSymptoms', $showSymptoms)
+            ->with('sintomas', $symptomsForSelect);
     }
 
     private function generateDiagnostic($diseaseKey, $userId)
