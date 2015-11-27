@@ -91,8 +91,18 @@ class DiseaseController extends Controller
     {
         $enfermedad = Disease::findOrFail($this->decode($hash_id));
         $sintomas   = Symptom::orderBy('name', 'asc')->lists('name', 'id')->toArray();
+        $reglas     = Rule::with('symptom')
+            ->where('disease_id', $enfermedad->id)
+            ->get()
+            ->groupBy('number');
 
         if ($request->isMethod('post')) {
+
+            if ($this->checkIfRuleExists($request->sintomas)) {
+                alert('La regla ya existe, por favor ingrese otros síntomas', 'danger');
+                return redirect()->back();
+            }
+
             $lastRule = Rule::orderBy('id', 'desc')->first();
 
             if (is_null($lastRule)) {
@@ -101,24 +111,18 @@ class DiseaseController extends Controller
                 $numberRule = intval($lastRule->number) + 1;
             }
 
-            foreach ($request->sintomas as $sintoma_id) {
-                $sintoma = Symptom::findOrFail($sintoma_id);
-
+            $symptoms = Symptom::findOrFail($request->sintomas);
+            foreach ($symptoms as $symptom) {
                 $rule         = new Rule;
                 $rule->number = $numberRule;
                 $rule->disease()->associate($enfermedad);
-                $rule->symptom()->associate($sintoma);
+                $rule->symptom()->associate($symptom);
                 $rule->save();
             }
 
             alert('Se registró la regla con éxito');
             return redirect()->back();
         }
-
-        $reglas = Rule::with('symptom')
-            ->where('disease_id', $enfermedad->id)
-            ->get()
-            ->groupBy('number');
 
         return view('admin.disease.add_rule')
             ->with('enfermedad', $enfermedad)
@@ -132,5 +136,43 @@ class DiseaseController extends Controller
 
         alert('Se eliminó la regla con éxito');
         return redirect()->back();
+    }
+
+    private function checkIfRuleExists($symptomsArray)
+    {
+        $rules = Rule::with('symptom')->whereIn('symptom_id', $symptomsArray)->get()->groupBy('number');
+
+        list($rulesKeys) = array_divide($rules->toArray());
+
+        $rules = Rule::with('symptom')->whereIn('number', $rulesKeys)->get()->groupBy('number');
+
+        $rules = $rules->map(function ($symptoms, $key) {
+            return $symptoms->groupBy('symptom_id');
+        });
+
+        $rules = $rules->filter(function ($rule) use ($symptomsArray) {
+            list($symptomKeys) = array_divide($rule->toArray());
+            $intersect         = array_intersect($symptomsArray, $symptomKeys);
+
+            if (($rule->count() >= count($symptomsArray)) && ($intersect == $symptomsArray)) {
+                return true;
+            }
+        });
+
+        $maxSymptomKey = 0;
+
+        foreach ($rules as $key => $ruleNumber) {
+
+            list($symptomKeys) = array_divide($ruleNumber->toArray());
+
+            $difference = array_diff($symptomKeys, $symptomsArray);
+
+            if (empty($difference)) {
+                return true;
+            } elseif ($symptomKeys == $difference) {
+                return false;
+            }
+
+        }
     }
 }
