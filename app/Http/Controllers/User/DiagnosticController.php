@@ -58,7 +58,7 @@ class DiagnosticController extends Controller
         // por síntomas  y después buscando por número de regla
         $rules = Rule::with('symptom')->whereIn('symptom_id', $sessionSymptoms)->get()->groupBy('number');
         //dd($rules, $sessionSymptoms);
-        list($rulesKeys, $value) = array_divide($rules->toArray());
+        list($rulesKeys) = array_divide($rules->toArray());
 
         // Después buscamos en la tabla de reglas en base a número de su regla
         // obtenido en la anterior operación
