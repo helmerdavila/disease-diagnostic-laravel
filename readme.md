@@ -1,5 +1,6 @@
 # Diagnosis Disease Application
 [![Build Status](https://travis-ci.org/helmerdavila/disease-diagnostic-laravel.svg)](https://travis-ci.org/helmerdavila/disease-diagnostic-laravel)
+
 This application performs diagnostics based on a set of symptoms entered by the patient, symptoms are grouped into a series of rules that are dynamically added by the doctor.
 
 ## Developers
