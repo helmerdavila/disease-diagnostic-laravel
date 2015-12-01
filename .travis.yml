@@ -18,11 +18,21 @@ matrix:
     - php: 5.5.9
       env: setup=stable
 
+services:
+  - mysql
+
 sudo: false
 
-install:
-  - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
-  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-stable; fi
-  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-lowest --prefer-stable; fi
+before_script:
+  - php artisan key:generate
+  - cp .env.travis .env
+  - mysql -e 'create database diagnostic_test_bd;'
+  - php artisan migrate --force
+  - php artisan db:seed --class=DevelopmentSeeder
+  - composer self-update
+  - composer install --no-interaction
+
+after_script:
+  - mysql -e 'drop database diagnostic_test_bd;'
 
 script: vendor/bin/phpunit
