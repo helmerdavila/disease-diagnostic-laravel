@@ -23,12 +23,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $app;
     }
 
-    public function makeUser()
+    public function authUser()
     {
         $user = factory(Tesis\Models\User::class)->create();
         $user->attachRole(2);
-        $this->be($user);
 
-        return $user;
+        return $this->actingAs($user);
     }
 }

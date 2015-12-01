@@ -1,0 +1,38 @@
+language: php
+
+php:
+  - 5.5.9
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+
+env:
+  global:
+    - setup=basic
+
+matrix:
+  include:
+    - php: 5.5.9
+      env: setup=lowest
+    - php: 5.5.9
+      env: setup=stable
+
+services:
+  - mysql
+
+sudo: false
+
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --no-interaction
+  - mysql -e 'create database diagnostic_test_bd;'
+  - php artisan key:generate
+  - php artisan migrate --force
+  - php artisan db:seed --class=DevelopmentSeeder
+
+after_script:
+  - mysql -e 'drop database diagnostic_test_bd;'
+
+script: vendor/bin/phpunit

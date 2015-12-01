@@ -6,33 +6,36 @@ class AuthTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testLoginPage()
+    public function test_login_page()
     {
         $this->visit('/')
             ->see('Mi Medico');
     }
 
-    public function testLoginFailed()
+    public function test_login_failed()
     {
         $this->visit('/')
             ->type('admin@admin.com', 'email')
+            ->type(bcrypt('test_admin'), 'password')
             ->press('Entrar')
             ->seePageIs('/');
     }
 
-    public function testLoginSuccessful()
+    public function test_login_successful()
     {
-        $user = factory(Tesis\Models\User::class)->create();
+        $user = factory(Tesis\Models\User::class)->create([
+            'password' => bcrypt('test_user'),
+        ]);
         $user->attachRole(2);
 
         $this->visit('/')
             ->type($user->email, 'email')
-            ->type('pruebasistema', 'password')
+            ->type('test_user', 'password')
             ->press('Entrar')
             ->seePageIs('/user/inicio');
     }
 
-    public function testCheckLogout()
+    public function test_check_logout()
     {
         $this->visit('/cerrar')
             ->see('/');
