@@ -14,7 +14,7 @@ class DiseaseRequest extends Request
     public function rules()
     {
         return [
-            'name'   => 'required|between:3,255',
+            'name'   => 'required|between:3,255|unique:diseases',
             'name_c' => 'between:3,1000',
         ];
     }
@@ -23,7 +23,7 @@ class DiseaseRequest extends Request
     {
         return [
             'name.required'  => 'El nombre es obligatorio',
-            'name.between'   => 'El nombre científico debe tener entre :min y :max caracteres',
+            'name.between'   => 'El nombre debe tener entre :min y :max caracteres',
             'name_c.between' => 'El nombre científico debe tener entre :min y :max caracteres',
         ];
     }

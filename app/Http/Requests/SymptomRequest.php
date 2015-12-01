@@ -14,7 +14,7 @@ class SymptomRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|between:2,255',
+            'name' => 'required|between:2,255|unique:symptoms',
         ];
     }
 
@@ -22,7 +22,8 @@ class SymptomRequest extends Request
     {
         return [
             'name.required' => 'El nombre es obligatorio',
-            'name.between' => 'El nombre debe tener entre :min y :max caracteres',
+            'name.between'  => 'El nombre debe tener entre :min y :max caracteres',
+            'name.unique'   => 'El valor ingresado ya se encuentra registrado',
         ];
     }
 }
