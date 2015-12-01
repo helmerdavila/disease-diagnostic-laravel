@@ -24,13 +24,13 @@ services:
 sudo: false
 
 before_script:
-  - php artisan key:generate
   - cp .env.travis .env
-  - mysql -e 'create database diagnostic_test_bd;'
-  - php artisan migrate --force
-  - php artisan db:seed --class=DevelopmentSeeder
   - composer self-update
   - composer install --no-interaction
+  - mysql -e 'create database diagnostic_test_bd;'
+  - php artisan key:generate
+  - php artisan migrate --force
+  - php artisan db:seed --class=DevelopmentSeeder
 
 after_script:
   - mysql -e 'drop database diagnostic_test_bd;'
