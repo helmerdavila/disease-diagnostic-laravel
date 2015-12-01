@@ -23,7 +23,7 @@ class DiseaseRequest extends Request
     {
         return [
             'name.required'  => 'El nombre es obligatorio',
-            'name.between'   => 'El nombre científico debe tener entre :min y :max caracteres',
+            'name.between'   => 'El nombre debe tener entre :min y :max caracteres',
             'name_c.between' => 'El nombre científico debe tener entre :min y :max caracteres',
         ];
     }

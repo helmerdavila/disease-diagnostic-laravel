@@ -68,7 +68,11 @@ class DiseaseController extends Controller
             return redirect()->back();
         }
 
-        $rules = Rule::whereDiseaseId($enfermedad->id)->delete();
+        $rules            = Rule::whereDiseaseId($enfermedad->id)->orderBy('number', 'desc')->get();
+        $rulesForDecrease = Rule::where('number', '>', $rules->first()->number)->decrement('number');
+        $rules->each(function ($rule) {
+            $rule->delete();
+        });
 
         $enfermedad->delete();
 
@@ -132,9 +136,16 @@ class DiseaseController extends Controller
             ->with('sintomas', $sintomas);
     }
 
+    /**
+     * Delete the rule by the number and the rules with a greather number
+     * decrease in one their number attribute
+     * @param integer $ruleNumber
+     */
     public function delete_rule($ruleNumber)
     {
         $rules = Rule::whereNumber($ruleNumber)->delete();
+
+        $rulesForDecrease = Rule::where('number', '>', $ruleNumber)->decrement('number');
 
         alert('Se eliminó la regla con éxito');
         return redirect()->back();
