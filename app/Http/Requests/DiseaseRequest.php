@@ -14,7 +14,7 @@ class DiseaseRequest extends Request
     public function rules()
     {
         return [
-            'name'   => 'required|between:3,255',
+            'name'   => 'required|between:3,255|unique:diseases',
             'name_c' => 'between:3,1000',
         ];
     }
