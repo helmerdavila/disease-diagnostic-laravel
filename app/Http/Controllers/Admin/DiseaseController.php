@@ -98,6 +98,8 @@ class DiseaseController extends Controller
 
         if ($request->isMethod('post')) {
 
+            $this->validate($request, ['sintomas' => 'required']);
+
             if ($this->checkIfRuleExists($request->sintomas)) {
                 alert('La regla ya existe, por favor ingrese otros síntomas', 'danger');
                 return redirect()->back();
