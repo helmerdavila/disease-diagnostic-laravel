@@ -113,6 +113,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('admin::states::create') }}">
+                                <i class="fa fa-institution"></i> <span>Estados</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin::reportes::index') }}">
                                 <i class="fa fa-area-chart"></i> <span>Reportes</span>
                             </a>

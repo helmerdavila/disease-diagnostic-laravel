@@ -11,4 +11,9 @@ return [
     'form.email.required'    => 'The email is required',
     'form.password'          => 'Password',
     'form.password.required' => 'The password is required',
+
+    'state.created'          => 'The state was registed sucessfully',
+    'state.updated'          => 'The state was updated sucessfully',
+    'state.not_deleted'      => "The state having users can't be deleted",
+    'state.deleted'          => 'The state was deleted sucessfully',
 ];
