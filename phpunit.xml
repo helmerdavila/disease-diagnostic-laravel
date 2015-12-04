@@ -28,5 +28,6 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="DB_DATABASE" value="diagnostic_test_bd"/>
+        <env name="APP_LANG" value="es"/>
     </php>
 </phpunit>
