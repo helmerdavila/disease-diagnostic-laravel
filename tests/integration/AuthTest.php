@@ -17,7 +17,7 @@ class AuthTest extends TestCase
         $this->visit('/')
             ->type('admin@admin.com', 'email')
             ->type(bcrypt('test_admin'), 'password')
-            ->press('Iniciar Sesión')
+            ->press(trans('messages.login.login'))
             ->seePageIs('/');
     }
 
@@ -31,7 +31,7 @@ class AuthTest extends TestCase
         $this->visit('/')
             ->type($user->email, 'email')
             ->type('test_user', 'password')
-            ->press('Iniciar Sesión')
+            ->press(trans('messages.login.login'))
             ->seePageIs('/user/inicio');
     }
 
