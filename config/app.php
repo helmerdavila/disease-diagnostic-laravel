@@ -8,7 +8,7 @@ return [
 
     'timezone'        => 'America/Lima',
 
-    'locale'          => 'es',
+    'locale'          => env('APP_LANG', 'en'),
 
     'fallback_locale' => 'en',
 
@@ -21,8 +21,8 @@ return [
     'providers'       => [
 
         /*
-                 * Laravel Framework Service Providers...
-                 */
+         * Laravel Framework Service Providers...
+         */
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -48,8 +48,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-                 * Application Service Providers...
-                 */
+         * Application Service Providers...
+         */
         Tesis\Providers\AppServiceProvider::class,
         Tesis\Providers\EventServiceProvider::class,
         Tesis\Providers\RouteServiceProvider::class,
@@ -62,15 +62,15 @@ return [
     ],
 
     /*
-        |--------------------------------------------------------------------------
-        | Class Aliases
-        |--------------------------------------------------------------------------
-        |
-        | This array of class aliases will be registered when this application
-        | is started. However, feel free to register as many as you wish as
-        | the aliases are "lazy" loaded so they don't hinder performance.
-        |
-         */
+    |--------------------------------------------------------------------------
+    | Class Aliases
+    |--------------------------------------------------------------------------
+    |
+    | This array of class aliases will be registered when this application
+    | is started. However, feel free to register as many as you wish as
+    | the aliases are "lazy" loaded so they don't hinder performance.
+    |
+     */
 
     'aliases'         => [
 

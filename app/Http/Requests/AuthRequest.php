@@ -14,7 +14,7 @@ class AuthRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required',
+            'email'    => 'required',
             'password' => 'required',
         ];
     }
@@ -22,8 +22,8 @@ class AuthRequest extends Request
     public function messages()
     {
         return [
-            'email.required' => 'El correo electrónico es requerido',
-            'password.required' => 'Se necesita una contraseña para continuar',
+            'email.required'    => trans('messages.form.email.required'),
+            'password.required' => trans('messages.form.password.required'),
         ];
     }
 }

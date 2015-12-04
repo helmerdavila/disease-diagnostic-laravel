@@ -79,6 +79,14 @@ Route::group(['middleware' => 'auth'], function () {
             post('/eliminar/{id}', ['as' => 'delete', 'uses' => 'Admin\UserController@delete']);
         });
 
+        Route::group(['prefix' => 'states', 'as' => 'states::'], function () {
+            get('/list', ['as' => 'create', 'uses' => 'Admin\StateController@create']);
+            post('/list', ['as' => 'store', 'uses' => 'Admin\StateController@store']);
+            get('/edit/{id}', ['as' => 'edit', 'uses' => 'Admin\StateController@edit']);
+            post('/edit/{id}', ['as' => 'update', 'uses' => 'Admin\StateController@update']);
+            post('/delete/{id}', ['as' => 'delete', 'uses' => 'Admin\StateController@delete']);
+        });
+
         // Reportes
         Route::group(['prefix' => 'reportes', 'as' => 'reportes::'], function () {
             get('/listar', ['as' => 'index', 'uses' => 'Admin\ReportController@index']);
