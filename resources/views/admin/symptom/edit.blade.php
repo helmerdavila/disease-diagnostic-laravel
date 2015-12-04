@@ -10,8 +10,8 @@
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::text('name', $sintoma->name, ['placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '']) !!}
-                    {!! Field::text('description', $sintoma->description, ['placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off']) !!}
+                    {!! Field::text('name', $sintoma->name, ['label' => 'Nombre','placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '']) !!}
+                    {!! Field::text('description', $sintoma->description, ['label' => 'Descripción', 'placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off']) !!}
                     {!! Form::submit('Actualizar', ['class' => 'btn btn-warning']) !!}
                 {!! Form::close() !!}
             </div>
