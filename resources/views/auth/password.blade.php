@@ -6,8 +6,6 @@
         <title>Mi Medico</title>
         {{-- Tell the browser to be responsive to screen width --}}
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        {{-- Font Awesome --}}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         {{-- Compiled scripts --}}
         <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 

@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="small-box bg-primary">
+            <div class="small-box bg-red">
                 <div class="inner">
                     <h3>{{ $countDiseases }}</h3>
                     <p>Enfermedades</p>
