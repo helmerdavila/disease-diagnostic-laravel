@@ -3,7 +3,7 @@ elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
     mix
-        .copy('node_modules/font-awesome/fonts', 'public/build/fonts')
+        .copy('node_modules/font-awesome/fonts', 'public/build/fonts/font-awesome')
         .copy('resources/assets/images/input-checked.png', 'public/build/css')
         .copy('resources/assets/images/input-unchecked.png', 'public/build/css')
         .copy('resources/assets/js/morris.min.js', 'public/build/js')
