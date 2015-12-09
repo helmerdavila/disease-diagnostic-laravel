@@ -20,7 +20,7 @@ $(function(){
             Morris.Donut({
                 element: 'firstdonut',
                 data: data,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+                colors: ["#18576E", "#f56954", "#18bc9c"]
             });
         }); 
     };
@@ -52,7 +52,7 @@ $(function(){
                     Morris.Line({
                         element: 'anual-state-diagnostics',
                         data: data.result,
-                        lineColors : ['#dd4b39', '#f39c12', '#3c8dbc', '#f56954', '#00a65a'],
+                        lineColors : ['#dd4b39', '#f39c12', "#18576E", '#f56954', "#18bc9c"],
                         xkey: 'month',
                         ykeys: data.indexs,
                         labels: data.names
@@ -66,7 +66,7 @@ $(function(){
             Morris.Donut({
                 element: 'diagnostics-by-state',
                 data: data,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+                colors: ["#18576E", "#f56954", "#18bc9c"]
             });
         }); 
     };
@@ -76,7 +76,7 @@ $(function(){
             Morris.Donut({
                 element: 'users-by-state',
                 data: data,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+                colors: ["#18576E", "#f56954", "#18bc9c"]
             });
         }); 
     };
@@ -86,7 +86,7 @@ $(function(){
             Morris.Donut({
                 element: 'top-5-user-diagnostics',
                 data: data,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+                colors: ["#18576E", "#f56954", "#18bc9c"]
             });
         });
     };
@@ -96,7 +96,7 @@ $(function(){
             Morris.Donut({
                 element: 'top-5-diagnostic-diseases',
                 data: data,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+                colors: ["#18576E", "#f56954", "#18bc9c"]
             });
         });
     };
@@ -107,7 +107,7 @@ $(function(){
             Morris.Donut({
                 element: 'user-diseases',
                 data: data,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"]
+                colors: ["#18576E", "#f56954", "#18bc9c"]
             });
         }); 
     };
