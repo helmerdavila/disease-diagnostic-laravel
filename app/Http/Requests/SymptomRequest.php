@@ -13,6 +13,11 @@ class SymptomRequest extends Request
 
     public function rules()
     {
+        if ($this->input('edit_boolean') == 1) {
+            return [
+                'name' => 'required|between:2,255',
+            ];
+        }
         return [
             'name' => 'required|between:2,255|unique:symptoms',
         ];

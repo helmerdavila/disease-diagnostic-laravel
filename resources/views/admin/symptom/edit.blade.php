@@ -12,6 +12,7 @@
                 {!! Form::open() !!}
                     {!! Field::text('name', $sintoma->name, ['label' => 'Nombre','placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '']) !!}
                     {!! Field::text('description', $sintoma->description, ['label' => 'Descripción', 'placeholder' => 'Nombre del Síntoma', 'autocomplete' => 'off']) !!}
+                    {!! Form::hidden('edit_boolean', 1) !!}
                     {!! Form::submit('Actualizar', ['class' => 'btn btn-warning']) !!}
                 {!! Form::close() !!}
             </div>
