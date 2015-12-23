@@ -18,6 +18,7 @@ class SymptomRequest extends Request
                 'name' => 'required|between:2,255',
             ];
         }
+
         return [
             'name' => 'required|between:2,255|unique:symptoms',
         ];
