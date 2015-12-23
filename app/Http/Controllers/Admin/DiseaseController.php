@@ -51,8 +51,6 @@ class DiseaseController extends Controller
 
         $enfermedad->update($request->all());
 
-        $enfermedad->rules()->sync($request->input('sintomas'));
-
         alert('Se actualizó la enfermedad correctamente');
         return redirect()->route('admin::enfermedades::create');
     }

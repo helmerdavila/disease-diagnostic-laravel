@@ -13,6 +13,13 @@ class DiseaseRequest extends Request
 
     public function rules()
     {
+        if ($this->input('edit_boolean') == 1) {
+            return [
+                'name'   => 'required|between:3,255',
+                'name_c' => 'between:3,1000',
+            ];
+        }
+
         return [
             'name'   => 'required|between:3,255|unique:diseases',
             'name_c' => 'between:3,1000',
