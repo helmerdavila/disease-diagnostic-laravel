@@ -22,7 +22,7 @@
                 <a href="#"><b>MI</b>Medico</a>
             </div>{{-- /.login-logo --}}
             <div class="login-box-body">
-                <p class="login-box-msg">Ingresa tus datos para iniciar sesión</p>
+                <p class="login-box-msg">Ingresa tus datos para registrarte</p>
                 {!! Form::open() !!}
                 {!! Alert::render() !!}
                 <label class="label-control">Datos</label>
@@ -48,25 +48,16 @@
                 </div>
                 {{-- Departamentos --}}
                 {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2']) !!}
+                {{-- Géneros --}}
+                {!! Field::radios('gender', ['1' => 'Masculino', '2' => 'Femenino'], ['label' => 'Género']) !!}
                 <div class="row">
                     <div class="col-xs-6">
-                        <input type="radio" name="gender" value="1"/> Masculino
-                    </div>
-                    <div class="col-xs-6">
-                        <input type="radio" name="gender" value="0"/> Femenino
-                    </div>
-                    {!! $errors->first('gender', '<p class="text-danger">:message</p>') !!}
-                </div>
-                <div class="row">
-                    <div class="col-xs-7">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="confirmed" data-labelauty="Acepto los términos"/>
-                                {!! $errors->first('confirmed', '<p class="text-danger">:message</p>') !!}
-                            </label>
+                        <div class="checkbox recordar">
+                            <input type="checkbox" name="confirmed" data-labelauty="Acepto los términos"/>
+                            {!! $errors->first('confirmed', '<p class="text-danger">:message</p>') !!}
                         </div>
                     </div>{{-- /.col --}}
-                    <div class="col-xs-5">
+                    <div class="col-xs-6">
                         {!! Form::submit('Registrarse', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
                     </div>{{-- /.col --}}
                 </div>
