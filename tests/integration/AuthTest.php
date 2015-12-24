@@ -35,9 +35,35 @@ class AuthTest extends TestCase
             ->seePageIs('/user/inicio');
     }
 
+    public function test_register_fail()
+    {
+        $user = factory(Tesis\Models\User::class)->make();
+
+        $this->visit('/register')
+            ->press(trans('messages.register.submit'))
+            ->seePageIs('/register');
+    }
+
+    public function test_register_successful()
+    {
+        $user = factory(Tesis\Models\User::class)->make();
+
+        $this->visit('/register')
+            ->type($user->name, 'name')
+            ->type($user->email, 'email')
+            ->type('testpass', 'password')
+            ->type('testpass', 'password_confirmation')
+            ->select('1', 'gender')
+            ->check('confirmed')
+            ->press(trans('messages.register.submit'))
+            ->seePageIs('/');
+
+        $this->seeInDatabase('users', ['email' => $user->email]);
+    }
+
     public function test_check_logout()
     {
-        $this->visit('/cerrar')
+        $this->visit('/logout')
             ->see('/');
     }
 }
