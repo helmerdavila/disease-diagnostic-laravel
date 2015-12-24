@@ -7,6 +7,8 @@ return [
     'login.forgot'           => '¿Olvidaste tu contraseña?',
     'login.register'         => 'Registrarse',
 
+    'register.submit'        => 'Registrarse',
+
     'form.email'             => 'Correo',
     'form.email.required'    => 'El correo electrónico es requerido',
     'form.password'          => 'Contraseña',

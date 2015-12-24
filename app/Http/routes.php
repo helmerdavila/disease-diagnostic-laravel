@@ -4,9 +4,9 @@
 get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
 
 post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
-get('/registrar', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
-post('/registrar', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
-get('/cerrar', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
+get('/register', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
+post('/register', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
+get('/logout', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@getLogout']);
 
 // Rutas para resetear contraseñas
 get('password/email', 'Auth\PasswordController@getEmail');

@@ -7,6 +7,8 @@ return [
     'login.forgot'           => 'Forgot your password?',
     'login.register'         => 'Sign up',
 
+    'register.submit'        => 'Sign Up',
+
     'form.email'             => 'Email',
     'form.email.required'    => 'The email is required',
     'form.password'          => 'Password',

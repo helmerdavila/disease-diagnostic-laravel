@@ -36,15 +36,15 @@
                     <span class="fa fa-envelope form-control-feedback"></span>
                     {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
                 </div>
-                <div class="form-group has-feedback {!! $errors->first('password_confirmation', 'has-error') !!}">
-                    <input type="password" class="form-control" name="password_confirmation" placeholder="Contraseña">
-                    <span class="fa fa-sign-in form-control-feedback"></span>
-                    {!! $errors->first('password_confirmation', '<p class="text-danger">:message</p>') !!}
-                </div>
                 <div class="form-group has-feedback {!! $errors->first('password', 'has-error') !!}">
                     <input type="password" class="form-control" name="password" placeholder="Contraseña">
                     <span class="fa fa-lock form-control-feedback"></span>
                     {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
+                </div>
+                <div class="form-group has-feedback {!! $errors->first('password_confirmation', 'has-error') !!}">
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Contraseña">
+                    <span class="fa fa-sign-in form-control-feedback"></span>
+                    {!! $errors->first('password_confirmation', '<p class="text-danger">:message</p>') !!}
                 </div>
                 {{-- Departamentos --}}
                 {!! Field::select('state', $states, null, ['label' => 'Departamento', 'empty' => false, 'class' => 'select2']) !!}
@@ -58,7 +58,7 @@
                         </div>
                     </div>{{-- /.col --}}
                     <div class="col-xs-6">
-                        {!! Form::submit('Registrarse', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
+                        {!! Form::submit(trans('messages.register.submit'), ['class' => 'btn btn-primary btn-block btn-flat']) !!}
                     </div>{{-- /.col --}}
                 </div>
                 {!! Form::close() !!}
