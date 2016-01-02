@@ -66,11 +66,14 @@ class DiseaseController extends Controller
             return redirect()->back();
         }
 
-        $rules            = Rule::whereDiseaseId($enfermedad->id)->orderBy('number', 'desc')->get();
-        $rulesForDecrease = Rule::where('number', '>', $rules->first()->number)->decrement('number');
-        $rules->each(function ($rule) {
-            $rule->delete();
-        });
+        $rules = Rule::whereDiseaseId($enfermedad->id)->orderBy('number', 'desc')->get();
+
+        if (!$rules->isEmpty()) {
+            $rulesForDecrease = Rule::where('number', '>', $rules->first()->number)->decrement('number');
+            $rules->each(function ($rule) {
+                $rule->delete();
+            });
+        }
 
         $enfermedad->delete();
 
