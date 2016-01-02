@@ -19,7 +19,6 @@
                                 <th><i class="fa fa-gear"></i></th>
                                 <th>Nombre</th>
                                 <th>Nombre Científico</th>
-                                <th>Síntomas</th>
                                 <th>Agregado</th>
                                 <th class="text-center">Diagnósticos</th>
                             </tr>
@@ -32,11 +31,6 @@
                                     </td>
                                     <td>{{ $enfermedad->name }}</td>
                                     <td>{{ $enfermedad->name_c }}</td>
-                                    <td>
-                                        @foreach ($enfermedad->rules as $sintoma)
-                                            <span class="label label-primary">{{ $sintoma->name }}</span>
-                                        @endforeach
-                                    </td>
                                     <td>{{ $enfermedad->created_at->format('d/m/Y') }}</td>
                                     <td class="text-center">
                                         <span class="label label-primary">{{ $enfermedad->diagnostics->count() }}</span>

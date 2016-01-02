@@ -20,7 +20,9 @@ class StateController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
+        $this->validate($request, ['name' => 'required|unique:states'], [
+            'name.unique' => 'Este nombre de estado ya ha sido registrado',
+        ]);
 
         $state = State::create($request->only('name'));
 
