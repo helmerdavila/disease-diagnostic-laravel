@@ -23,10 +23,6 @@
             <h3 class="timeline-header">
                 <a href="#">Se diagnosticó {{ $diagnostico->disease->name }}</a>
             </h3>
-            <div class="timeline-body">
-                Descripción
-                {{ !is_null($diagnostico->disease->description) ? $diagnostico->disease->description : '' }}
-            </div>
         </div>
     </li>
     @endforeach
