@@ -22,4 +22,9 @@ class State extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = ucfirst($name);
+    }
 }

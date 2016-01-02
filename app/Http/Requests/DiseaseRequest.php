@@ -32,6 +32,7 @@ class DiseaseRequest extends Request
             'name.required'  => 'El nombre es obligatorio',
             'name.between'   => 'El nombre debe tener entre :min y :max caracteres',
             'name_c.between' => 'El nombre científico debe tener entre :min y :max caracteres',
+            'name.unique'    => 'Esta nombre de enfermedad ya ha sido registrada',
         ];
     }
 }
