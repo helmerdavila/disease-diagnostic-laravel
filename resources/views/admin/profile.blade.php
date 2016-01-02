@@ -52,7 +52,7 @@
                         {!! Form::open(['route' => 'admin::password::actualizar']) !!}
                             {!! Field::password('old_password', ['label' => 'Contraseña Antigua']) !!}
                             {!! Field::password('new_password', ['label' => 'Contraseña Nueva']) !!}
-                            {!! Field::password('new_password_confirmation', ['label' => 'Contraseña Antigua (repita)']) !!}
+                            {!! Field::password('new_password_confirmation', ['label' => 'Contraseña Nueva (repita)']) !!}
                             {!! Form::submit('Actualizar', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </div>
