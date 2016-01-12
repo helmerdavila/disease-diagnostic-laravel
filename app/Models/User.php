@@ -64,9 +64,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getGenderColored()
     {
         if ($this->gender == 1) {
-            return '<span class="label label-primary">Masculino</span>';
+            return '<span class="label label-primary">' . trans('messages.gender.male') . '</span>';
         }
-        return '<span class="label label-danger">Femenino</span>';
+        return '<span class="label label-danger">' . trans('messages.gender.female') . '</span>';
     }
 
     public function setPassword($password)

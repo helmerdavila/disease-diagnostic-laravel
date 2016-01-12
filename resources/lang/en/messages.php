@@ -1,22 +1,49 @@
 <?php
 
 return [
-    'login.welcome'          => 'Enter your account for log in',
-    'login.remember'         => "Don't remember me|Remember me",
-    'login.login'            => 'Log in',
-    'login.forgot'           => 'Forgot your password?',
-    'login.register'         => 'Sign up',
 
-    'register.submit'        => 'Sign Up',
-    'register.successful'    => 'Your account has been created successfully',
+    'form'     => [
+        'email'             => 'Email',
+        'email.required'    => 'The email is required',
+        'password'          => 'Password',
+        'password.required' => 'The password is required',
+    ],
 
-    'form.email'             => 'Email',
-    'form.email.required'    => 'The email is required',
-    'form.password'          => 'Password',
-    'form.password.required' => 'The password is required',
+    'gender'   => [
+        'female' => 'Female',
+        'male'   => 'Male',
+    ],
 
-    'state.created'          => 'The state was registed sucessfully',
-    'state.updated'          => 'The state was updated sucessfully',
-    'state.not_deleted'      => "The state having users can't be deleted",
-    'state.deleted'          => 'The state was deleted sucessfully',
+    'label'    => [
+        'and'             => 'and',
+        'diagnostics'     => 'Diagnostics',
+        'diseases'        => 'Diseases',
+        'gender'          => 'Gender',
+        'home'            => 'Home',
+        'last_registered' => 'Last Registered',
+        'more_info'       => 'More Info',
+        'name'            => 'Names',
+        'symptoms'        => 'Symptoms',
+        'top_two'         => 'The first two diseases more diagnosed',
+    ],
+
+    'login'    => [
+        'welcome'  => 'Enter your account for log in',
+        'remember' => "Don't remember me|Remember me",
+        'login'    => 'Log in',
+        'forgot'   => 'Forgot your password?',
+        'register' => 'Sign up',
+    ],
+
+    'register' => [
+        'submit'     => 'Sign Up',
+        'successful' => 'Your account has been created successfully',
+    ],
+
+    'state'    => [
+        'created'     => 'The state was registed sucessfully',
+        'updated'     => 'The state was updated sucessfully',
+        'not_deleted' => "The state having users can't be deleted",
+        'deleted'     => 'The state was deleted sucessfully',
+    ],
 ];
