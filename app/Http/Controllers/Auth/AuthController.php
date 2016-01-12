@@ -34,6 +34,13 @@ class AuthController extends Controller
             return redirect()->back();
         }
 
+        // Throttles Logins
+        $throttles = $this->isUsingThrottlesLoginsTrait();
+
+        if ($throttles && $this->hasTooManyLoginAttempts($request)) {
+            return $this->sendLockoutResponse($request);
+        }
+
         $remember = intval($request->input('remember', 0));
 
         if (Auth::attempt($request->only('email', 'password'), $remember)) {
