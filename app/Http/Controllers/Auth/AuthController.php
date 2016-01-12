@@ -56,9 +56,6 @@ class AuthController extends Controller
         return view('register')->with('states', $states);
     }
 
-    /**
-     * Creamos el usuario a través del registro y le asignamos el rol de usuario
-     */
     public function showRegisterPost(RegisterRequest $request)
     {
         $form = collect_clean($request->all());
@@ -68,7 +65,7 @@ class AuthController extends Controller
         $user = User::create($form->toArray());
         $user->attachRole(2);
 
-        alert('Cuenta creada correctamente, puede iniciar sesión');
+        alert(trans('messages.register.successful'));
         return redirect()->route('showLogin');
     }
 }

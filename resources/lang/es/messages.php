@@ -8,6 +8,7 @@ return [
     'login.register'         => 'Registrarse',
 
     'register.submit'        => 'Registrarse',
+    'register.successful'    => 'Su cuenta ha sido creada con éxito',
 
     'form.email'             => 'Correo',
     'form.email.required'    => 'El correo electrónico es requerido',

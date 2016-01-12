@@ -8,6 +8,7 @@ return [
     'login.register'         => 'Sign up',
 
     'register.submit'        => 'Sign Up',
+    'register.successful'    => 'Your account has been created successfully',
 
     'form.email'             => 'Email',
     'form.email.required'    => 'The email is required',
