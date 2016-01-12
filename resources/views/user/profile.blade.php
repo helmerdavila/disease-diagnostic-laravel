@@ -31,7 +31,7 @@
                 @else
                     <div class="active tab-pane" id="configuracion">
                 @endif
-                        {!! Form::open(['route' => 'admin::perfil::actualizar']) !!}
+                        {!! Form::open(['route' => 'user::perfil::actualizar']) !!}
                             {!! Field::text('email', auth()->user()->email, ['label' => 'Correo']) !!}
                             {!! Field::text('name', auth()->user()->name, ['label' => 'Nombre']) !!}
                             {!! Field::text('lastname', auth()->user()->lastname, ['label' => 'Apellidos']) !!}
