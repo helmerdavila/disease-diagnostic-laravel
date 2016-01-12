@@ -28,10 +28,6 @@ class AuthController extends Controller
         return view('login');
     }
 
-    /**
-     * Inicio de sesión para el usuario, dependiendo de su rol es dirigido
-     * a su panel de administración respectivo
-     */
     public function showLoginPost(AuthRequest $request)
     {
         if (!$request->isMethod('post')) {
@@ -49,7 +45,7 @@ class AuthController extends Controller
             }
         }
 
-        alert('Correo y/o contraseña inválidos', 'danger');
+        alert(trans('auth.failed'), 'danger');
         return redirect()->back();
     }
 
