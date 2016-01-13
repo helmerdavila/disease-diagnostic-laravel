@@ -70,7 +70,7 @@
                     <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
-                                <th>{{ trans('messages.label.name') }}</th>
+                                <th>{{ trans('messages.label.names') }}</th>
                                 <th>{{ trans('messages.label.gender') }}</th>
                             </tr>
                         </thead>

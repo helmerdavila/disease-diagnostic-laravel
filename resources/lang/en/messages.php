@@ -2,6 +2,11 @@
 
 return [
 
+    'alert'    => [
+        'symptom' => 'You can remove only symptoms without associated diseases',
+        'warning' => 'Warning',
+    ],
+
     'form'     => [
         'email'             => 'Email',
         'email.required'    => 'The email is required',
@@ -16,6 +21,8 @@ return [
 
     'label'    => [
         'and'             => 'and',
+        'created'         => 'Created',
+        'description'     => 'Description',
         'diagnostics'     => 'Diagnostics',
         'diseases'        => 'Diseases',
         'gender'          => 'Gender',
@@ -24,13 +31,21 @@ return [
         'logout'          => 'Logout',
         'menu'            => 'Menu',
         'more_info'       => 'More Info',
-        'name'            => 'Names',
+        'name'            => 'Name',
+        'names'           => 'Names',
         'online'          => 'Online',
         'patients'        => 'Patients',
         'profile'         => 'Profile',
         'reports'         => 'Reports',
+        'save'            => 'Save',
         'since'           => 'Member since',
         'states'          => 'States',
+        'symptom'         => [
+            'description' => 'A short description of the symptom',
+            'list'        => 'Symptom List',
+            'name'        => 'Symptom name',
+            'new'         => 'New Symptom',
+        ],
         'symptoms'        => 'Symptoms',
         'top_two'         => 'The first two diseases more diagnosed',
     ],

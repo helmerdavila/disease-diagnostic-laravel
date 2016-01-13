@@ -2,6 +2,11 @@
 
 return [
 
+    'alert'    => [
+        'symptom' => 'Sólo se pueden eliminar síntomas sin enfermedades asociadas',
+        'warning' => 'Advertencia',
+    ],
+
     'form'     => [
         'email'             => 'Correo',
         'email.required'    => 'El correo electrónico es requerido',
@@ -16,6 +21,8 @@ return [
 
     'label'    => [
         'and'             => 'y',
+        'created'         => 'Creado',
+        'description'     => 'Descripción',
         'diagnostics'     => 'Diagnósticos',
         'diseases'        => 'Enfermedades',
         'gender'          => 'Género',
@@ -26,13 +33,21 @@ return [
         'menu'            => 'Menu',
         'more_info'       => 'Más Información',
         'name'            => 'Nombre',
+        'names'           => 'Nombre',
         'online'          => 'Conectado',
         'patients'        => 'Pacientes',
         'profile'         => 'Perfil',
         'reports'         => 'Reportes',
+        'save'            => 'Guardar',
         'states'          => 'Estados',
+        'symptom'         => [
+            'description' => 'Una breve descripción del síntoma',
+            'list'        => 'Listado de Síntomas',
+            'name'        => 'Nombre del síntoma',
+            'new'         => 'Nuevo Síntoma',
+        ],
         'symptoms'        => 'Síntomas',
-        'top_2'           => 'Las dos primeras enfermedades más diagnósticadas',
+        'top_two'         => 'Las dos primeras enfermedades más diagnósticadas',
     ],
 
     'login'    => [
