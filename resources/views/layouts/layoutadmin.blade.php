@@ -136,7 +136,11 @@
                 <section class="content-header">
                     <h1><i class="fa fa-stethoscope"></i> MiMedico</h1>
                     <ol class="breadcrumb">
-                        <li><a href="{{ route('admin::home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li>
+                            <a href="{{ route('admin::home') }}">
+                                <i class="fa fa-home"></i> {{ trans('messages.label.home') }}
+                            </a>
+                        </li>
                         <li class="active">@yield('breadcrumb')</li>
                     </ol>
                 </section>
