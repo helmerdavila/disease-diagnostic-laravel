@@ -15,8 +15,6 @@ class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $loginPath = '/';
-
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
