@@ -28,7 +28,7 @@
                         <h3><i class="fa fa-warning text-yellow"></i> ¡Uy! Página no Encontrada.</h3>
                         <p>
                             La página que buscabas no existe.
-                            Puedes <a href="{{ route('showLogin') }}">regresar al inicio</a>.
+                            Puedes <a href="/">regresar al inicio</a>.
                         </p>
                     </div><!-- /.error-content -->
                 </div><!-- /.error-page -->

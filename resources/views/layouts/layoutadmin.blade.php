@@ -61,7 +61,7 @@
                                             </a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href={{ route('logoutSession') }} class="btn btn-default btn-flat">
+                                            <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">
                                                 {{ trans('messages.label.logout') }}
                                             </a>
                                         </div>

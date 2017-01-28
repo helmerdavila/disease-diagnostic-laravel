@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $states   = State::lists('name', 'id')->toArray();
+        $states   = State::pluck('name', 'id')->toArray();
         $usuarios = User::with('state', 'diagnostics')
             ->whereNotIn('id', [1])
             ->orderBy('created_at', 'desc')
@@ -46,7 +46,7 @@ class UserController extends Controller
     {
         $id = $this->decode($hash_id);
 
-        $states  = State::lists('name', 'id')->toArray();
+        $states  = State::pluck('name', 'id')->toArray();
         $usuario = User::findOrFail($id);
 
         return view('admin.user.edit')

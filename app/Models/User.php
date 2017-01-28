@@ -3,18 +3,15 @@
 namespace Tesis\Models;
 
 use Carbon\Carbon;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User extends Authenticatable
 {
-    use Authenticatable, CanResetPassword, EntrustUserTrait, SearchableTrait, SoftDeletes;
+    use EntrustUserTrait, SearchableTrait, Notifiable;
 
     protected $table = 'users';
 

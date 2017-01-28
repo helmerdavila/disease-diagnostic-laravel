@@ -1,20 +1,22 @@
 <?php
 
-// Rutas para logueo y cerrar sesión
-Route::get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
+Route::get('/logout', 'Auth\LoginController@logout');
+Auth::routes();
 
-Route::post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
-Route::get('/register', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
-Route::post('/register', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
-Route::get('/logout', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@Route::getLogout']);
+// Rutas para logueo y cerrar sesión
+//Route::get('/', ['as' => 'showLogin', 'uses' => 'Auth\AuthController@showLogin']);
+//Route::post('/login', ['as' => 'showLoginPost', 'uses' => 'Auth\AuthController@showLoginPost']);
+//Route::get('/register', ['as' => 'showRegister', 'uses' => 'Auth\AuthController@showRegister']);
+//Route::post('/register', ['as' => 'showRegisterPost', 'uses' => 'Auth\AuthController@showRegisterPost']);
+//Route::get('/logout', ['as' => 'logoutSession', 'uses' => 'Auth\AuthController@Route::getLogout']);
 
 // Rutas para resetear contraseñas
-Route::get('password/email', 'Auth\PasswordController@Route::getEmail');
-Route::post('password/email', 'Auth\PasswordController@Route::postEmail');
+//Route::get('password/email', 'Auth\PasswordController@Route::getEmail');
+//Route::post('password/email', 'Auth\PasswordController@Route::postEmail');
 
 // Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@Route::getReset');
-Route::post('password/reset', 'Auth\PasswordController@Route::postReset');
+//Route::get('password/reset/{token}', 'Auth\PasswordController@Route::getReset');
+//Route::post('password/reset', 'Auth\PasswordController@Route::postReset');
 
 Route::group(['middleware' => 'auth'], function () {
 

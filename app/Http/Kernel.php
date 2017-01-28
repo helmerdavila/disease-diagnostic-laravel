@@ -13,12 +13,22 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Styde\Html\Alert\Middleware::class,
-        \Tesis\Http\Middleware\EncryptCookies::class,
-        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Tesis\Http\Middleware\VerifyCsrfToken::class,
+    ];
+
+    protected $middlewareGroups = [
+        'web' => [
+            \Tesis\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Tesis\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'api' => [
+            'throttle:60,1',
+            'bindings',
+        ],
     ];
 
     /**
@@ -27,9 +37,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'         => \Tesis\Http\Middleware\Authenticate::class,
-        'auth.basic'   => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest'        => \Tesis\Http\Middleware\RedirectIfAuthenticated::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \Tesis\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'soloAdmin'    => \Tesis\Http\Middleware\soloAdmin::class,
         'soloPaciente' => \Tesis\Http\Middleware\soloPaciente::class,
     ];
