@@ -8,7 +8,8 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         {{-- Compiled scripts --}}
         <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
-        {{-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --}} {{-- WARNING: Respond.js doesn't work if you view the page via file:// --}}
+        {{-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --}}
+        {{-- WARNING: Respond.js doesn't work if you view the page via file:// --}}
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -49,16 +50,20 @@
                                         <img src="{{ asset('img/user.png') }}" class="img-circle" alt="User Image">
                                         <p>
                                             {{ auth()->user()->name }} - {{ auth()->user()->roles->first()->display_name }}
-                                            <small>Miembro desde {{ auth()->user()->created_at->format('d-m-Y') }}</small>
+                                            <small>{{ trans('messages.label.since') }} {{ auth()->user()->created_at->format('d-m-Y') }}</small>
                                         </p>
                                     </li>
                                     {{-- Menu Footer--}}
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="{{ route('admin::perfil') }}" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="{{ route('admin::perfil') }}" class="btn btn-default btn-flat">
+                                                {{ trans('messages.label.profile') }}
+                                            </a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href={{ route('logoutSession') }} class="btn btn-default btn-flat">Salir</a>
+                                            <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">
+                                                {{ trans('messages.label.logout') }}
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
@@ -79,45 +84,45 @@
                         </div>
                         <div class="pull-left info">
                             <p>{{ auth()->user()->name }}</p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Conectado</a>
+                            <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('messages.label.online') }}</a>
                         </div>
                     </div>
                     {{-- sidebar menu--}}
                     <ul class="sidebar-menu">
-                        <li class="header">Menú</li>
+                        <li class="header">{{ trans('messages.label.menu') }}</li>
                         <li>
                             <a href="{{ route('admin::home') }}">
-                                <i class="fa fa-home"></i> <span>Inicio</span>
+                                <i class="fa fa-home"></i> <span>{{ trans('messages.label.home') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin::sintomas::create') }}">
-                                <i class="fa fa-eyedropper"></i> <span>Síntomas</span>
+                                <i class="fa fa-eyedropper"></i> <span>{{ trans('messages.label.symptoms') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin::enfermedades::create') }}">
-                                <i class="fa fa-heartbeat"></i> <span>Enfermedades</span>
+                                <i class="fa fa-heartbeat"></i> <span>{{ trans('messages.label.diseases') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin::diagnosticos::index') }}">
-                                <i class="fa fa-user-md"></i> <span>Diagnósticos</span>
+                                <i class="fa fa-user-md"></i> <span>{{ trans('messages.label.diagnostics') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin::usuarios::create') }}">
-                                <i class="fa fa-users"></i> <span>Pacientes</span>
+                                <i class="fa fa-users"></i> <span>{{ trans('messages.label.patients') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin::states::create') }}">
-                                <i class="fa fa-institution"></i> <span>Estados</span>
+                                <i class="fa fa-institution"></i> <span>{{ trans('messages.label.states') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin::reportes::index') }}">
-                                <i class="fa fa-area-chart"></i> <span>Reportes</span>
+                                <i class="fa fa-area-chart"></i> <span>{{ trans('messages.label.reports') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -131,7 +136,11 @@
                 <section class="content-header">
                     <h1><i class="fa fa-stethoscope"></i> MiMedico</h1>
                     <ol class="breadcrumb">
-                        <li><a href="{{ route('admin::home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li>
+                            <a href="{{ route('admin::home') }}">
+                                <i class="fa fa-home"></i> {{ trans('messages.label.home') }}
+                            </a>
+                        </li>
                         <li class="active">@yield('breadcrumb')</li>
                     </ol>
                 </section>
@@ -149,7 +158,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; {{ date('Y') }} Dávila Mundaca Helmer &amp; Nomberto Coronado Lesly</strong> Ing. en Computación e Informática.
+                <strong>&copy; {{ date('Y') }} Dávila Mundaca Helmer &amp; Nomberto Coronado Lesly</strong>
             </footer>
         </div>{{-- ./wrapper --}}
         {{-- Compiled scripts --}}

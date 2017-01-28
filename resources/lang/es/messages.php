@@ -1,21 +1,72 @@
 <?php
 
 return [
-    'login.welcome'          => 'Ingresa tus datos para iniciar sesión',
-    'login.remember'         => 'No recordarme|Recordarme',
-    'login.login'            => 'Iniciar Sesión',
-    'login.forgot'           => '¿Olvidaste tu contraseña?',
-    'login.register'         => 'Registrarse',
 
-    'register.submit'        => 'Registrarse',
+    'alert'    => [
+        'symptom' => 'Sólo se pueden eliminar síntomas sin enfermedades asociadas',
+        'warning' => 'Advertencia',
+    ],
 
-    'form.email'             => 'Correo',
-    'form.email.required'    => 'El correo electrónico es requerido',
-    'form.password'          => 'Contraseña',
-    'form.password.required' => 'La contraseña es requerida',
+    'form'     => [
+        'email'             => 'Correo',
+        'email.required'    => 'El correo electrónico es requerido',
+        'password'          => 'Contraseña',
+        'password.required' => 'La contraseña es requerida',
+    ],
 
-    'state.created'          => 'El estado fue registrado con éxito',
-    'state.updated'          => 'El estado fue actualizado con éxito',
-    'state.not_deleted'      => 'No se puede eliminar un estado con usuarios registrados',
-    'state.deleted'          => 'Se eliminó el estado con éxito',
+    'gender'   => [
+        'female' => 'Femenino',
+        'male'   => 'Masculino',
+    ],
+
+    'label'    => [
+        'and'             => 'y',
+        'created'         => 'Creado',
+        'description'     => 'Descripción',
+        'diagnostics'     => 'Diagnósticos',
+        'diseases'        => 'Enfermedades',
+        'gender'          => 'Género',
+        'home'            => 'Inicio',
+        'last_registered' => 'Últimos Registrados',
+        'logout'          => 'Cerrar Sesión',
+        'since'           => 'Miembro desde',
+        'menu'            => 'Menu',
+        'more_info'       => 'Más Información',
+        'name'            => 'Nombre',
+        'names'           => 'Nombre',
+        'online'          => 'Conectado',
+        'patients'        => 'Pacientes',
+        'profile'         => 'Perfil',
+        'reports'         => 'Reportes',
+        'save'            => 'Guardar',
+        'states'          => 'Estados',
+        'symptom'         => [
+            'description' => 'Una breve descripción del síntoma',
+            'list'        => 'Listado de Síntomas',
+            'name'        => 'Nombre del síntoma',
+            'new'         => 'Nuevo Síntoma',
+        ],
+        'symptoms'        => 'Síntomas',
+        'top_two'         => 'Las dos primeras enfermedades más diagnósticadas',
+    ],
+
+    'login'    => [
+        'welcome'  => 'Ingresa tus datos para iniciar sesión',
+        'remember' => 'No recordarme|Recordarme',
+        'login'    => 'Iniciar Sesión',
+        'forgot'   => '¿Olvidaste tu contraseña?',
+        'register' => 'Registrarse',
+    ],
+
+    'register' => [
+        'submit'     => 'Registrarse',
+        'successful' => 'Su cuenta ha sido creada con éxito',
+    ],
+
+    'state'    => [
+        'created'     => 'El estado fue registrado con éxito',
+        'updated'     => 'El estado fue actualizado con éxito',
+        'not_deleted' => 'No se puede eliminar un estado con usuarios registrados',
+        'deleted'     => 'Se eliminó el estado con éxito',
+    ],
 ];

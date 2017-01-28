@@ -1,18 +1,27 @@
 @extends('layouts.layoutadmin')
-@section('title') Síntomas @stop
-@section('breadcrumb') Síntomas @stop
+@section('title') {{ trans('messages.label.symptoms') }} @stop
+@section('breadcrumb') {{ trans('messages.label.symptoms') }} @stop
 @section('content')
 <div class="row">
     <div class="col-md-12">
         <div class="box box-success box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Nuevo Síntoma</strong></h3>
+                <h3 class="box-title"><strong>{{ trans('messages.label.symptom.new') }}</strong></h3>
             </div>
             <div class="box-body">
                 {!! Form::open() !!}
-                    {!! Field::text('name', null, ['ph' => 'Nombre del Síntoma', 'autocomplete' => 'off', 'autofocus' => '', 'label' => 'Nombre']) !!}
-                    {!! Field::text('description', null, ['ph' => 'Una breve descripcion del síntoma', 'autocomplete' => 'off', 'label' => 'Descripción']) !!}
-                    {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
+                    {!! Field::text('name', null, [
+                        'ph' => trans('messages.label.symptom.name'),
+                        'autocomplete' => 'off',
+                        'autofocus' => '',
+                        'label' => trans('messages.label.name')
+                    ]) !!}
+                    {!! Field::text('description', null, [
+                        'ph' => trans('messages.label.symptom.description'),
+                        'autocomplete' => 'off',
+                        'label' => trans('messages.label.description')
+                    ]) !!}
+                    {!! Form::submit(trans('messages.label.save'), ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -22,7 +31,7 @@
     <div class="col-md-12">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title"><strong>Listado de Síntomas</strong></h3>
+                <h3 class="box-title"><strong>{{ trans('messages.label.symptom.list') }}</strong></h3>
             </div>
             <div class="box-body">
                 {!! Form::open(['method' => 'GET', 'route' => 'admin::sintomas::buscar']) !!}
@@ -31,9 +40,9 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <th><i class="fa fa-gear"></i></th>
-                        <th>Nombre</th>
-                        <th>Agregado</th>
-                        <th class="text-center">Enfermedades</th>
+                        <th>{{ trans('messages.label.name') }}</th>
+                        <th>{{ trans('messages.label.created') }}</th>
+                        <th class="text-center">{{ trans('messages.label.diseases') }}</th>
                     </thead>
                     <tbody>
                         @foreach ($sintomas as $sintoma)
@@ -63,6 +72,6 @@
 </div>
 @include('partials._callout', [
     'type' => 'warning',
-    'title' => 'Atención',
-    'content' => 'Sólo se pueden eliminar síntomas sin enfermedades asociadas'])
+    'title' => trans('messages.alert.warning'),
+    'content' => trans('messages.alert.symptom')])
 @stop
